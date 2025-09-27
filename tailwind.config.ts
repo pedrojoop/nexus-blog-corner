@@ -57,6 +57,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Nexus Community Brand Colors
+        'nexus-green': "hsl(var(--nexus-green))",
+        'nexus-green-light': "hsl(var(--nexus-green-light))",
+        'nexus-green-lighter': "hsl(var(--nexus-green-lighter))",
+        'nexus-accent': "hsl(var(--nexus-accent))",
       },
       borderRadius: {
         lg: "var(--radius)",
