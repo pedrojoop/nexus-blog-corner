@@ -10,13 +10,15 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-primary/90 py-20">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,255,255,0.03),transparent_50%)]"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
           <div className="inline-block bg-primary-foreground/20 text-primary-foreground px-4 py-2 rounded-full text-sm font-medium mb-6">
             Nexus Community
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Conecte. Inove. <span className="text-nexus-accent">Transforme.</span>
+            Conecte. Inove. O Hub que Acaba com o <span className="text-nexus-accent">Turnover.</span>
           </h1>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto">
             Construa uma cultura que todos amam. A Nexus Community é a plataforma que conecta sua equipe, 
@@ -50,10 +52,11 @@ const Index = () => {
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
               Sua equipe está mais distante do que nunca?
             </h2>
+            <p className="sr-only">Soluções para Reduzir o Turnover em Equipes Híbridas</p>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Em um mundo de trabalho remoto e híbrido, a desconexão é real. O distanciamento 
-              leva ao burnout, à falta de engajamento e a um turnover que custa caro. Mas existe uma 
-              forma melhor.
+              Seu time sente o isolamento. Em um mundo de trabalho remoto e híbrido, o distanciamento 
+              é mais do que físico — ele impacta o bem-estar, o engajamento e gera um turnover que custa 
+              caro para sua empresa. Mas existe uma forma melhor.
             </p>
           </div>
 
@@ -183,6 +186,7 @@ const Index = () => {
             <Card className="border-2 border-border">
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold text-foreground mb-2">Starter</h3>
+                <p className="text-sm text-primary font-medium mb-2">Para times que estão começando a construir sua cultura</p>
                 <p className="text-muted-foreground mb-6">Perfeito para pequenas equipes começando</p>
                 
                 <div className="mb-8">
@@ -221,6 +225,7 @@ const Index = () => {
               </div>
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold text-foreground mb-2">Profissional</h3>
+                <p className="text-sm text-primary font-medium mb-2">Para times que querem fortalecer engajamento e produtividade</p>
                 <p className="text-muted-foreground mb-6">Ideal para equipes em crescimento</p>
                 
                 <div className="mb-8">
@@ -255,6 +260,7 @@ const Index = () => {
             <Card className="border-2 border-border">
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold text-foreground mb-2">Enterprise</h3>
+                <p className="text-sm text-primary font-medium mb-2">Para organizações que lideram a transformação cultural</p>
                 <p className="text-muted-foreground mb-6">Solução completa e personalizável para grandes organizações</p>
                 
                 <div className="mb-8">
