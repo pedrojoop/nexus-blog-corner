@@ -3,14 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, Users, TrendingUp, Zap, Heart, AlertTriangle, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
+  const problemsSection = useScrollAnimation();
+  const solutionSection = useScrollAnimation();
+  const pricingSection = useScrollAnimation();
+  const ctaSection = useScrollAnimation();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 py-20 overflow-hidden">
+        {/* Organic subtle texture overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,255,255,0.03),transparent_50%)]"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
@@ -46,9 +56,9 @@ const Index = () => {
       </section>
 
       {/* Problems Section */}
-      <section className="py-20 bg-background">
+      <section ref={problemsSection.ref} className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-700 ${problemsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
               Sua equipe está mais distante do que nunca?
             </h2>
@@ -78,7 +88,12 @@ const Index = () => {
                 description: "Falta de coesão e comunicação eficaz entre membros da equipe."
               }
             ].map((problem, index) => (
-              <Card key={index} className="text-center border-0 shadow-md">
+              <Card 
+                key={index} 
+                className="text-center border-0 shadow-md"
+                style={{
+                  animation: problemsSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.1}s both` : 'none'
+                }}>
                 <CardContent className="p-8">
                   <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                     <problem.icon className="h-8 w-8 text-primary-foreground" />
@@ -93,10 +108,10 @@ const Index = () => {
       </section>
 
       {/* Solution Section */}
-      <section className="py-20 bg-accent/30">
+      <section ref={solutionSection.ref} className="py-20 bg-accent/30">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <div className={`transition-all duration-700 ${solutionSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
                 Conecte o<br />que importa
               </h2>
@@ -145,7 +160,12 @@ const Index = () => {
                   description: "Equipes conectadas independentemente da localização."
                 }
               ].map((feature, index) => (
-                <Card key={index} className="text-center border-0 shadow-md bg-background">
+                <Card 
+                  key={index} 
+                  className="text-center border-0 shadow-md bg-background"
+                  style={{
+                    animation: solutionSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.1 + 0.2}s both` : 'none'
+                  }}>
                   <CardContent className="p-6">
                     <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
                       <feature.icon className="h-6 w-6 text-primary" />
@@ -161,9 +181,9 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 bg-background">
+      <section ref={pricingSection.ref} className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-700 ${pricingSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium mb-6">
               Planos que Crescem com Você
             </div>
@@ -183,7 +203,11 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Starter Plan */}
-            <Card className="border-2 border-border">
+            <Card 
+              className="border-2 border-border"
+              style={{
+                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none'
+              }}>
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold text-foreground mb-2">Starter</h3>
                 <p className="text-sm text-primary font-medium mb-2">Para times que estão começando a construir sua cultura</p>
@@ -217,7 +241,11 @@ const Index = () => {
             </Card>
 
             {/* Professional Plan */}
-            <Card className="border-2 border-primary relative">
+            <Card 
+              className="border-2 border-primary relative"
+              style={{
+                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.2s both' : 'none'
+              }}>
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium">
                   ★ Mais Popular
@@ -257,7 +285,11 @@ const Index = () => {
             </Card>
 
             {/* Enterprise Plan */}
-            <Card className="border-2 border-border">
+            <Card 
+              className="border-2 border-border"
+              style={{
+                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.3s both' : 'none'
+              }}>
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold text-foreground mb-2">Enterprise</h3>
                 <p className="text-sm text-primary font-medium mb-2">Para organizações que lideram a transformação cultural</p>
@@ -291,8 +323,8 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 bg-primary">
-        <div className="container mx-auto px-4 text-center">
+      <section ref={ctaSection.ref} className="py-20 bg-primary">
+        <div className={`container mx-auto px-4 text-center transition-all duration-700 ${ctaSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
             Pronto para Revolucionar sua <span className="text-nexus-accent">Empresa?</span>
           </h2>
