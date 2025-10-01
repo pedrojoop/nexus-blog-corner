@@ -44,12 +44,16 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm">
-            Entrar
-          </Button>
-          <Button size="sm" className="bg-primary hover:bg-primary/90">
-            Começar Grátis
-          </Button>
+          <Link to="/auth">
+            <Button variant="ghost" size="sm">
+              Entrar
+            </Button>
+          </Link>
+          <Link to="/auth">
+            <Button size="sm" className="bg-primary hover:bg-primary/90">
+              Começar Grátis
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
