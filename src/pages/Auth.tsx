@@ -3,11 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Users, Network, Sparkles } from "lucide-react";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate("/dashboard");
+  };
 
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: '#2E4F4F' }}>
@@ -72,7 +78,7 @@ const Auth = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 {!isLogin && (
                   <div className="space-y-2">
                     <Label htmlFor="name" style={{ color: '#2E4F4F' }}>Nome Completo</Label>
