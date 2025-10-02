@@ -14,6 +14,7 @@ import DashboardDocumentos from "./pages/DashboardDocumentos";
 import DashboardProjetos from "./pages/DashboardProjetos";
 import DashboardPessoas from "./pages/DashboardPessoas";
 import DashboardConfiguracoes from "./pages/DashboardConfiguracoes";
+import DashboardKanban from "./pages/DashboardKanban";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/dashboard/eventos" element={<DashboardEventos />} />
           <Route path="/dashboard/documentos" element={<DashboardDocumentos />} />
           <Route path="/dashboard/projetos" element={<DashboardProjetos />} />
+          <Route path="/dashboard/projetos/kanban" element={<DashboardKanban />} />
           <Route path="/dashboard/pessoas" element={<DashboardPessoas />} />
           <Route path="/dashboard/configuracoes" element={<DashboardConfiguracoes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

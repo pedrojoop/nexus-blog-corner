@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Calendar, Users, Code } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Link } from "react-router-dom";
 
 const DashboardProjetos = () => {
   const headerSection = useScrollAnimation();
@@ -75,9 +76,11 @@ const DashboardProjetos = () => {
             </div>
             
             <div className="flex gap-2 mt-4">
-              <Button variant="outline" className="flex-1 hover:bg-accent transition-colors">
-                Abrir Kanban
-              </Button>
+              <Link to="/dashboard/projetos/kanban?project=asfasf" className="flex-1">
+                <Button variant="outline" className="w-full hover:bg-accent transition-colors">
+                  Abrir Kanban
+                </Button>
+              </Link>
               <Button className="flex-1 bg-primary hover:bg-primary/90 transition-colors">
                 Ver detalhes
               </Button>
