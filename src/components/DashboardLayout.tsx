@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, MessageSquare, Calendar, FileText, FolderKanban, Users, Settings, Menu } from "lucide-react";
+import { Home, MessageSquare, Calendar, FileText, FolderKanban, Users, Settings, Menu, Briefcase, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -16,12 +16,24 @@ const menuItems = [
   { icon: FileText, label: "Documentos", path: "/dashboard/documentos" },
   { icon: FolderKanban, label: "Projetos", path: "/dashboard/projetos" },
   { icon: Users, label: "Pessoas", path: "/dashboard/pessoas" },
+  { 
+    icon: Briefcase, 
+    label: "RH", 
+    path: "/dashboard/rh",
+    submenu: [
+      { label: "Dashboard RH", path: "/dashboard/rh" },
+      { label: "Ponto", path: "/dashboard/rh/ponto" },
+      { label: "Gamificação", path: "/dashboard/rh/gamificacao" },
+      { label: "Recrutamento", path: "/dashboard/rh/recrutamento" },
+    ]
+  },
   { icon: Settings, label: "Configurações", path: "/dashboard/configuracoes" },
 ];
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [openSubmenus, setOpenSubmenus] = useState<string[]>(["/dashboard/rh"]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -80,24 +92,76 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </p>
             {menuItems.map((item) => {
               const isActive = location.pathname === item.path;
+              const hasSubmenu = 'submenu' in item && item.submenu;
+              const isSubmenuOpen = hasSubmenu && openSubmenus.includes(item.path);
               const Icon = item.icon;
               
               return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 group",
-                    isActive 
-                      ? "bg-primary text-primary-foreground shadow-md" 
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm hover:-translate-y-0.5"
+                <div key={item.path}>
+                  {hasSubmenu ? (
+                    <>
+                      <button
+                        onClick={() => {
+                          setOpenSubmenus(prev => 
+                            prev.includes(item.path) 
+                              ? prev.filter(p => p !== item.path)
+                              : [...prev, item.path]
+                          );
+                        }}
+                        className={cn(
+                          "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 group",
+                          location.pathname.startsWith(item.path)
+                            ? "bg-primary text-primary-foreground shadow-md" 
+                            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm"
+                        )}
+                      >
+                        <Icon className="h-5 w-5 flex-shrink-0" />
+                        {isSidebarOpen && (
+                          <>
+                            <span className="font-medium flex-1 text-left">{item.label}</span>
+                            <ChevronDown className={cn(
+                              "h-4 w-4 transition-transform",
+                              isSubmenuOpen && "rotate-180"
+                            )} />
+                          </>
+                        )}
+                      </button>
+                      {isSidebarOpen && isSubmenuOpen && item.submenu && (
+                        <div className="ml-8 mt-1 space-y-1">
+                          {item.submenu.map((subItem) => (
+                            <Link
+                              key={subItem.path}
+                              to={subItem.path}
+                              className={cn(
+                                "block px-3 py-2 text-sm rounded-md transition-all",
+                                location.pathname === subItem.path
+                                  ? "bg-accent text-accent-foreground font-medium"
+                                  : "text-muted-foreground hover:bg-accent/50"
+                              )}
+                            >
+                              {subItem.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      className={cn(
+                        "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 group",
+                        isActive 
+                          ? "bg-primary text-primary-foreground shadow-md" 
+                          : "text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm hover:-translate-y-0.5"
+                      )}
+                    >
+                      <Icon className="h-5 w-5 flex-shrink-0" />
+                      {isSidebarOpen && (
+                        <span className="font-medium">{item.label}</span>
+                      )}
+                    </Link>
                   )}
-                >
-                  <Icon className="h-5 w-5 flex-shrink-0" />
-                  {isSidebarOpen && (
-                    <span className="font-medium">{item.label}</span>
-                  )}
-                </Link>
+                </div>
               );
             })}
           </div>
