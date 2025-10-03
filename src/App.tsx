@@ -19,6 +19,10 @@ import DashboardRH from "./pages/DashboardRH";
 import DashboardRHPonto from "./pages/DashboardRHPonto";
 import DashboardRHGamificacao from "./pages/DashboardRHGamificacao";
 import DashboardRHRecrutamento from "./pages/DashboardRHRecrutamento";
+import DashboardTickets from "./pages/DashboardTickets";
+import DashboardTicketsNovo from "./pages/DashboardTicketsNovo";
+import DashboardTicketsGestor from "./pages/DashboardTicketsGestor";
+import DashboardTicketsDetalhes from "./pages/DashboardTicketsDetalhes";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +47,10 @@ const App = () => (
           <Route path="/dashboard/rh/ponto" element={<DashboardRHPonto />} />
           <Route path="/dashboard/rh/gamificacao" element={<DashboardRHGamificacao />} />
           <Route path="/dashboard/rh/recrutamento" element={<DashboardRHRecrutamento />} />
+          <Route path="/dashboard/tickets" element={<DashboardTickets />} />
+          <Route path="/dashboard/tickets/novo" element={<DashboardTicketsNovo />} />
+          <Route path="/dashboard/tickets/gestor" element={<DashboardTicketsGestor />} />
+          <Route path="/dashboard/tickets/:id" element={<DashboardTicketsDetalhes />} />
           <Route path="/dashboard/configuracoes" element={<DashboardConfiguracoes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -27,13 +27,23 @@ const menuItems = [
       { label: "Recrutamento", path: "/dashboard/rh/recrutamento" },
     ]
   },
+  { 
+    icon: MessageSquare, 
+    label: "Tickets", 
+    path: "/dashboard/tickets",
+    submenu: [
+      { label: "Meus Tickets", path: "/dashboard/tickets" },
+      { label: "Novo Ticket", path: "/dashboard/tickets/novo" },
+      { label: "Gestão (Admin)", path: "/dashboard/tickets/gestor" },
+    ]
+  },
   { icon: Settings, label: "Configurações", path: "/dashboard/configuracoes" },
 ];
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [openSubmenus, setOpenSubmenus] = useState<string[]>(["/dashboard/rh"]);
+  const [openSubmenus, setOpenSubmenus] = useState<string[]>(["/dashboard/rh", "/dashboard/tickets"]);
 
   return (
     <div className="min-h-screen bg-background">
