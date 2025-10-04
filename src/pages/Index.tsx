@@ -8,9 +8,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const Index = () => {
   const problemsSection = useScrollAnimation();
   const solutionSection = useScrollAnimation();
-  const servicesSection = useScrollAnimation();
-  const aboutSection = useScrollAnimation();
   const pricingSection = useScrollAnimation();
+  const aboutSection = useScrollAnimation();
   const ctaSection = useScrollAnimation();
 
   return (
@@ -185,268 +184,38 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section ref={servicesSection.ref} className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className={`text-center mb-16 transition-all duration-700 ${servicesSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="inline-block bg-nexus-green text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              Nossos Serviços
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-nexus-green mb-6">
-              O Hub de Cultura e o Futuro da Gestão
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              A Nexus Community oferece uma suíte de soluções projetada para elevar o desempenho da sua empresa 
-              através da gestão estratégica do capital humano.
-            </p>
-          </div>
-
-          <div className="space-y-12 max-w-5xl mx-auto">
-            {/* Service 1 */}
-            <Card 
-              className="border-2 border-nexus-green bg-white hover:shadow-xl transition-all duration-300"
-              style={{
-                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none'
-              }}>
-              <CardContent className="p-8">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-nexus-green rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Users className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-nexus-green mb-3">
-                      1. Nexus Community: Plataforma de Engajamento e Cultura
-                    </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      Este é o nosso principal serviço SaaS, entregue por assinatura recorrente. 
-                      Ele atua diretamente na raiz do problema de turnover e burnout em equipes distribuídas.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-nexus-green">Prevenção Proativa:</strong>
-                          <span className="text-gray-600"> Ferramentas de reconhecimento e comunidades de interesse que combatem o isolamento.</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-nexus-green">Unificação de Engajamento:</strong>
-                          <span className="text-gray-600"> Centralização de todas as atividades de cultura e celebração em um só lugar.</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-nexus-green">Visão em Dados:</strong>
-                          <span className="text-gray-600"> Analytics para medir o pulso da equipe e o ROI em cultura.</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Service 2 */}
-            <Card 
-              className="border-2 border-nexus-accent bg-white hover:shadow-xl transition-all duration-300"
-              style={{
-                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.2s both' : 'none'
-              }}>
-              <CardContent className="p-8">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-nexus-accent rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Zap className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-nexus-green mb-3">
-                      2. Serviços de Valor Agregado e Inovação (P&D&I)
-                    </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      Nosso serviço inclui o compromisso com a inovação contínua, garantindo que sua empresa 
-                      esteja sempre na vanguarda da gestão de pessoas.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-nexus-accent flex-shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-nexus-green">Análise Preditiva com IA:</strong>
-                          <span className="text-gray-600"> Módulo de Inteligência Artificial para identificar grupos com alto risco de burnout antes que afete a operação.</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-nexus-accent flex-shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-nexus-green">Consultoria Estratégica de Cultura:</strong>
-                          <span className="text-gray-600"> Transforme os dados da plataforma em planos de ação concretos através do nosso Customer Success.</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Service 3 */}
-            <Card 
-              className="border-2 border-gray-200 bg-nexus-green-lighter/20 hover:shadow-xl transition-all duration-300"
-              style={{
-                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.3s both' : 'none'
-              }}>
-              <CardContent className="p-8">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-nexus-green-light rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Target className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-nexus-green mb-3">
-                      3. O Ecossistema Nexus (Visão de Longo Prazo)
-                    </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      Sua empresa não está apenas comprando um software; está investindo em uma solução de gestão completa.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-nexus-green">O Que É:</strong>
-                          <span className="text-gray-600"> O Nexus será uma suíte de ferramentas (Nexus Sales, Nexus Finances, etc.) que funcionam de forma independente, mas se integram perfeitamente.</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-nexus-green">O Valor Estratégico:</strong>
-                          <span className="text-gray-600"> Todos os seus futuros desafios de gestão poderão ser resolvidos sob a mesma interface com dados unificados.</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* About Section */}
-      <section ref={aboutSection.ref} className="py-20 bg-gray-50">
+      <section ref={aboutSection.ref} className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className={`text-center mb-16 transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="inline-block bg-nexus-green text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              Sobre Nós
-            </div>
             <h2 className="text-3xl md:text-5xl font-bold text-nexus-green mb-6">
-              Nossa Missão: Conectando o Futuro do Trabalho
+              Quem Está Por Trás da Nexus
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Nós fundamos a Nexus Community com uma convicção: o futuro do trabalho não precisa ser sinônimo de burnout e isolamento.
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
+              Somos uma <strong>startup digital-native</strong> focada em resolver o maior desafio do futuro do trabalho: 
+              manter equipes remotas e híbridas engajadas, conectadas e produtivas. Nosso time fundador combina <strong>expertise 
+              em negócios, tecnologia e inovação</strong> para entregar uma plataforma escalável e baseada em dados.
             </p>
           </div>
 
-          {/* Mission Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
-            <Card 
-              className="border-2 border-nexus-green bg-white hover:shadow-xl transition-all duration-300"
-              style={{
-                animation: aboutSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none'
-              }}>
-              <CardContent className="p-8">
-                <Heart className="h-12 w-12 text-nexus-green mb-4" />
-                <h3 className="text-2xl font-bold text-nexus-green mb-4">Nossa Convicção</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Acreditamos que, embora o trabalho remoto e híbrido tenha trazido liberdade, ele não pode custar a 
-                  <strong> conexão humana e a cultura da empresa</strong>. Vimos as taxas de turnover e desengajamento 
-                  aumentarem e entendemos que as ferramentas tradicionais de comunicação não estavam preparadas para 
-                  resolver o custo humano dessa equação.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card 
-              className="border-2 border-nexus-accent bg-white hover:shadow-xl transition-all duration-300"
-              style={{
-                animation: aboutSection.isVisible ? 'slide-up 0.6s ease-out 0.2s both' : 'none'
-              }}>
-              <CardContent className="p-8">
-                <Target className="h-12 w-12 text-nexus-accent mb-4" />
-                <h3 className="text-2xl font-bold text-nexus-green mb-4">Nossa Missão</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Usar a <strong>tecnologia para resolver essa crise de conexão</strong>, transformando o distanciamento 
-                  físico em uma oportunidade de construir uma cultura forte e coesa. O Nexus Community é mais do que um 
-                  software; é uma <strong>filosofia de trabalho</strong> focada em prevenção e humanização.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* What Drives Us */}
-          <div className={`max-w-5xl mx-auto mb-16 transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Card className="border-2 border-nexus-green bg-nexus-green-lighter/30">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-nexus-green mb-6 text-center">
-                  O Que Nos Move: Tecnologia a Serviço das Pessoas
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-bold text-nexus-green mb-2 flex items-center gap-2">
-                      <Zap className="h-5 w-5" />
-                      Abordagem Proativa
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed">
-                      Ao contrário das soluções que reagem a problemas, nossa plataforma é construída para 
-                      <strong> preveni-los</strong>. Atuamos como o Hub Central que fortalece continuamente os laços 
-                      sociais, o reconhecimento e o senso de pertencimento.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-nexus-green mb-2 flex items-center gap-2">
-                      <TrendingUp className="h-5 w-5" />
-                      Visão de Ecossistema
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed">
-                      Entregamos valor com uma plataforma modular, pensada para ser o <strong>único parceiro estratégico 
-                      de gestão</strong> da sua empresa. Nossa visão é expandir para um ecossistema completo de soluções 
-                      integradas.
-                    </p>
-                  </div>
-                </div>
-                <p className="text-center text-nexus-green font-bold text-lg mt-6">
-                  Acreditamos que uma empresa só prospera quando as pessoas prosperam.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Team Section */}
-          <div className={`text-center mb-12 transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h3 className="text-3xl font-bold text-nexus-green mb-4">A Equipe Fundadora: Paixão e Execução</h3>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              A Nexus é liderada por um time com a paixão necessária para a missão e a experiência técnica para a execução. 
-              Nossos papéis são complementares, garantindo que o produto e a estratégia sejam construídos em conjunto.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
             {[
               {
                 name: "Pedro Matheus Lima da Cruz",
                 role: "CEO",
-                description: "Visão Estratégica e Liderança Comercial",
+                description: "Estratégia de Negócios e Vendas B2B",
                 linkedin: "#"
               },
               {
                 name: "João Lucas Cordeiro Santana",
                 role: "CTO",
-                description: "Arquitetura Técnica e Garantia de Escalabilidade da Plataforma",
+                description: "Arquitetura de Software e Escalabilidade",
                 linkedin: "#"
               },
               {
                 name: "Lucas Rodrigues de Azevedo",
                 role: "CIO",
-                description: "Inovação e Pesquisa para integração de futuros sistemas e módulos de IA",
+                description: "Inovação e Integração de Sistemas",
                 linkedin: "#"
               }
             ].map((member, index) => (
@@ -454,13 +223,13 @@ const Index = () => {
                 key={index} 
                 className="text-center border border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
                 style={{
-                  animation: aboutSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15 + 0.3}s both` : 'none'
+                  animation: aboutSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15}s both` : 'none'
                 }}>
                 <CardContent className="p-8">
-                  <div className="w-20 h-20 bg-nexus-green rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="h-10 w-10 text-white" />
+                  <div className="w-20 h-20 bg-nexus-green-lighter rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="h-10 w-10 text-nexus-green" />
                   </div>
-                  <h4 className="text-xl font-bold text-nexus-green mb-1">{member.name}</h4>
+                  <h3 className="text-xl font-bold text-nexus-green mb-1">{member.name}</h3>
                   <p className="text-sm font-semibold text-nexus-accent mb-3">{member.role}</p>
                   <p className="text-sm text-gray-600 mb-4 leading-relaxed">{member.description}</p>
                   <a 
@@ -475,6 +244,20 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className={`max-w-4xl mx-auto transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <Card className="border-2 border-nexus-green bg-nexus-green-lighter/30">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-nexus-green mb-4 text-center">Nossa Missão</h3>
+                <p className="text-gray-700 leading-relaxed text-center">
+                  Criamos a <strong>Nexus Community</strong> porque acreditamos que o futuro do trabalho exige mais do que ferramentas — 
+                  exige <strong>conexão humana, cultura intencional e dados acionáveis</strong>. Nosso objetivo é empoderar gestores de RH e 
+                  líderes a construir organizações onde as pessoas se sintam parte de algo maior, reduzindo turnover e criando ambientes de 
+                  trabalho mais saudáveis e produtivos.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
