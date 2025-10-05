@@ -34,6 +34,14 @@ const Header = () => {
             Blog
           </Link>
           <Link 
+            to="/servicos" 
+            className={`text-sm font-medium transition-colors hover:text-primary ${
+              isActive('/servicos') ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            Serviços
+          </Link>
+          <Link 
             to="/sobre" 
             className={`text-sm font-medium transition-colors hover:text-primary ${
               isActive('/sobre') ? 'text-primary' : 'text-muted-foreground'
