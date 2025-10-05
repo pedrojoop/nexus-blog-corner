@@ -17,39 +17,51 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-nexus-green py-24 overflow-hidden">
+      <section className="relative py-32 overflow-hidden" style={{ background: 'var(--gradient-hero)' }}>
         <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-nexus-glow rounded-full blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-nexus-accent rounded-full blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
+        
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="inline-block bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
-            Plataforma SaaS B2B de Engajamento
+          <div className="inline-flex items-center gap-2 glass px-5 py-2.5 rounded-full text-sm font-medium mb-8 shadow-lg">
+            <div className="w-2 h-2 bg-nexus-accent rounded-full animate-pulse"></div>
+            <span className="text-nexus-green">Plataforma SaaS B2B de Engajamento</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Conecte sua Equipe.<br />Acabe com o <span className="text-nexus-accent">Turnover.</span>
+          
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+            Conecte sua Equipe.<br />Acabe com o <span className="relative">
+              <span className="relative z-10">Turnover.</span>
+              <span className="absolute bottom-0 left-0 w-full h-3 bg-nexus-accent opacity-30 blur-sm"></span>
+            </span>
           </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+          
+          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
             A Nexus Community é a plataforma SaaS B2B que resolve o alto turnover e burnout em equipes remotas e híbridas. 
             Construa uma cultura forte baseada em dados, engajamento e conexão real.
           </p>
-          <Link to="/auth">
-            <Button size="lg" className="bg-white text-nexus-green hover:bg-white/90 shadow-lg">
-              Começar Gratuitamente <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
           
-          <div className="flex flex-wrap justify-center gap-6 mt-12 text-white/90 text-sm">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <Link to="/auth">
+              <Button size="lg" className="bg-white text-nexus-green hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-2xl px-8 py-6 text-lg font-semibold">
+                Começar Gratuitamente <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-8 text-white/90 text-sm">
+            <div className="flex items-center gap-2 glass px-4 py-2 rounded-full">
               <CheckCircle className="h-4 w-4 text-nexus-accent" />
-              <span>14 dias grátis</span>
+              <span className="font-medium">14 dias grátis</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 glass px-4 py-2 rounded-full">
               <CheckCircle className="h-4 w-4 text-nexus-accent" />
-              <span>Setup em minutos</span>
+              <span className="font-medium">Setup em minutos</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 glass px-4 py-2 rounded-full">
               <CheckCircle className="h-4 w-4 text-nexus-accent" />
-              <span>Suporte dedicado</span>
+              <span className="font-medium">Suporte dedicado</span>
             </div>
           </div>
         </div>
@@ -90,15 +102,17 @@ const Index = () => {
             ].map((problem, index) => (
               <Card 
                 key={index} 
-                className="text-center border border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
+                className="group text-center border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-nexus-green-lighter/20 card-hover relative overflow-hidden"
                 style={{
-                  animation: problemsSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15}s both` : 'none'
+                  animation: problemsSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15}s both` : 'none',
+                  boxShadow: 'var(--shadow-lg)'
                 }}>
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-nexus-green rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-nexus-accent/0 to-nexus-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <CardContent className="p-8 relative z-10">
+                  <div className="w-16 h-16 bg-gradient-to-br from-nexus-green to-nexus-green-light rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <problem.icon className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-nexus-green mb-4">{problem.title}</h3>
+                  <h3 className="text-xl font-semibold text-nexus-green mb-4 group-hover:text-nexus-accent transition-colors">{problem.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{problem.description}</p>
                 </CardContent>
               </Card>
@@ -166,15 +180,17 @@ const Index = () => {
               ].map((feature, index) => (
                 <Card 
                   key={index} 
-                  className="text-center border border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
+                  className="group text-center border-0 bg-gradient-to-br from-white to-nexus-green-lighter/10 card-hover relative overflow-hidden"
                   style={{
-                    animation: solutionSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15 + 0.3}s both` : 'none'
+                    animation: solutionSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15 + 0.3}s both` : 'none',
+                    boxShadow: 'var(--shadow-md)'
                   }}>
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-nexus-green-lighter rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="absolute inset-0 bg-gradient-to-br from-nexus-glow/0 to-nexus-glow/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="w-12 h-12 bg-gradient-to-br from-nexus-green-lighter to-white rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
                       <feature.icon className="h-6 w-6 text-nexus-green" />
                     </div>
-                    <h3 className="font-semibold text-nexus-green mb-2">{feature.title}</h3>
+                    <h3 className="font-semibold text-nexus-green mb-2 group-hover:text-nexus-accent transition-colors">{feature.title}</h3>
                     <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
@@ -221,12 +237,14 @@ const Index = () => {
             ].map((member, index) => (
               <Card 
                 key={index} 
-                className="text-center border border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
+                className="group text-center border-0 bg-white card-hover relative overflow-hidden"
                 style={{
-                  animation: aboutSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15}s both` : 'none'
+                  animation: aboutSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15}s both` : 'none',
+                  boxShadow: 'var(--shadow-lg)'
                 }}>
-                <CardContent className="p-8">
-                  <div className="w-20 h-20 bg-nexus-green-lighter rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="absolute inset-0 bg-gradient-to-br from-nexus-green/0 to-nexus-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <CardContent className="p-8 relative z-10">
+                  <div className="w-20 h-20 bg-gradient-to-br from-nexus-green-lighter to-nexus-green-lighter/50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <Users className="h-10 w-10 text-nexus-green" />
                   </div>
                   <h3 className="text-xl font-bold text-nexus-green mb-1">{member.name}</h3>
@@ -236,7 +254,7 @@ const Index = () => {
                     href={member.linkedin} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-nexus-green hover:text-nexus-accent transition-colors"
+                    className="inline-flex items-center gap-2 text-nexus-green hover:text-nexus-accent transition-all hover:gap-3 duration-300"
                   >
                     <Linkedin className="h-4 w-4" />
                     <span className="text-sm font-medium">LinkedIn</span>
@@ -247,12 +265,16 @@ const Index = () => {
           </div>
 
           <div className={`max-w-4xl mx-auto transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Card className="border-2 border-nexus-green bg-nexus-green-lighter/30">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-nexus-green mb-4 text-center">Nossa Missão</h3>
-                <p className="text-gray-700 leading-relaxed text-center">
-                  Criamos a <strong>Nexus Community</strong> porque acreditamos que o futuro do trabalho exige mais do que ferramentas — 
-                  exige <strong>conexão humana, cultura intencional e dados acionáveis</strong>. Nosso objetivo é empoderar gestores de RH e 
+            <Card className="border-0 relative overflow-hidden" style={{ 
+              background: 'var(--gradient-premium)',
+              boxShadow: 'var(--shadow-xl)'
+            }}>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-nexus-accent rounded-full blur-3xl opacity-10"></div>
+              <CardContent className="p-10 relative z-10">
+                <h3 className="text-3xl font-bold text-nexus-green mb-6 text-center">Nossa Missão</h3>
+                <p className="text-lg text-gray-700 leading-relaxed text-center">
+                  Criamos a <strong className="text-nexus-green">Nexus Community</strong> porque acreditamos que o futuro do trabalho exige mais do que ferramentas — 
+                  exige <strong className="text-nexus-green">conexão humana, cultura intencional e dados acionáveis</strong>. Nosso objetivo é empoderar gestores de RH e 
                   líderes a construir organizações onde as pessoas se sintam parte de algo maior, reduzindo turnover e criando ambientes de 
                   trabalho mais saudáveis e produtivos.
                 </p>
@@ -286,9 +308,10 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Starter Plan */}
             <Card 
-              className="border-2 border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
+              className="border-0 bg-white card-hover relative overflow-hidden group"
               style={{
-                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none'
+                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none',
+                boxShadow: 'var(--shadow-lg)'
               }}>
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold text-nexus-green mb-2">Starter</h3>
@@ -326,15 +349,17 @@ const Index = () => {
 
             {/* Professional Plan */}
             <Card 
-              className="border-2 border-nexus-accent bg-white relative hover:shadow-2xl transition-all duration-300"
+              className="border-0 bg-white relative card-hover group scale-105"
               style={{
-                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.2s both' : 'none'
+                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.2s both' : 'none',
+                boxShadow: 'var(--shadow-2xl), var(--shadow-glow)'
               }}>
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <div className="bg-nexus-accent text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+              <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 z-10">
+                <div className="bg-gradient-to-r from-nexus-accent to-nexus-glow text-white px-8 py-3 rounded-full text-sm font-bold shadow-2xl animate-pulse">
                   ★ Mais Popular
                 </div>
               </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-nexus-accent/5 to-nexus-glow/5"></div>
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold text-nexus-green mb-2">Profissional</h3>
                 <p className="text-sm text-nexus-accent font-medium mb-2">Para times que querem fortalecer engajamento e produtividade</p>
