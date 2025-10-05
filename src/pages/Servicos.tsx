@@ -14,18 +14,15 @@ const Servicos = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden" style={{ background: 'var(--gradient-hero)' }}>
+      <section className="relative bg-nexus-green py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-nexus-glow rounded-full blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-nexus-accent rounded-full blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Nossos Serviços: O Hub de Cultura<br />e o Futuro da Gestão
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
             A Nexus Community oferece uma suíte de soluções projetada para elevar o desempenho da sua empresa 
             através da gestão estratégica do capital humano.
           </p>
@@ -39,15 +36,13 @@ const Servicos = () => {
             
             {/* Service 1 */}
             <Card 
-              className="group border-0 bg-white card-hover relative overflow-hidden"
+              className="border-2 border-nexus-green bg-white hover:shadow-xl transition-all duration-300"
               style={{
-                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none',
-                boxShadow: 'var(--shadow-xl)'
+                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none'
               }}>
-              <div className="absolute inset-0 bg-gradient-to-br from-nexus-accent/0 to-nexus-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <CardContent className="p-8 md:p-12 relative z-10">
+              <CardContent className="p-8 md:p-12">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-nexus-green to-nexus-green-light rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-nexus-green rounded-full flex items-center justify-center flex-shrink-0">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
                   <div>
@@ -101,15 +96,13 @@ const Servicos = () => {
 
             {/* Service 2 */}
             <Card 
-              className="group border-0 bg-white card-hover relative overflow-hidden"
+              className="border-2 border-nexus-green bg-white hover:shadow-xl transition-all duration-300"
               style={{
-                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.2s both' : 'none',
-                boxShadow: 'var(--shadow-xl)'
+                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.2s both' : 'none'
               }}>
-              <div className="absolute inset-0 bg-gradient-to-br from-nexus-glow/0 to-nexus-glow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <CardContent className="p-8 md:p-12 relative z-10">
+              <CardContent className="p-8 md:p-12">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-nexus-green to-nexus-green-light rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-nexus-green rounded-full flex items-center justify-center flex-shrink-0">
                     <Brain className="h-8 w-8 text-white" />
                   </div>
                   <div>
@@ -148,15 +141,13 @@ const Servicos = () => {
 
             {/* Service 3 */}
             <Card 
-              className="group border-0 bg-white card-hover relative overflow-hidden"
+              className="border-2 border-nexus-green bg-white hover:shadow-xl transition-all duration-300"
               style={{
-                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.3s both' : 'none',
-                boxShadow: 'var(--shadow-xl)'
+                animation: servicesSection.isVisible ? 'slide-up 0.6s ease-out 0.3s both' : 'none'
               }}>
-              <div className="absolute inset-0 bg-gradient-to-br from-nexus-accent/0 to-nexus-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <CardContent className="p-8 md:p-12 relative z-10">
+              <CardContent className="p-8 md:p-12">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-nexus-green to-nexus-green-light rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-nexus-green rounded-full flex items-center justify-center flex-shrink-0">
                     <Building2 className="h-8 w-8 text-white" />
                   </div>
                   <div>
@@ -197,17 +188,16 @@ const Servicos = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden" style={{ background: 'var(--gradient-hero)' }}>
-        <div className="absolute top-10 right-10 w-72 h-72 bg-nexus-glow rounded-full blur-3xl opacity-20 animate-pulse"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      <section className="py-20 bg-nexus-green">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Pronto para Transformar sua Cultura?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Comece hoje mesmo com 14 dias grátis e veja o impacto na sua equipe.
           </p>
           <Link to="/auth">
-            <Button size="lg" className="bg-white text-nexus-green hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-2xl px-8 py-6 text-lg font-semibold">
+            <Button size="lg" className="bg-white text-nexus-green hover:bg-white/90 shadow-lg">
               Começar Gratuitamente <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
