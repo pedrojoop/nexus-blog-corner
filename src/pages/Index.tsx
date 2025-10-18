@@ -1,11 +1,14 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, Users, TrendingUp, Zap, Heart, AlertTriangle, BarChart3, Target, Linkedin } from "lucide-react";
+import { ArrowRight, CheckCircle, Users, TrendingUp, Zap, Heart, AlertTriangle, BarChart3, Target, Linkedin, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { ProductTour } from "@/components/ProductTour";
 
 const Index = () => {
+  const [showTour, setShowTour] = useState(false);
   const problemsSection = useScrollAnimation();
   const solutionSection = useScrollAnimation();
   const pricingSection = useScrollAnimation();
@@ -15,6 +18,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
+      <ProductTour open={showTour} onOpenChange={setShowTour} />
       
       {/* Hero Section */}
       <section className="relative bg-nexus-green py-24 overflow-hidden">
@@ -32,11 +36,21 @@ const Index = () => {
             A Nexus Community é a plataforma SaaS B2B que resolve o alto turnover e burnout em equipes remotas e híbridas. 
             Construa uma cultura forte baseada em dados, engajamento e conexão real.
           </p>
-          <Link to="/auth">
-            <Button size="lg" className="bg-white text-nexus-green hover:bg-white/90 shadow-lg">
-              Começar Gratuitamente <ArrowRight className="ml-2 h-5 w-5" />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              size="lg" 
+              onClick={() => setShowTour(true)}
+              className="bg-nexus-accent text-white hover:bg-nexus-accent/90 shadow-xl border-2 border-white/20 gap-2"
+            >
+              <Play className="h-5 w-5" />
+              Explore a Plataforma
             </Button>
-          </Link>
+            <Link to="/auth">
+              <Button size="lg" variant="outline" className="bg-white text-nexus-green hover:bg-white/90 shadow-lg">
+                Começar Gratuitamente <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
           
           <div className="flex flex-wrap justify-center gap-6 mt-12 text-white/90 text-sm">
             <div className="flex items-center gap-2">
