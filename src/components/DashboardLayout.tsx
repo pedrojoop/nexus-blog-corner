@@ -21,10 +21,12 @@ const menuItems = [
     label: "RH", 
     path: "/dashboard/rh",
     submenu: [
-      { label: "Dashboard RH", path: "/dashboard/rh" },
-      { label: "Ponto", path: "/dashboard/rh/ponto" },
-      { label: "Gamificação", path: "/dashboard/rh/gamificacao" },
-      { label: "Recrutamento", path: "/dashboard/rh/recrutamento" },
+      { label: "Inteligência Preditiva", path: "/dashboard/rh" },
+      { label: "Gestão de Ponto", path: "/dashboard/rh/ponto" },
+      { label: "Cultura e Engajamento", path: "/dashboard/rh/gamificacao" },
+      { label: "Gestão de Talentos", path: "/dashboard/rh/recrutamento" },
+      { label: "Treinamentos (LMS)", path: "/dashboard/rh/lms" },
+      { label: "Culture-as-a-Service", path: "/dashboard/rh/caas" },
     ]
   },
   { 

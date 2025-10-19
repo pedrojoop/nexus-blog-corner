@@ -1,25 +1,49 @@
 import DashboardLayout from "@/components/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Trophy, Target, Clock, Gift, TrendingUp } from "lucide-react";
+import { Brain, AlertTriangle, TrendingDown, Target, BarChart3, Users, Clock } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 const DashboardRH = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
-  const { ref: metasRef, isVisible: metasVisible } = useScrollAnimation();
+  const { ref: alertRef, isVisible: alertVisible } = useScrollAnimation();
+  const { ref: employeesRef, isVisible: employeesVisible } = useScrollAnimation();
 
-  const userLevel = 7;
-  const userXP = 3450;
-  const nextLevelXP = 4000;
-  const progressPercent = (userXP / nextLevelXP) * 100;
+  const atRiskEmployees = [
+    { 
+      name: "Carlos Mendes", 
+      role: "Desenvolvedor Sr.", 
+      risk: 92, 
+      factors: ["Horas extras excessivas", "Baixo engajamento", "Sem 1:1s há 60 dias"],
+      department: "Tecnologia"
+    },
+    { 
+      name: "Patrícia Lima", 
+      role: "Designer UX", 
+      risk: 85, 
+      factors: ["Feedback negativo recorrente", "Ausências", "Baixa produtividade"],
+      department: "Produto"
+    },
+    { 
+      name: "Roberto Silva", 
+      role: "Analista QA", 
+      risk: 78, 
+      factors: ["Isolamento social", "Sem reconhecimento", "Metas atrasadas"],
+      department: "Tecnologia"
+    },
+  ];
 
-  const metas = [
-    { id: 1, titulo: "Completar 5 projetos", progresso: 80, xp: 500, prazo: "15/12/2025" },
-    { id: 2, titulo: "Participar de 3 eventos", progresso: 66, xp: 300, prazo: "20/12/2025" },
-    { id: 3, titulo: "Colaborar com 10 pessoas", progresso: 40, xp: 200, prazo: "31/12/2025" },
+  const culturalFailures = [
+    { ritual: "Ritual de Reconhecimento", department: "Comercial", successRate: 60, status: "critical" },
+    { ritual: "1:1 com Gestor", department: "Tecnologia", successRate: 72, status: "warning" },
+  ];
+
+  const criticalSkills = [
+    { skill: "Backend Python", currentExperts: 3, atRisk: 2, inTraining: 1 },
+    { skill: "Liderança de Squad", currentExperts: 5, atRisk: 1, inTraining: 2 },
+    { skill: "Gestão de Vendas", currentExperts: 4, atRisk: 2, inTraining: 0 },
   ];
 
   return (
@@ -34,141 +58,199 @@ const DashboardRH = () => {
             }`}
           >
             <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Meu Dashboard
+              Inteligência Preditiva
             </h1>
-            <p className="text-muted-foreground">Acompanhe seu progresso e engajamento</p>
+            <p className="text-muted-foreground">Dashboard de Alertas e Prescrição de Ações</p>
           </div>
 
-          {/* Gamificação Principal */}
+          {/* Alerta Crítico Principal */}
           <div
-            ref={statsRef}
+            ref={alertRef}
             className={`transition-all duration-700 delay-100 ${
-              statsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              alertVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <Card className="border-primary/20 bg-gradient-to-br from-card to-primary/5 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="bg-gradient-to-r from-red-600 to-orange-600 text-white border-none shadow-2xl">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-2xl">
-                  <Trophy className="h-6 w-6 text-primary" />
-                  Seu Progresso
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-3">
-                      <Badge className="text-lg px-4 py-1" variant="default">
-                        Nível {userLevel}
-                      </Badge>
-                      <span className="text-3xl font-bold text-primary">{userXP} XP</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      Faltam {nextLevelXP - userXP} XP para o próximo nível
-                    </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                    <Brain className="h-8 w-8" />
                   </div>
-                  <TrendingUp className="h-16 w-16 text-accent opacity-60" />
+                  <div className="flex-1">
+                    <CardTitle className="text-2xl mb-1">Alerta Crítico: Risco de Turnover</CardTitle>
+                    <p className="text-white/90">IA identificou 3 colaboradores em risco alto de desligamento</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold">87%</div>
+                    <div className="text-sm text-white/80">Acurácia</div>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Progress value={progressPercent} className="h-4" />
-                  <p className="text-xs text-right text-muted-foreground">{progressPercent.toFixed(1)}% completo</p>
-                </div>
-              </CardContent>
+              </CardHeader>
             </Card>
           </div>
 
-          {/* Grid de Ações e Alertas */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Ponto Rápido */}
-            <Card className="hover:shadow-lg transition-all hover:-translate-y-1">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-primary" />
-                  Registrar Ponto
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="text-center py-4">
-                  <p className="text-sm text-muted-foreground mb-4">Próxima ação:</p>
-                  <Button size="lg" className="w-full text-lg py-6 shadow-lg">
-                    ENTRADA
-                  </Button>
-                  <p className="text-xs text-muted-foreground mt-3">Última marcação: 08:00</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Próxima Recompensa */}
-            <Card className="hover:shadow-lg transition-all hover:-translate-y-1 border-accent/20">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Gift className="h-5 w-5 text-accent" />
-                  Próxima Recompensa
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-4 space-y-3">
-                  <div className="text-4xl">🎁</div>
-                  <p className="font-semibold">Dia Extra de Férias</p>
-                  <Badge variant="secondary">Nível 10</Badge>
-                  <p className="text-xs text-muted-foreground">Desbloqueie ao alcançar o nível 10</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Alerta Férias */}
-            <Card className="hover:shadow-lg transition-all hover:-translate-y-1 border-orange-500/20 bg-orange-500/5">
-              <CardHeader>
-                <CardTitle className="text-orange-600 dark:text-orange-400">⚠️ Atenção</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <p className="text-sm font-medium">Período de férias vence em:</p>
-                  <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">90 dias</p>
-                  <p className="text-xs text-muted-foreground">
-                    Não esqueça de solicitar suas férias antes do prazo
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Metas Ativas */}
+          {/* Colaboradores em Risco Alto */}
           <div
-            ref={metasRef}
+            ref={employeesRef}
             className={`transition-all duration-700 delay-200 ${
-              metasVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              employeesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Target className="h-6 w-6 text-primary" />
-              Metas e Desafios Ativos
+              <AlertTriangle className="h-6 w-6 text-red-600" />
+              Colaboradores em Risco Alto
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              {metas.map((meta) => (
-                <Card key={meta.id} className="hover:shadow-lg transition-all hover:-translate-y-1">
+              {atRiskEmployees.map((person, i) => (
+                <Card key={i} className="border-red-200 bg-red-50/50 dark:bg-red-950/20 hover:shadow-lg transition-all hover:-translate-y-1">
                   <CardHeader>
-                    <CardTitle className="text-lg">{meta.titulo}</CardTitle>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white font-bold text-lg">
+                        {person.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg">{person.name}</CardTitle>
+                        <p className="text-xs text-muted-foreground">{person.role}</p>
+                      </div>
+                    </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Progresso</span>
-                        <span className="font-semibold">{meta.progresso}%</span>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">Risco de Saída</span>
+                        <span className="text-xl font-bold text-red-600">{person.risk}%</span>
                       </div>
-                      <Progress value={meta.progresso} className="h-2" />
+                      <Progress 
+                        value={person.risk} 
+                        className="h-2 [&>div]:bg-gradient-to-r [&>div]:from-red-500 [&>div]:to-orange-500"
+                      />
                     </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <Badge variant="secondary" className="gap-1">
-                        <Trophy className="h-3 w-3" />
-                        +{meta.xp} XP
-                      </Badge>
-                      <span className="text-muted-foreground">até {meta.prazo}</span>
+                    <div className="space-y-2">
+                      <p className="text-xs font-semibold text-muted-foreground">Fatores Identificados:</p>
+                      {person.factors.map((factor, j) => (
+                        <div key={j} className="text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-2 py-1.5 rounded">
+                          • {factor}
+                        </div>
+                      ))}
                     </div>
+                    <Button className="w-full gap-2 mt-2">
+                      <Target className="h-4 w-4" />
+                      Ver Plano de Ação
+                    </Button>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </div>
+
+          {/* Falhas Culturais (CaaS) */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <TrendingDown className="h-6 w-6 text-orange-600" />
+              Falhas em Rituais Culturais (CaaS)
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {culturalFailures.map((failure, i) => (
+                <Card 
+                  key={i} 
+                  className={`border-orange-300 bg-orange-50/30 dark:bg-orange-950/10 hover:shadow-lg transition-all`}
+                >
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <CardTitle className="text-lg">{failure.ritual}</CardTitle>
+                      <Badge variant="destructive" className="gap-1">
+                        <AlertTriangle className="h-3 w-3" />
+                        {failure.status === 'critical' ? 'Crítico' : 'Atenção'}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="space-y-1">
+                        <p className="text-muted-foreground">Departamento</p>
+                        <p className="font-semibold">{failure.department}</p>
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-muted-foreground">Taxa de Sucesso</p>
+                        <p className="font-semibold text-orange-600">{failure.successRate}%</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Ritual falhou em {100 - failure.successRate}% das execuções previstas. 
+                      Necessita intervenção para restaurar engajamento.
+                    </p>
+                    <Button variant="outline" className="w-full gap-2">
+                      Ações Corretivas
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Plano de Sucessão - Skills em Risco */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Users className="h-6 w-6 text-primary" />
+              Plano de Sucessão: Skills em Risco Crítico
+            </h2>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="space-y-6">
+                  {criticalSkills.map((skill, i) => (
+                    <div key={i} className="space-y-3 pb-6 border-b last:border-0">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="font-semibold text-lg">{skill.skill}</h3>
+                          <p className="text-sm text-muted-foreground">
+                            {skill.currentExperts} especialistas ativos • {skill.atRisk} em risco de saída
+                          </p>
+                        </div>
+                        <Badge variant={skill.inTraining > 0 ? 'default' : 'destructive'}>
+                          {skill.inTraining > 0 ? `${skill.inTraining} em treinamento` : 'Sem sucessores'}
+                        </Badge>
+                      </div>
+                      <div className="grid grid-cols-3 gap-4 text-center">
+                        <div className="p-3 bg-primary/10 rounded-lg">
+                          <p className="text-2xl font-bold text-primary">{skill.currentExperts}</p>
+                          <p className="text-xs text-muted-foreground">Especialistas</p>
+                        </div>
+                        <div className="p-3 bg-red-50 dark:bg-red-950/20 rounded-lg">
+                          <p className="text-2xl font-bold text-red-600">{skill.atRisk}</p>
+                          <p className="text-xs text-muted-foreground">Em Risco</p>
+                        </div>
+                        <div className="p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
+                          <p className="text-2xl font-bold text-green-600">{skill.inTraining}</p>
+                          <p className="text-xs text-muted-foreground">Sucessores</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Ações Rápidas */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Ações Rápidas</CardTitle>
+            </CardHeader>
+            <CardContent className="grid md:grid-cols-3 gap-4">
+              <Button variant="outline" className="h-auto py-4 flex-col gap-2">
+                <BarChart3 className="h-6 w-6" />
+                <span>Relatório Completo</span>
+              </Button>
+              <Button variant="outline" className="h-auto py-4 flex-col gap-2">
+                <Target className="h-6 w-6" />
+                <span>Planos de Ação</span>
+              </Button>
+              <Button variant="outline" className="h-auto py-4 flex-col gap-2">
+                <Clock className="h-6 w-6" />
+                <span>Histórico de Alertas</span>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </DashboardLayout>
