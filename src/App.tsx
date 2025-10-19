@@ -9,6 +9,10 @@ import Servicos from "./pages/Servicos";
 import Sobre from "./pages/Sobre";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import EstrategiasRHTurnover2025 from "./pages/blog/EstrategiasRHTurnover2025";
+import CustoCulturaFraca2025 from "./pages/blog/CustoCulturaFraca2025";
+import IAPreditivaRH2025 from "./pages/blog/IAPreditivaRH2025";
+import NovaLiderancaDesengajamento2025 from "./pages/blog/NovaLiderancaDesengajamento2025";
 import Dashboard from "./pages/Dashboard";
 import DashboardChat from "./pages/DashboardChat";
 import DashboardEventos from "./pages/DashboardEventos";
@@ -39,6 +43,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/estrategias-rh-reduzir-turnover-2025" element={<EstrategiasRHTurnover2025 />} />
+          <Route path="/blog/custo-cultura-fraca-metricas-rh-2025" element={<CustoCulturaFraca2025 />} />
+          <Route path="/blog/ia-preditiva-rh-turnover-2025" element={<IAPreditivaRH2025 />} />
+          <Route path="/blog/nova-lideranca-desengajamento-2025" element={<NovaLiderancaDesengajamento2025 />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/auth" element={<Auth />} />

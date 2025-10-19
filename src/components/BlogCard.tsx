@@ -74,8 +74,8 @@ const BlogCard = ({ title, excerpt, category, author, date, readTime, image, slu
             <span>{date}</span>
           </div>
         </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
     </div>
   );
 };
