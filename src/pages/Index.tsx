@@ -30,11 +30,11 @@ const Index = () => {
             Plataforma SaaS B2B de Engajamento
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Conecte sua Equipe.<br />Acabe com o <span className="text-nexus-accent">Turnover.</span>
+            Acabe com o Alto Turnover.<br />Construa uma <span className="text-nexus-accent">Cultura de Retenção</span> com Dados Reais.
           </h1>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            A Nexus Community é a plataforma SaaS B2B que resolve o alto turnover e burnout em equipes remotas e híbridas. 
-            Construa uma cultura forte baseada em dados, engajamento e conexão real.
+            A plataforma SaaS que transforma a cultura organizacional em vantagem competitiva. 
+            Hub central para engajamento de colaboradores e gestão preditiva de pessoas.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
@@ -74,13 +74,13 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className={`text-center mb-16 transition-all duration-700 ${problemsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="text-3xl md:text-5xl font-bold text-nexus-green mb-6">
-              Sua equipe está mais distante do que nunca?
+              O Custo Oculto do Desengajamento
             </h2>
             <p className="sr-only">Soluções para Reduzir o Turnover em Equipes Híbridas e Remotas</p>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Em um mundo de trabalho remoto e híbrido, o distanciamento não é apenas físico. 
-              Ele impacta o bem-estar, destrói o engajamento e gera um <strong>turnover que custa caro</strong>. 
-              Gestores de RH enfrentam desafios sem precedentes.
+              Em um mundo de trabalho remoto e híbrido, o desengajamento se tornou o maior vilão da produtividade. 
+              Ele aumenta custos, destrói a retenção e gera um <strong>turnover que drena o orçamento</strong>. 
+              Gestores de RH enfrentam um cenário crítico que exige soluções baseadas em dados.
             </p>
           </div>
 
@@ -88,13 +88,13 @@ const Index = () => {
             {[
               {
                 icon: AlertTriangle,
-                title: "Burnout Crescente",
-                description: "Colaboradores sobrecarregados, desconectados da missão e à beira do esgotamento emocional."
+                title: "Cultura Fragilizada",
+                description: "Colaboradores desconectados da missão, resultando em baixa produtividade e comprometimento."
               },
               {
                 icon: BarChart3,
-                title: "Alto Turnover",
-                description: "Perda constante de talentos-chave e custos elevados de recontratação que drenam o orçamento."
+                title: "Rotatividade Elevada",
+                description: "Perda constante de talentos-chave e custos elevados de substituição que drenam o orçamento."
               },
               {
                 icon: Users,
@@ -267,8 +267,8 @@ const Index = () => {
                 <p className="text-gray-700 leading-relaxed text-center">
                   Criamos a <strong>Nexus Community</strong> porque acreditamos que o futuro do trabalho exige mais do que ferramentas — 
                   exige <strong>conexão humana, cultura intencional e dados acionáveis</strong>. Nosso objetivo é empoderar gestores de RH e 
-                  líderes a construir organizações onde as pessoas se sintam parte de algo maior, reduzindo turnover e criando ambientes de 
-                  trabalho mais saudáveis e produtivos.
+                  líderes a <strong>construir uma cultura que proteja o investimento em talento</strong>, garantindo a longevidade da equipe, 
+                  reduzindo turnover e criando ambientes de trabalho mais saudáveis e produtivos.
                 </p>
               </CardContent>
             </Card>

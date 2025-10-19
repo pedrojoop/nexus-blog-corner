@@ -26,7 +26,7 @@ const Sobre = () => {
           </h1>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
             Nós fundamos a Nexus Community com uma convicção: o futuro do trabalho 
-            não precisa ser sinônimo de burnout e isolamento.
+            exige conexão humana, cultura forte e retenção estratégica.
           </p>
         </div>
       </section>
@@ -98,9 +98,9 @@ const Sobre = () => {
                   Abordagem Proativa
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Ao contrário das soluções que reagem a problemas (como o burnout), nossa plataforma é 
-                  construída para <strong>preveni-los</strong>. Atuamos como o Hub Central que, de forma contínua, 
-                  fortalece os laços sociais, o reconhecimento e o senso de pertencimento de cada colaborador.
+                  Nossa plataforma é construída para <strong>prevenir o turnover antes que aconteça</strong>. 
+                  Atuamos como o Hub Central que, de forma contínua, fortalece os laços sociais, o reconhecimento 
+                  e o senso de pertencimento de cada colaborador, protegendo o investimento em talento.
                 </p>
               </CardContent>
             </Card>

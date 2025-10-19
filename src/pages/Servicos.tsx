@@ -27,11 +27,11 @@ const Servicos = () => {
   ];
 
   const intelligenceFeatures = [
-    { icon: Brain, title: "IA para Predição de Risco", description: "Identificação precoce de burnout e turnover" },
+    { icon: Brain, title: "IA para Predição de Risco de Turnover", description: "Identificação precoce de colaboradores em risco de saída" },
     { icon: BarChart3, title: "Analytics Avançado", description: "Dashboard com métricas de engajamento em tempo real" },
-    { icon: TrendingUp, title: "Insights Preditivos", description: "Análises inteligentes para tomada de decisão" },
+    { icon: TrendingUp, title: "Insights Preditivos", description: "Análises inteligentes para otimização da retenção" },
     { icon: Award, title: "Leaderboard de Engajamento", description: "Ranking de colaboradores mais engajados" },
-    { icon: Shield, title: "Prevenção Proativa", description: "Alertas automáticos para RH sobre riscos" },
+    { icon: Shield, title: "Prevenção Proativa", description: "Alertas automáticos para RH sobre riscos de rotatividade" },
   ];
 
   return (
@@ -121,7 +121,7 @@ const Servicos = () => {
               Engajamento e RH Estratégico
             </h2>
             <p className="text-xl text-gray-600">
-              Soluções que resolvem a dor de burnout e turnover
+              Soluções focadas em cultura organizacional e retenção de talentos
             </p>
           </div>
 
