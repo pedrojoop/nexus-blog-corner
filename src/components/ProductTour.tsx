@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, X, LayoutDashboard, Kanban, Brain, GraduationCap, Trophy, Calendar, ArrowRight, Users, Heart, BarChart3, Target, MousePointerClick } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, LayoutDashboard, Kanban, Brain, GraduationCap, Trophy, Calendar, ArrowRight, Users, Heart, BarChart3, Target, MousePointerClick, TrendingDown, Plus } from "lucide-react";
 
 interface ProductTourProps {
   open: boolean;
@@ -35,26 +35,27 @@ const tourSteps = [
   },
   {
     id: 3,
-    title: "O Problema Crítico: IA Preditiva",
+    title: "Inteligência Preditiva: O Centro de Comando",
     subtitle: "Identifique riscos antes que seja tarde",
-    description: "Mas o problema real é o turnover. Veja como a IA identifica em tempo real quem está em Risco Alto e sugere a Prescrição de Ação.",
+    description: "O problema real é o turnover. A IA identifica em tempo real quem está em Risco Alto, falhas culturais e gaps críticos de sucessão - tudo em um só dashboard.",
     icon: Brain,
     mockupElements: [
-      { type: "aiDashboard", alerts: ["Risco Alto: 3 colaboradores", "Risco Médio: 7 colaboradores"] },
+      { type: "aiDashboard", alerts: ["Risco Alto: 3 colaboradores", "Falhas Culturais: 2 departamentos", "Gaps de Sucessão: 4 skills"] },
       { type: "predictions", insights: 4 },
-      { type: "actionPlan" }
+      { type: "actionPlan" },
+      { type: "succession", criticalSkills: 4 }
     ]
   },
   {
     id: 4,
-    title: "Prevenção Proativa",
-    subtitle: "Corrija o curso com dados",
-    description: "Corrija o curso com os dados! O sistema automatiza a cultura (CaaS) e rastreia o conhecimento (LMS) para desenvolver o talento antes que ele decida sair.",
+    title: "LMS + CaaS: Prevenção Automatizada",
+    subtitle: "Desenvolva talentos e automatize cultura",
+    description: "Previna turnover com dados! O LMS rastreia treinamentos e detecta abandono. O CaaS automatiza rituais culturais e mede impacto real no engajamento.",
     icon: GraduationCap,
     mockupElements: [
-      { type: "lms", courses: ["Liderança", "Comunicação", "Gestão de Tempo"] },
-      { type: "caas", rituals: 3 },
-      { type: "development" }
+      { type: "lms", courses: ["Liderança", "Comunicação", "Gestão de Tempo"], abandonmentAlert: true },
+      { type: "caas", rituals: 3, builder: true },
+      { type: "cultureImpact" }
     ]
   },
   {
@@ -436,7 +437,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
               </div>
 
               {/* AI Insights & Actions */}
-              <div className="grid grid-cols-2 gap-4 relative">
+              <div className="grid grid-cols-2 gap-4 mb-4 relative">
                 <div className="bg-white border-2 border-nexus-accent rounded-xl p-5 shadow-md relative">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-10 h-10 bg-nexus-accent/20 rounded-lg flex items-center justify-center">
@@ -501,6 +502,39 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                   )}
                 </div>
               </div>
+
+              {/* Succession Planning Alert */}
+              <div className="bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-300 rounded-xl p-5 shadow-md relative">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                    <Users className="h-6 w-6 text-orange-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-orange-900 mb-1">Alerta: Gap Crítico no Talent-Grid</h3>
+                    <p className="text-sm text-orange-700">4 skills críticas em risco de perda. Plano de sucessão necessário.</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-center">
+                    {[
+                      { skill: "React/TS", risk: "Alto" },
+                      { skill: "DevOps", risk: "Crítico" }
+                    ].map((item, i) => (
+                      <div key={i} className="bg-white/60 rounded-lg p-2 border border-orange-200">
+                        <p className="text-xs font-semibold text-orange-900">{item.skill}</p>
+                        <p className={`text-xs ${item.risk === 'Crítico' ? 'text-red-600' : 'text-orange-600'} font-bold`}>
+                          {item.risk}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  {subStep === 3 && (
+                    <Hotspot 
+                      id="step2-succession" 
+                      className="inset-0"
+                      tooltip="Visualize gaps de sucessão"
+                    />
+                  )}
+                </div>
+              </div>
             </div>
           )}
 
@@ -508,72 +542,100 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
             <div className="p-6 h-full bg-gradient-to-br from-gray-50 to-white">
               {/* Header */}
               <div className="mb-6">
-                <h1 className="text-2xl font-bold text-nexus-green mb-2">Desenvolvimento & Cultura</h1>
-                <p className="text-gray-600">Prevenção proativa através de treinamento e cultura automatizada</p>
+                <h1 className="text-2xl font-bold text-nexus-green mb-2">LMS + CaaS: Prevenção Automatizada</h1>
+                <p className="text-gray-600">Desenvolva talentos e automatize cultura para prevenir turnover</p>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
                 {/* LMS Section */}
                 <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-nexus-accent to-nexus-green text-white rounded-xl p-6 shadow-lg">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-                        <GraduationCap className="h-6 w-6" />
+                  <div className="bg-gradient-to-br from-nexus-accent to-nexus-green text-white rounded-xl p-5 shadow-lg">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                        <GraduationCap className="h-5 w-5" />
                       </div>
-                      <div>
-                        <h2 className="font-bold text-xl">Learning Management</h2>
-                        <p className="text-white/80 text-sm">Sistema LMS Integrado</p>
+                      <div className="flex-1">
+                        <h2 className="font-bold text-lg">Learning Management</h2>
+                        <p className="text-white/80 text-xs">Treinamentos com IA</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 mt-3 text-center">
+                      <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
+                        <p className="text-2xl font-bold">89</p>
+                        <p className="text-xs text-white/80">Alunos</p>
+                      </div>
+                      <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
+                        <p className="text-2xl font-bold">73%</p>
+                        <p className="text-xs text-white/80">Conclusão</p>
+                      </div>
+                      <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
+                        <p className="text-2xl font-bold text-red-200">16%</p>
+                        <p className="text-xs text-white/80">Abandono</p>
                       </div>
                     </div>
                   </div>
 
-                   <div className="space-y-3 relative">
+                  {/* Critical Alert - Abandonment */}
+                  <div className="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-300 rounded-xl p-4 shadow-md relative">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
+                        <TrendingDown className="h-4 w-4 text-red-600" />
+                      </div>
+                      <h3 className="font-bold text-red-900 text-sm">Alerta: Alta Taxa de Abandono</h3>
+                    </div>
+                    <p className="text-xs text-red-700 mb-3">
+                      Curso "Gestão de Tempo" com <strong>35% de abandono</strong> detectado pela IA
+                    </p>
+                    <div className="flex gap-2">
+                      <button className="text-xs bg-white border border-red-300 text-red-700 px-3 py-1.5 rounded-lg hover:bg-red-50 font-medium">
+                        Ver Análise
+                      </button>
+                      <button className="text-xs bg-red-600 text-white px-3 py-1.5 rounded-lg hover:bg-red-700 font-medium">
+                        Ações Recomendadas
+                      </button>
+                    </div>
+                    {subStep === 0 && (
+                      <Hotspot 
+                        id="step3-lms-alert" 
+                        className="inset-0"
+                        tooltip="IA detecta problemas em treinamentos"
+                      />
+                    )}
+                  </div>
+
+                  {/* Course Cards */}
+                  <div className="space-y-2">
                     {[
-                      { title: "Liderança Transformadora", duration: "8h", progress: 75, students: 12, rating: 4.8 },
-                      { title: "Comunicação Não-Violenta", duration: "6h", progress: 45, students: 18, rating: 4.9 },
-                      { title: "Gestão de Tempo e Prioridades", duration: "4h", progress: 90, students: 24, rating: 4.7 },
-                      { title: "Inteligência Emocional", duration: "10h", progress: 30, students: 15, rating: 4.9 }
+                      { title: "Liderança Transformadora", completion: 75, students: 24, abandonment: 15, status: "active" },
+                      { title: "Gestão de Tempo", completion: 45, students: 32, abandonment: 35, status: "alert" }
                     ].map((course, i) => (
-                      <div key={i} className="bg-white border-2 border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-nexus-accent transition-all relative">
+                      <div key={i} className={`bg-white border-2 rounded-lg p-3 shadow-sm transition-all ${
+                        course.status === 'alert' ? 'border-red-300 bg-red-50/30' : 'border-gray-200'
+                      }`}>
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-gray-800 flex-1">{course.title}</h3>
-                          <div className="flex items-center gap-1 text-yellow-500">
-                            <span className="text-sm font-semibold">{course.rating}</span>
-                            <span>★</span>
+                          <h3 className="font-semibold text-sm text-gray-800">{course.title}</h3>
+                          {course.status === 'alert' && (
+                            <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium">
+                              ⚠️ Atenção
+                            </span>
+                          )}
+                        </div>
+                        <div className="grid grid-cols-3 gap-2 text-xs">
+                          <div>
+                            <p className="text-gray-500">Alunos</p>
+                            <p className="font-bold text-nexus-green">{course.students}</p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500">Conclusão</p>
+                            <p className="font-bold text-green-600">{course.completion}%</p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500">Abandono</p>
+                            <p className={`font-bold ${course.abandonment > 20 ? 'text-red-600' : 'text-gray-600'}`}>
+                              {course.abandonment}%
+                            </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
-                          <span className="flex items-center gap-1">
-                            ⏱️ {course.duration}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            👥 {course.students} alunos
-                          </span>
-                        </div>
-                        <div className="mb-2">
-                          <div className="flex justify-between text-xs mb-1">
-                            <span className="text-gray-600">Progresso</span>
-                            <span className="font-semibold text-nexus-accent">{course.progress}%</span>
-                          </div>
-                          <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div 
-                              className="h-full bg-gradient-to-r from-nexus-accent to-nexus-green rounded-full transition-all"
-                              style={{ width: `${course.progress}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                        {course.progress < 100 && (
-                          <button className="text-xs text-nexus-accent hover:text-nexus-green font-medium mt-2">
-                            Continuar treinamento →
-                          </button>
-                        )}
-                        {i === 0 && subStep === 0 && (
-                          <Hotspot 
-                            id="step3-lms-course" 
-                            className="inset-0"
-                            tooltip="Explore os treinamentos disponíveis"
-                          />
-                        )}
                       </div>
                     ))}
                   </div>
@@ -581,77 +643,116 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
 
                 {/* CaaS Section */}
                 <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-xl p-6 shadow-lg">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-                        <Calendar className="h-6 w-6" />
+                  <div className="bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-xl p-5 shadow-lg">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                        <Calendar className="h-5 w-5" />
                       </div>
-                      <div>
-                        <h2 className="font-bold text-xl">Culture as a Service</h2>
-                        <p className="text-white/80 text-sm">Rituais Automatizados</p>
+                      <div className="flex-1">
+                        <h2 className="font-bold text-lg">Culture as a Service</h2>
+                        <p className="text-white/80 text-xs">Rituais Automatizados</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 mt-3">
+                      <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm text-center">
+                        <p className="text-2xl font-bold">12</p>
+                        <p className="text-xs text-white/80">Rituais Ativos</p>
+                      </div>
+                      <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm text-center">
+                        <p className="text-2xl font-bold">94%</p>
+                        <p className="text-xs text-white/80">Taxa de Sucesso</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-3 relative">
+                  {/* Ritual Builder Card */}
+                  <div className="bg-gradient-to-br from-purple-50 to-blue-50 border-2 border-purple-300 rounded-xl p-4 shadow-md relative">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                        <Plus className="h-4 w-4 text-purple-600" />
+                      </div>
+                      <h3 className="font-bold text-purple-900 text-sm">Construtor de Rituais</h3>
+                    </div>
+                    <p className="text-xs text-purple-700 mb-3">
+                      Crie e automatize rotinas culturais personalizadas
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-xs">
+                        <div className="w-4 h-4 bg-purple-200 rounded flex items-center justify-center text-purple-700 font-bold">1</div>
+                        <span className="text-purple-800">Escolha tipo: 1:1, Feedback, Reconhecimento...</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <div className="w-4 h-4 bg-purple-200 rounded flex items-center justify-center text-purple-700 font-bold">2</div>
+                        <span className="text-purple-800">Defina frequência e público</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <div className="w-4 h-4 bg-purple-200 rounded flex items-center justify-center text-purple-700 font-bold">3</div>
+                        <span className="text-purple-800">Automação ativa + métricas em tempo real</span>
+                      </div>
+                    </div>
+                    <button className="w-full mt-3 text-xs bg-purple-600 text-white px-3 py-2 rounded-lg hover:bg-purple-700 font-medium">
+                      Criar Novo Ritual
+                    </button>
+                    {subStep === 1 && (
+                      <Hotspot 
+                        id="step3-caas-builder" 
+                        className="inset-0"
+                        tooltip="Construtor de rituais culturais"
+                      />
+                    )}
+                  </div>
+
+                  {/* Active Rituals */}
+                  <div className="space-y-2">
                     {[
-                      { ritual: "Weekly Team Sync", frequency: "Toda segunda, 10h", participants: 8, nextDate: "Amanhã", status: "active" },
-                      { ritual: "1:1 com Gestor", frequency: "Quinzenal", participants: 2, nextDate: "Em 3 dias", status: "scheduled" },
-                      { ritual: "Feedback 360°", frequency: "Trimestral", participants: 15, nextDate: "Em 12 dias", status: "scheduled" },
-                      { ritual: "All-Hands Meeting", frequency: "Mensal", participants: 45, nextDate: "Sexta-feira", status: "active" }
+                      { ritual: "1:1 com Gestor", frequency: "Quinzenal", success: 96, nextDate: "Em 3 dias" },
+                      { ritual: "Weekly Team Sync", frequency: "Toda segunda", success: 89, nextDate: "Amanhã" }
                     ].map((item, i) => (
-                      <div key={i} className="bg-white border-2 border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-blue-500 transition-all relative">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="font-semibold text-gray-800">{item.ritual}</h3>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            item.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'
-                          }`}>
-                            {item.status === 'active' ? '🟢 Ativo' : '📅 Agendado'}
+                      <div key={i} className="bg-white border-2 border-blue-200 rounded-lg p-3 shadow-sm">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-semibold text-sm text-gray-800">{item.ritual}</h3>
+                          <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                            🟢 Ativo
                           </span>
                         </div>
-                        <div className="space-y-2 text-sm text-gray-600">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs">Frequência:</span>
-                            <span className="font-medium text-gray-700">{item.frequency}</span>
+                        <div className="grid grid-cols-3 gap-2 text-xs">
+                          <div>
+                            <p className="text-gray-500">Frequência</p>
+                            <p className="font-medium text-gray-700">{item.frequency}</p>
                           </div>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs">Participantes:</span>
-                            <span className="font-medium text-gray-700">{item.participants} pessoas</span>
+                          <div>
+                            <p className="text-gray-500">Taxa Sucesso</p>
+                            <p className="font-bold text-green-600">{item.success}%</p>
                           </div>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs">Próximo:</span>
-                            <span className="font-medium text-blue-600">{item.nextDate}</span>
+                          <div>
+                            <p className="text-gray-500">Próximo</p>
+                            <p className="font-medium text-blue-600">{item.nextDate}</p>
                           </div>
                         </div>
-                        <div className="mt-3 pt-3 border-t border-gray-100">
-                          <button className="text-xs text-blue-600 hover:text-blue-700 font-medium">
-                            Gerenciar ritual →
-                          </button>
-                        </div>
-                        {i === 1 && subStep === 1 && (
-                          <Hotspot 
-                            id="step3-caas-ritual" 
-                            className="inset-0"
-                            tooltip="Configure rituais automáticos de cultura"
-                          />
-                        )}
                       </div>
                     ))}
                   </div>
 
-                  {/* Stats */}
-                  <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-xl p-4">
-                    <p className="text-xs font-semibold text-gray-600 mb-2">Impacto Medido</p>
+                  {/* Cultural Impact */}
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-300 rounded-xl p-4 shadow-md relative">
+                    <p className="text-xs font-bold text-gray-700 mb-3">Impacto Cultural Medido pela IA</p>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <p className="text-2xl font-bold text-green-600">+42%</p>
+                        <p className="text-3xl font-bold text-green-600">+42%</p>
                         <p className="text-xs text-gray-600">Engajamento</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-blue-600">-28%</p>
-                        <p className="text-xs text-gray-600">Risco de Turnover</p>
+                        <p className="text-3xl font-bold text-blue-600">-28%</p>
+                        <p className="text-xs text-gray-600">Risco Turnover</p>
                       </div>
                     </div>
+                    {subStep === 2 && (
+                      <Hotspot 
+                        id="step3-impact" 
+                        className="inset-0"
+                        tooltip="Impacto real medido pela IA"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
