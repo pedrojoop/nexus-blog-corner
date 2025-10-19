@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface BlogCardProps {
   title: string;
@@ -12,11 +13,25 @@ interface BlogCardProps {
   readTime: string;
   image?: string;
   slug: string;
+  index?: number;
 }
 
-const BlogCard = ({ title, excerpt, category, author, date, readTime, image, slug }: BlogCardProps) => {
+const BlogCard = ({ title, excerpt, category, author, date, readTime, image, slug, index = 0 }: BlogCardProps) => {
+  const { ref, isVisible } = useScrollAnimation();
+  
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md hover:shadow-[var(--shadow-nexus)]">
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-8'
+      }`}
+      style={{ 
+        transitionDelay: `${index * 100}ms` 
+      }}
+    >
+      <Card className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md hover:shadow-[var(--shadow-nexus)] h-full">
       <CardHeader className="p-0">
         {image && (
           <div className="aspect-video w-full overflow-hidden rounded-t-lg">
@@ -61,6 +76,7 @@ const BlogCard = ({ title, excerpt, category, author, date, readTime, image, slu
         </div>
       </CardContent>
     </Card>
+    </div>
   );
 };
 
