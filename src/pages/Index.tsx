@@ -297,24 +297,27 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {/* Starter Plan */}
             <Card 
               className="border-2 border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
               style={{
                 animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none'
               }}>
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-6 text-center">
                 <h3 className="text-2xl font-bold text-nexus-green mb-2">Starter</h3>
-                <p className="text-sm text-nexus-accent font-medium mb-2">Para times que estão começando a construir sua cultura</p>
-                <p className="text-gray-600 mb-6">Ideal para pequenas equipes (5-20 pessoas)</p>
+                <p className="text-sm text-nexus-accent font-medium mb-2">Para Equipes em Construção</p>
+                <div className="bg-nexus-green/10 py-2 px-3 rounded-lg mb-4">
+                  <p className="text-lg font-bold text-nexus-green">Até 25 Usuários</p>
+                </div>
                 
-                <div className="mb-8">
-                  <span className="text-4xl font-bold text-nexus-green">R$ 24,99</span>
-                  <span className="text-gray-600">/mês por usuário</span>
+                <div className="mb-6">
+                  <span className="text-3xl font-bold text-nexus-green">R$ 699</span>
+                  <span className="text-gray-600 text-sm block">/mês (fixo)</span>
+                  <p className="text-xs text-nexus-accent mt-2">R$ 7.500 anual (10% OFF)</p>
                 </div>
 
-                <div className="space-y-4 mb-8 text-left">
+                <div className="space-y-3 mb-6 text-left">
                   {[
                     "Gestão de documentos: 10 GB",
                     "Feed social da empresa",
@@ -323,9 +326,9 @@ const Index = () => {
                     "Chat integrado",
                     "Permissões básicas"
                   ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
+                    <div key={index} className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-nexus-green flex-shrink-0" />
-                      <span className="text-sm text-gray-700">{feature}</span>
+                      <span className="text-xs text-gray-700">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -338,7 +341,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* Professional Plan */}
+            {/* Growth Plan */}
             <Card 
               className="border-2 border-nexus-accent bg-white relative hover:shadow-2xl transition-all duration-300"
               style={{
@@ -349,17 +352,20 @@ const Index = () => {
                   ★ Mais Popular
                 </div>
               </div>
-              <CardContent className="p-8 text-center">
-                <h3 className="text-2xl font-bold text-nexus-green mb-2">Profissional</h3>
-                <p className="text-sm text-nexus-accent font-medium mb-2">Para times que querem fortalecer engajamento e produtividade</p>
-                <p className="text-gray-600 mb-6">Ideal para equipes em crescimento (20-100 pessoas)</p>
+              <CardContent className="p-6 text-center">
+                <h3 className="text-2xl font-bold text-nexus-green mb-2">Growth</h3>
+                <p className="text-sm text-nexus-accent font-medium mb-2">Para Escalabilidade e Retenção</p>
+                <div className="bg-nexus-accent/10 py-2 px-3 rounded-lg mb-4">
+                  <p className="text-lg font-bold text-nexus-accent">Até 100 Usuários</p>
+                </div>
                 
-                <div className="mb-8">
-                  <span className="text-4xl font-bold text-nexus-green">R$ 39,99</span>
-                  <span className="text-gray-600">/mês por usuário</span>
+                <div className="mb-6">
+                  <span className="text-3xl font-bold text-nexus-green">R$ 1.999</span>
+                  <span className="text-gray-600 text-sm block">/mês (fixo)</span>
+                  <p className="text-xs text-nexus-accent mt-2">R$ 21.600 anual (10% OFF)</p>
                 </div>
 
-                <div className="space-y-4 mb-8 text-left">
+                <div className="space-y-3 mb-6 text-left">
                   {[
                     "Tudo do Starter, mais:",
                     "Gestão de documentos: 100 GB",
@@ -370,9 +376,9 @@ const Index = () => {
                     "Sistema de gamificação e recompensas",
                     "IA preditiva de turnover"
                   ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
+                    <div key={index} className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-nexus-accent flex-shrink-0" />
-                      <span className={`text-sm ${index === 0 ? 'font-bold text-nexus-green' : 'text-gray-700'}`}>{feature}</span>
+                      <span className={`text-xs ${index === 0 ? 'font-bold text-nexus-green' : 'text-gray-700'}`}>{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -385,47 +391,90 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* White-Label Plan */}
+            {/* Enterprise Plan */}
             <Card 
-              className="border-2 border-nexus-accent bg-gradient-to-br from-nexus-green/5 to-nexus-accent/5 hover:shadow-2xl transition-all duration-300"
+              className="border-2 border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
               style={{
                 animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.3s both' : 'none'
               }}>
-              <CardContent className="p-8 text-center">
-                <div className="inline-block bg-nexus-accent text-white px-3 py-1 rounded-full text-xs font-bold mb-3">
-                  REVENDA NOSSA TECNOLOGIA
+              <CardContent className="p-6 text-center">
+                <h3 className="text-2xl font-bold text-nexus-green mb-2">Enterprise</h3>
+                <p className="text-sm text-nexus-accent font-medium mb-2">Para Grandes Corporações e Customização</p>
+                <div className="bg-gray-100 py-2 px-3 rounded-lg mb-4">
+                  <p className="text-lg font-bold text-gray-700">Mais de 101 Usuários</p>
                 </div>
-                <h3 className="text-2xl font-bold text-nexus-green mb-2">White-Label</h3>
-                <p className="text-sm text-nexus-accent font-medium mb-2">Revenda a plataforma com sua própria marca</p>
-                <p className="text-gray-600 mb-6">Para consultorias, agências e empresas que querem monetizar</p>
                 
-                <div className="mb-8">
-                  <span className="text-4xl font-bold text-nexus-green">Sob Medida</span>
-                  <p className="text-sm text-gray-600 mt-2">Modelo de parceria personalizado</p>
+                <div className="mb-6">
+                  <span className="text-3xl font-bold text-nexus-green">Personalizado</span>
+                  <span className="text-gray-600 text-sm block mt-1">Consulte-nos</span>
                 </div>
 
-                <div className="space-y-4 mb-8 text-left">
+                <div className="space-y-3 mb-6 text-left">
                   {[
-                    "Plataforma completa white-label:",
-                    "Sua marca, logo e identidade visual",
-                    "Domínio personalizado próprio",
-                    "Painel de gestão de clientes",
-                    "Sistema de billing integrado",
-                    "Margem de lucro configurável",
-                    "Suporte técnico dedicado",
-                    "Onboarding e treinamento completo",
-                    "Co-marketing e materiais de vendas"
+                    "Tudo do Growth, mais:",
+                    "Armazenamento personalizado",
+                    "Personalização total da plataforma",
+                    "Suporte 24/7 dedicado",
+                    "Integrações customizadas",
+                    "SLA garantido",
+                    "Consultoria de cultura organizacional"
                   ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="h-4 w-4 text-nexus-accent flex-shrink-0" />
-                      <span className={`text-sm ${index === 0 ? 'font-bold text-nexus-green' : 'text-gray-700'}`}>{feature}</span>
+                    <div key={index} className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-nexus-green flex-shrink-0" />
+                      <span className={`text-xs ${index === 0 ? 'font-bold text-nexus-green' : 'text-gray-700'}`}>{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <Link to="/auth">
-                  <Button className="w-full bg-nexus-accent text-white hover:bg-nexus-accent/90 shadow-lg">
-                    Seja um Parceiro White-Label
+                  <Button variant="outline" className="w-full border-nexus-green text-nexus-green hover:bg-nexus-green hover:text-white">
+                    Falar com Vendas
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* White-Label Licensing Plan */}
+            <Card 
+              className="border-2 border-nexus-accent bg-gradient-to-br from-nexus-green/10 to-nexus-accent/10 hover:shadow-2xl transition-all duration-300 relative"
+              style={{
+                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.4s both' : 'none'
+              }}>
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div className="bg-gradient-to-r from-nexus-green to-nexus-accent text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg">
+                  LICENCIAMENTO PREMIUM
+                </div>
+              </div>
+              <CardContent className="p-6 text-center">
+                <h3 className="text-2xl font-bold text-nexus-green mb-2">White-Label</h3>
+                <p className="text-sm text-nexus-accent font-medium mb-2">A Solução Estratégica para Consultorias</p>
+                <div className="bg-gradient-to-r from-nexus-green/20 to-nexus-accent/20 py-2 px-3 rounded-lg mb-4">
+                  <p className="text-sm font-bold text-nexus-green">Grandes Ecossistemas</p>
+                </div>
+                
+                <div className="mb-6">
+                  <span className="text-2xl font-bold text-nexus-green">Sob Medida</span>
+                  <span className="text-gray-600 text-xs block mt-1">Modelo de parceria estratégica</span>
+                </div>
+
+                <div className="space-y-3 mb-6 text-left">
+                  {[
+                    "Branding Total e Personalização (Sua marca, nossa tecnologia)",
+                    "Fee Fixo Inicial (Inclui Setup e Onboarding de Parceria)",
+                    "Suporte Nível 3 Dedicado ao Parceiro",
+                    "Treinamento e Implantação (Opcional)",
+                    "Manutenção e Atualizações (Taxa Recorrente Opcional)"
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-nexus-accent flex-shrink-0 mt-0.5" />
+                      <span className="text-xs text-gray-700 leading-tight">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link to="/auth">
+                  <Button className="w-full bg-gradient-to-r from-nexus-green to-nexus-accent text-white hover:opacity-90 shadow-lg">
+                    Solicitar Proposta de Parceria
                   </Button>
                 </Link>
               </CardContent>
