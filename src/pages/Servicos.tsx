@@ -298,9 +298,9 @@ const Servicos = () => {
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-cyan-50 border-2 border-cyan-300 rounded-full px-4 py-2 mb-4 shadow-lg shadow-cyan-200/50">
-                <Brain className="h-5 w-5 text-cyan-600" />
-                <span className="text-cyan-700 font-semibold">Módulo 03 - O Diferencial</span>
+              <div className="inline-flex items-center gap-2 bg-nexus-green-lighter border-2 border-nexus-accent rounded-full px-4 py-2 mb-4 shadow-lg shadow-nexus-accent/20">
+                <Brain className="h-5 w-5 text-nexus-accent" />
+                <span className="text-nexus-green font-semibold">Módulo 03 - O Diferencial</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-nexus-green mb-4">
                 Inteligência e Prevenção
@@ -322,17 +322,17 @@ const Servicos = () => {
                 {intelligenceFeatures.map((feature, index) => (
                   <div 
                     key={index}
-                    className="group relative p-6 bg-white rounded-2xl border-2 border-cyan-100 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-200/50 transition-all duration-300 hover:-translate-y-1 cursor-pointer overflow-hidden"
+                    className="group relative p-6 bg-white rounded-2xl border-2 border-gray-100 hover:border-nexus-accent hover:shadow-2xl hover:shadow-nexus-accent/20 transition-all duration-300 hover:-translate-y-1 cursor-pointer overflow-hidden"
                   >
                     {/* Subtle glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-nexus-green-lighter to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     
                     <div className="relative flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-cyan-300/50">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-nexus-green to-nexus-accent rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-nexus-accent/30">
                         <feature.icon className="h-6 w-6 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold text-nexus-green mb-2 group-hover:text-cyan-700 transition-colors">
+                        <h3 className="text-lg font-bold text-nexus-green mb-2 group-hover:text-nexus-accent transition-colors">
                           {feature.title}
                         </h3>
                         <p className="text-gray-600 leading-relaxed">
@@ -351,7 +351,7 @@ const Servicos = () => {
                   animation: section3.isVisible ? 'fade-in 0.8s ease-out 0.3s both' : 'none'
                 }}
               >
-                <div className="relative bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl p-8 shadow-2xl shadow-cyan-300/50">
+                <div className="relative bg-gradient-to-br from-nexus-green to-nexus-accent rounded-3xl p-8 shadow-2xl shadow-nexus-accent/30">
                   {/* Mockup: Predictive Analytics */}
                   <div className="bg-white rounded-2xl p-6 shadow-lg">
                     <div className="flex items-center justify-between mb-6">
@@ -382,22 +382,22 @@ const Servicos = () => {
                         {/* Main line */}
                         <path
                           d="M 0 180 Q 100 150, 200 120 T 400 60"
-                          stroke="#06b6d4"
+                          stroke="hsl(155, 85%, 35%)"
                           strokeWidth="3"
                           fill="none"
                           className="drop-shadow-lg"
                         />
                         {/* Data points */}
-                        <circle cx="100" cy="150" r="6" fill="#0e7490" />
-                        <circle cx="200" cy="120" r="6" fill="#0e7490" />
-                        <circle cx="300" cy="90" r="6" fill="#0e7490" />
+                        <circle cx="100" cy="150" r="6" fill="hsl(155, 70%, 15%)" />
+                        <circle cx="200" cy="120" r="6" fill="hsl(155, 70%, 15%)" />
+                        <circle cx="300" cy="90" r="6" fill="hsl(155, 70%, 15%)" />
                         <circle cx="400" cy="60" r="6" fill="#dc2626" className="animate-pulse" />
                         
                         {/* Gradient definition */}
                         <defs>
                           <linearGradient id="gradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="#06b6d4" />
-                            <stop offset="100%" stopColor="#0284c7" />
+                            <stop offset="0%" stopColor="hsl(155, 85%, 35%)" />
+                            <stop offset="100%" stopColor="hsl(155, 70%, 15%)" />
                           </linearGradient>
                         </defs>
                       </svg>
@@ -431,12 +431,12 @@ const Servicos = () => {
                   
                   {/* Floating Icon */}
                   <div className="absolute -top-4 -right-4 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center animate-float">
-                    <LineChart className="h-8 w-8 text-cyan-500" />
+                    <LineChart className="h-8 w-8 text-nexus-accent" />
                   </div>
                 </div>
 
                 {/* Accent decoration */}
-                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-cyan-200 rounded-full blur-3xl opacity-50"></div>
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-nexus-accent/20 rounded-full blur-3xl opacity-50"></div>
               </div>
             </div>
           </div>
