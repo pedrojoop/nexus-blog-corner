@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, X, LayoutDashboard, Kanban, Brain, GraduationCap, Trophy, Calendar, ArrowRight, Users, Heart, BarChart3, Target } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, LayoutDashboard, Kanban, Brain, GraduationCap, Trophy, Calendar, ArrowRight, Users, Heart, BarChart3, Target, MousePointerClick } from "lucide-react";
 
 interface ProductTourProps {
   open: boolean;
@@ -73,23 +73,64 @@ const tourSteps = [
 
 export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [subStep, setSubStep] = useState(0);
+  const [clickedHotspots, setClickedHotspots] = useState<string[]>([]);
   const step = tourSteps[currentStep];
+
+  const handleHotspotClick = (hotspotId: string) => {
+    if (!clickedHotspots.includes(hotspotId)) {
+      setClickedHotspots([...clickedHotspots, hotspotId]);
+    }
+    setSubStep(subStep + 1);
+  };
 
   const handleNext = () => {
     if (currentStep < tourSteps.length - 1) {
       setCurrentStep(currentStep + 1);
+      setSubStep(0);
+      setClickedHotspots([]);
     }
   };
 
   const handlePrevious = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
+      setSubStep(0);
+      setClickedHotspots([]);
     }
   };
 
   const handleClose = () => {
     setCurrentStep(0);
+    setSubStep(0);
+    setClickedHotspots([]);
     onOpenChange(false);
+  };
+
+  const Hotspot = ({ id, className, children, tooltip }: { id: string; className?: string; children?: React.ReactNode; tooltip?: string }) => {
+    const isClicked = clickedHotspots.includes(id);
+    return (
+      <div 
+        className={`absolute cursor-pointer group ${className}`}
+        onClick={() => handleHotspotClick(id)}
+      >
+        {!isClicked && (
+          <>
+            <div className="absolute inset-0 bg-nexus-accent/10 border-2 border-nexus-accent rounded-lg animate-pulse hover:bg-nexus-accent/20 transition-all"></div>
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-nexus-accent rounded-full flex items-center justify-center shadow-lg animate-bounce">
+              <MousePointerClick className="h-3 w-3 text-white" />
+            </div>
+          </>
+        )}
+        {tooltip && !isClicked && (
+          <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-nexus-green text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-xl pointer-events-none z-10">
+            {tooltip}
+            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-nexus-green rotate-45"></div>
+          </div>
+        )}
+        {children}
+      </div>
+    );
   };
 
   const renderMockup = () => {
@@ -122,7 +163,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                   <h2 className="text-xl font-bold mb-1">Nexus Community</h2>
                   <p className="text-xs text-white/70">Sua Empresa S.A.</p>
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-1 relative">
                   {step.mockupElements[0].type === "sidebar" && "items" in step.mockupElements[0] && step.mockupElements[0].items?.map((item, i) => (
                     <div 
                       key={i} 
@@ -134,6 +175,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                       <span className="text-sm font-medium">{item}</span>
                     </div>
                   ))}
+                  {subStep === 0 && (
+                    <Hotspot 
+                      id="step0-menu-projetos" 
+                      className="top-24 left-0 right-0 h-10"
+                      tooltip="Clique para explorar Projetos"
+                    />
+                  )}
                 </div>
                 <div className="mt-8 pt-6 border-t border-white/20">
                   <div className="flex items-center gap-3 px-3">
@@ -155,7 +203,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                 </div>
 
                 {/* Create Post */}
-                <div className="bg-white border-2 border-nexus-accent/30 rounded-xl p-4 mb-4 shadow-sm">
+                <div className="bg-white border-2 border-nexus-accent/30 rounded-xl p-4 mb-4 shadow-sm relative">
                   <div className="flex gap-3">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-nexus-accent to-nexus-green"></div>
                     <input 
@@ -165,16 +213,23 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                       disabled
                     />
                   </div>
+                  {subStep === 1 && (
+                    <Hotspot 
+                      id="step0-create-post" 
+                      className="inset-0"
+                      tooltip="Compartilhe atualizações com a equipe"
+                    />
+                  )}
                 </div>
 
                 {/* Posts */}
-                <div className="space-y-4">
+                <div className="space-y-4 relative">
                   {[
                     { user: "Maria Silva", role: "Product Manager", content: "Ótima reunião hoje! Vamos focar nas melhorias do Q2 🚀", time: "há 2h", likes: 12, comments: 5 },
                     { user: "João Santos", role: "Tech Lead", content: "Deploy da nova feature foi um sucesso! Parabéns ao time 🎉", time: "há 5h", likes: 24, comments: 8 },
                     { user: "Ana Costa", role: "HR Manager", content: "Lembrete: Evento de team building na sexta-feira às 15h", time: "há 1d", likes: 18, comments: 12 }
                   ].map((post, i) => (
-                    <div key={i} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <div key={i} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow relative">
                       <div className="flex items-start gap-3 mb-3">
                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-nexus-accent to-nexus-green flex items-center justify-center text-white font-bold">
                           {post.user[0]}
@@ -194,6 +249,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                           <span>💬 {post.comments}</span>
                         </button>
                       </div>
+                      {i === 0 && subStep === 2 && (
+                        <Hotspot 
+                          id="step0-like-post" 
+                          className="inset-0"
+                          tooltip="Interaja com publicações da equipe"
+                        />
+                      )}
                     </div>
                   ))}
                 </div>
@@ -219,7 +281,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
               </div>
 
               {/* Kanban Board */}
-              <div className="grid grid-cols-3 gap-4 h-[400px]">
+              <div className="grid grid-cols-3 gap-4 h-[400px] relative">
                 {[
                   { title: "A Fazer", count: 8, color: "gray", tasks: [
                     { title: "Pesquisa de UX", assignee: "MS", priority: "high", tags: ["Research", "UX"] },
@@ -234,7 +296,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                     { title: "Wireframes aprovados", assignee: "MS", priority: "low", tags: ["Design"] }
                   ]}
                 ].map((col, i) => (
-                  <div key={i} className="bg-white rounded-xl border-2 border-gray-200 p-4 shadow-sm flex flex-col">
+                  <div key={i} className="bg-white rounded-xl border-2 border-gray-200 p-4 shadow-sm flex flex-col relative">
                     <div className="flex items-center justify-between mb-4 pb-3 border-b">
                       <h3 className="font-bold text-gray-700 flex items-center gap-2">
                         {col.title}
@@ -246,7 +308,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                       {col.tasks.map((task, j) => (
                         <div 
                           key={j} 
-                          className="bg-white border-2 border-gray-200 rounded-lg p-3 hover:border-nexus-accent hover:shadow-md transition-all cursor-pointer group"
+                          className="bg-white border-2 border-gray-200 rounded-lg p-3 hover:border-nexus-accent hover:shadow-md transition-all cursor-pointer group relative"
                         >
                           <div className="flex items-start justify-between mb-2">
                             <h4 className="font-medium text-sm text-gray-800 flex-1">{task.title}</h4>
@@ -267,6 +329,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                               {task.assignee}
                             </div>
                           </div>
+                          {i === 0 && j === 0 && subStep === 0 && (
+                            <Hotspot 
+                              id="step1-task-drag" 
+                              className="inset-0"
+                              tooltip="Arraste tarefas entre colunas"
+                            />
+                          )}
                         </div>
                       ))}
                     </div>
@@ -275,10 +344,17 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-4 mt-4">
-                <div className="bg-white border border-gray-200 rounded-lg p-3">
+              <div className="grid grid-cols-3 gap-4 mt-4 relative">
+                <div className="bg-white border border-gray-200 rounded-lg p-3 relative">
                   <p className="text-xs text-gray-500 mb-1">Tickets Abertos</p>
                   <p className="text-2xl font-bold text-nexus-green">23</p>
+                  {subStep === 1 && (
+                    <Hotspot 
+                      id="step1-tickets" 
+                      className="inset-0"
+                      tooltip="Acompanhe métricas em tempo real"
+                    />
+                  )}
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-3">
                   <p className="text-xs text-gray-500 mb-1">Tempo Médio</p>
@@ -312,13 +388,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
               </div>
 
               {/* At-Risk Employees Cards */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-3 gap-4 mb-6 relative">
                 {[
                   { name: "Carlos Mendes", role: "Desenvolvedor Sr.", risk: 92, factors: ["Horas extras", "Baixo engajamento", "Sem 1:1s"] },
                   { name: "Patrícia Lima", role: "Designer UX", risk: 85, factors: ["Feedback negativo", "Ausências", "Baixa produção"] },
                   { name: "Roberto Silva", role: "Analista QA", risk: 78, factors: ["Isolamento", "Sem reconhecimento", "Metas atrasadas"] }
                 ].map((person, i) => (
-                  <div key={i} className="bg-white border-2 border-red-200 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <div key={i} className="bg-white border-2 border-red-200 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow relative">
                     <div className="flex items-center gap-3 mb-3 pb-3 border-b border-red-100">
                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white font-bold text-lg">
                         {person.name.split(' ').map(n => n[0]).join('')}
@@ -348,13 +424,20 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                         </div>
                       ))}
                     </div>
+                    {i === 0 && subStep === 0 && (
+                      <Hotspot 
+                        id="step2-risk-employee" 
+                        className="inset-0"
+                        tooltip="Veja detalhes dos colaboradores em risco"
+                      />
+                    )}
                   </div>
                 ))}
               </div>
 
               {/* AI Insights & Actions */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white border-2 border-nexus-accent rounded-xl p-5 shadow-md">
+              <div className="grid grid-cols-2 gap-4 relative">
+                <div className="bg-white border-2 border-nexus-accent rounded-xl p-5 shadow-md relative">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-10 h-10 bg-nexus-accent/20 rounded-lg flex items-center justify-center">
                       <BarChart3 className="h-5 w-5 text-nexus-accent" />
@@ -377,9 +460,16 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                       </div>
                     ))}
                   </div>
+                  {subStep === 1 && (
+                    <Hotspot 
+                      id="step2-insights" 
+                      className="inset-0"
+                      tooltip="Analise insights detalhados da IA"
+                    />
+                  )}
                 </div>
 
-                <div className="bg-gradient-to-br from-nexus-green to-nexus-accent text-white rounded-xl p-5 shadow-md">
+                <div className="bg-gradient-to-br from-nexus-green to-nexus-accent text-white rounded-xl p-5 shadow-md relative">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
                       <Target className="h-5 w-5" />
@@ -402,6 +492,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                       </div>
                     ))}
                   </div>
+                  {subStep === 2 && (
+                    <Hotspot 
+                      id="step2-action-plan" 
+                      className="inset-0"
+                      tooltip="Execute o plano de ação recomendado"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -430,14 +527,14 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                   <div className="space-y-3 relative">
                     {[
                       { title: "Liderança Transformadora", duration: "8h", progress: 75, students: 12, rating: 4.8 },
                       { title: "Comunicação Não-Violenta", duration: "6h", progress: 45, students: 18, rating: 4.9 },
                       { title: "Gestão de Tempo e Prioridades", duration: "4h", progress: 90, students: 24, rating: 4.7 },
                       { title: "Inteligência Emocional", duration: "10h", progress: 30, students: 15, rating: 4.9 }
                     ].map((course, i) => (
-                      <div key={i} className="bg-white border-2 border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-nexus-accent transition-all">
+                      <div key={i} className="bg-white border-2 border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-nexus-accent transition-all relative">
                         <div className="flex items-center justify-between mb-2">
                           <h3 className="font-semibold text-gray-800 flex-1">{course.title}</h3>
                           <div className="flex items-center gap-1 text-yellow-500">
@@ -470,6 +567,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                             Continuar treinamento →
                           </button>
                         )}
+                        {i === 0 && subStep === 0 && (
+                          <Hotspot 
+                            id="step3-lms-course" 
+                            className="inset-0"
+                            tooltip="Explore os treinamentos disponíveis"
+                          />
+                        )}
                       </div>
                     ))}
                   </div>
@@ -489,14 +593,14 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-3 relative">
                     {[
                       { ritual: "Weekly Team Sync", frequency: "Toda segunda, 10h", participants: 8, nextDate: "Amanhã", status: "active" },
                       { ritual: "1:1 com Gestor", frequency: "Quinzenal", participants: 2, nextDate: "Em 3 dias", status: "scheduled" },
                       { ritual: "Feedback 360°", frequency: "Trimestral", participants: 15, nextDate: "Em 12 dias", status: "scheduled" },
                       { ritual: "All-Hands Meeting", frequency: "Mensal", participants: 45, nextDate: "Sexta-feira", status: "active" }
                     ].map((item, i) => (
-                      <div key={i} className="bg-white border-2 border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-blue-500 transition-all">
+                      <div key={i} className="bg-white border-2 border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-blue-500 transition-all relative">
                         <div className="flex items-center justify-between mb-3">
                           <h3 className="font-semibold text-gray-800">{item.ritual}</h3>
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -524,6 +628,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                             Gerenciar ritual →
                           </button>
                         </div>
+                        {i === 1 && subStep === 1 && (
+                          <Hotspot 
+                            id="step3-caas-ritual" 
+                            className="inset-0"
+                            tooltip="Configure rituais automáticos de cultura"
+                          />
+                        )}
                       </div>
                     ))}
                   </div>
@@ -581,6 +692,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                     <p className="text-white/80 text-xs">Faltam apenas 550 XP! Continue assim! 🚀</p>
                   </div>
                 </div>
+                {subStep === 0 && (
+                  <Hotspot 
+                    id="step4-level-card" 
+                    className="inset-0"
+                    tooltip="Veja seu progresso e nível atual"
+                  />
+                )}
               </div>
 
               <div className="grid grid-cols-2 gap-6">
@@ -592,7 +710,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                       8 novas
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-3 relative">
                     {[
                       { icon: "🏆", title: "Colaborador do Mês", xp: 500, available: true },
                       { icon: "🎯", title: "Meta Batida", xp: 300, available: true },
@@ -603,7 +721,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                     ].map((reward, i) => (
                       <div 
                         key={i} 
-                        className={`rounded-xl p-4 text-center transition-all ${
+                        className={`rounded-xl p-4 text-center transition-all relative ${
                           reward.available 
                             ? 'bg-gradient-to-br from-nexus-accent to-nexus-green text-white shadow-lg hover:shadow-xl hover:scale-105 cursor-pointer' 
                             : 'bg-white border-2 border-gray-200 opacity-60'
@@ -620,6 +738,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                           <button className="mt-2 bg-white/20 hover:bg-white/30 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm transition-all">
                             Resgatar
                           </button>
+                        )}
+                        {i === 0 && subStep === 1 && (
+                          <Hotspot 
+                            id="step4-reward" 
+                            className="inset-0"
+                            tooltip="Resgate recompensas por suas conquistas"
+                          />
                         )}
                       </div>
                     ))}
@@ -658,7 +783,7 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                   </div>
 
                   {/* Top 3 Podium */}
-                  <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 border-2 border-yellow-200">
+                  <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 border-2 border-yellow-200 relative">
                     <div className="flex items-end justify-center gap-4">
                       {/* 2nd Place */}
                       <div className="text-center">
@@ -691,6 +816,13 @@ export const ProductTour = ({ open, onOpenChange }: ProductTourProps) => {
                         </div>
                       </div>
                     </div>
+                    {subStep === 2 && (
+                      <Hotspot 
+                        id="step4-leaderboard" 
+                        className="inset-0"
+                        tooltip="Confira sua posição no ranking"
+                      />
+                    )}
                   </div>
 
                   {/* Rest of Leaderboard */}
