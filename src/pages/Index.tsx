@@ -385,41 +385,47 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* Enterprise Plan */}
+            {/* White-Label Plan */}
             <Card 
-              className="border-2 border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
+              className="border-2 border-nexus-accent bg-gradient-to-br from-nexus-green/5 to-nexus-accent/5 hover:shadow-2xl transition-all duration-300"
               style={{
                 animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.3s both' : 'none'
               }}>
               <CardContent className="p-8 text-center">
-                <h3 className="text-2xl font-bold text-nexus-green mb-2">Enterprise</h3>
-                <p className="text-sm text-nexus-accent font-medium mb-2">Para organizações que lideram a transformação cultural</p>
-                <p className="text-gray-600 mb-6">Solução completa para grandes empresas (100+ pessoas)</p>
+                <div className="inline-block bg-nexus-accent text-white px-3 py-1 rounded-full text-xs font-bold mb-3">
+                  REVENDA NOSSA TECNOLOGIA
+                </div>
+                <h3 className="text-2xl font-bold text-nexus-green mb-2">White-Label</h3>
+                <p className="text-sm text-nexus-accent font-medium mb-2">Revenda a plataforma com sua própria marca</p>
+                <p className="text-gray-600 mb-6">Para consultorias, agências e empresas que querem monetizar</p>
                 
                 <div className="mb-8">
-                  <span className="text-4xl font-bold text-nexus-green">Personalizado</span>
+                  <span className="text-4xl font-bold text-nexus-green">Sob Medida</span>
+                  <p className="text-sm text-gray-600 mt-2">Modelo de parceria personalizado</p>
                 </div>
 
                 <div className="space-y-4 mb-8 text-left">
                   {[
-                    "Tudo do Profissional, mais:",
-                    "Armazenamento personalizado",
-                    "Personalização total da plataforma",
-                    "Suporte 24/7 dedicado",
-                    "Integrações customizadas",
-                    "SLA garantido",
-                    "Consultoria de cultura organizacional"
+                    "Plataforma completa white-label:",
+                    "Sua marca, logo e identidade visual",
+                    "Domínio personalizado próprio",
+                    "Painel de gestão de clientes",
+                    "Sistema de billing integrado",
+                    "Margem de lucro configurável",
+                    "Suporte técnico dedicado",
+                    "Onboarding e treinamento completo",
+                    "Co-marketing e materiais de vendas"
                   ].map((feature, index) => (
                     <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="h-4 w-4 text-nexus-green flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-nexus-accent flex-shrink-0" />
                       <span className={`text-sm ${index === 0 ? 'font-bold text-nexus-green' : 'text-gray-700'}`}>{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <Link to="/auth">
-                  <Button variant="outline" className="w-full border-nexus-green text-nexus-green hover:bg-nexus-green hover:text-white">
-                    Falar com Vendas
+                  <Button className="w-full bg-nexus-accent text-white hover:bg-nexus-accent/90 shadow-lg">
+                    Seja um Parceiro White-Label
                   </Button>
                 </Link>
               </CardContent>
