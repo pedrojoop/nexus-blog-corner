@@ -13,6 +13,8 @@ import EstrategiasRHTurnover2025 from "./pages/blog/EstrategiasRHTurnover2025";
 import CustoCulturaFraca2025 from "./pages/blog/CustoCulturaFraca2025";
 import IAPreditivaRH2025 from "./pages/blog/IAPreditivaRH2025";
 import NovaLiderancaDesengajamento2025 from "./pages/blog/NovaLiderancaDesengajamento2025";
+import RetencaoTalentosEstrategias2025 from "./pages/blog/RetencaoTalentosEstrategias2025";
+import CulturaOrganizacionalROI2025 from "./pages/blog/CulturaOrganizacionalROI2025";
 import Dashboard from "./pages/Dashboard";
 import DashboardChat from "./pages/DashboardChat";
 import DashboardEventos from "./pages/DashboardEventos";
@@ -47,6 +49,8 @@ const App = () => (
           <Route path="/blog/custo-cultura-fraca-metricas-rh-2025" element={<CustoCulturaFraca2025 />} />
           <Route path="/blog/ia-preditiva-rh-turnover-2025" element={<IAPreditivaRH2025 />} />
           <Route path="/blog/nova-lideranca-desengajamento-2025" element={<NovaLiderancaDesengajamento2025 />} />
+          <Route path="/blog/retencao-talentos-estrategias-2025" element={<RetencaoTalentosEstrategias2025 />} />
+          <Route path="/blog/cultura-organizacional-roi-2025" element={<CulturaOrganizacionalROI2025 />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/auth" element={<Auth />} />
