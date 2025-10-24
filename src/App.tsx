@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import Servicos from "./pages/Servicos";
 import Sobre from "./pages/Sobre";
+import Contato from "./pages/Contato";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import EstrategiasRHTurnover2025 from "./pages/blog/EstrategiasRHTurnover2025";
@@ -53,6 +54,7 @@ const App = () => (
           <Route path="/blog/cultura-organizacional-roi-2025" element={<CulturaOrganizacionalROI2025 />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/sobre" element={<Sobre />} />
+          <Route path="/contato" element={<Contato />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/chat" element={<DashboardChat />} />

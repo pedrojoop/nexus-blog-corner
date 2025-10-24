@@ -49,6 +49,14 @@ const Header = () => {
           >
             Sobre
           </Link>
+          <Link 
+            to="/contato" 
+            className={`text-sm font-medium transition-colors hover:text-primary ${
+              isActive('/contato') ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            Contato
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-4">
