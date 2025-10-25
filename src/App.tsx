@@ -30,6 +30,7 @@ import DashboardRHGamificacao from "./pages/DashboardRHGamificacao";
 import DashboardRHRecrutamento from "./pages/DashboardRHRecrutamento";
 import DashboardRHLMS from "./pages/DashboardRHLMS";
 import DashboardRHCaaS from "./pages/DashboardRHCaaS";
+import DashboardTreinamento from "./pages/DashboardTreinamento";
 import DashboardTickets from "./pages/DashboardTickets";
 import DashboardTicketsNovo from "./pages/DashboardTicketsNovo";
 import DashboardTicketsGestor from "./pages/DashboardTicketsGestor";
@@ -67,8 +68,9 @@ const App = () => (
           <Route path="/dashboard/rh/ponto" element={<DashboardRHPonto />} />
           <Route path="/dashboard/rh/gamificacao" element={<DashboardRHGamificacao />} />
           <Route path="/dashboard/rh/recrutamento" element={<DashboardRHRecrutamento />} />
-          <Route path="/dashboard/rh/lms" element={<DashboardRHLMS />} />
-          <Route path="/dashboard/rh/caas" element={<DashboardRHCaaS />} />
+            <Route path="/dashboard/rh/lms" element={<DashboardRHLMS />} />
+            <Route path="/dashboard/rh/caas" element={<DashboardRHCaaS />} />
+            <Route path="/dashboard/treinamento" element={<DashboardTreinamento />} />
           <Route path="/dashboard/tickets" element={<DashboardTickets />} />
           <Route path="/dashboard/tickets/novo" element={<DashboardTicketsNovo />} />
           <Route path="/dashboard/tickets/gestor" element={<DashboardTicketsGestor />} />

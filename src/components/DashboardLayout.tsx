@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, MessageSquare, Calendar, FileText, FolderKanban, Users, Settings, Menu, Briefcase, ChevronDown } from "lucide-react";
+import { Home, MessageSquare, Calendar, FileText, FolderKanban, Users, Settings, Menu, Briefcase, ChevronDown, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -16,6 +16,7 @@ const menuItems = [
   { icon: FileText, label: "Documentos", path: "/dashboard/documentos" },
   { icon: FolderKanban, label: "Projetos", path: "/dashboard/projetos" },
   { icon: Users, label: "Pessoas", path: "/dashboard/pessoas" },
+  { icon: BookOpen, label: "Treinamento", path: "/dashboard/treinamento" },
   { 
     icon: Briefcase, 
     label: "RH", 
