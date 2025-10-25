@@ -5,37 +5,148 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Briefcase, Sparkles, AlertTriangle, Plus, Users } from "lucide-react";
-import { useState } from "react";
+import { Briefcase, Sparkles, AlertTriangle, Plus, Users, Linkedin, Clock, Trophy, Archive } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+interface Vaga {
+  id: number;
+  titulo: string;
+  departamento: string;
+  descricao: string;
+  status: "aberta" | "preenchida";
+  criadaEm: Date;
+  preenchidaEm?: Date;
+  candidatos: Candidato[];
+}
+
+interface Candidato {
+  id: number;
+  nome: string;
+  pontuacao: number;
+  habilidades: string[];
+  experiencia: string;
+}
 
 const DashboardRHRecrutamento = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { toast } = useToast();
+  const [tituloVaga, setTituloVaga] = useState("");
+  const [departamentoVaga, setDepartamentoVaga] = useState("");
   const [descricaoVaga, setDescricaoVaga] = useState("");
-
-  const alertasIA = [
+  const [linkedinIntegrado, setLinkedinIntegrado] = useState(false);
+  const [vagaSelecionada, setVagaSelecionada] = useState<number | null>(null);
+  
+  const [vagas, setVagas] = useState<Vaga[]>([
     {
       id: 1,
-      colaborador: "João Silva",
+      titulo: "Desenvolvedor Full Stack",
       departamento: "TI",
-      nivel: "alto",
-      motivo: "Queda de 40% no engajamento nos últimos 2 meses. Participação em eventos caiu drasticamente.",
+      descricao: "Desenvolvimento de aplicações web",
+      status: "aberta",
+      criadaEm: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+      candidatos: [
+        { id: 1, nome: "Carlos Mendes", pontuacao: 95, habilidades: ["React", "Node.js", "TypeScript"], experiencia: "5 anos" },
+        { id: 2, nome: "Ana Paula", pontuacao: 88, habilidades: ["Vue", "Python", "Docker"], experiencia: "4 anos" },
+        { id: 3, nome: "Roberto Lima", pontuacao: 82, habilidades: ["Angular", "Java", "AWS"], experiencia: "6 anos" },
+      ]
     },
     {
       id: 2,
-      colaborador: "Maria Santos",
-      departamento: "Marketing",
-      nivel: "médio",
-      motivo: "Baixa interação com colegas e ausência em 3 eventos consecutivos.",
+      titulo: "Designer UX/UI",
+      departamento: "Design",
+      descricao: "Design de interfaces e experiência do usuário",
+      status: "aberta",
+      criadaEm: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+      candidatos: [
+        { id: 4, nome: "Marina Costa", pontuacao: 92, habilidades: ["Figma", "Adobe XD", "Prototyping"], experiencia: "3 anos" },
+        { id: 5, nome: "Felipe Santos", pontuacao: 85, habilidades: ["Sketch", "InVision", "User Research"], experiencia: "4 anos" },
+      ]
     },
-  ];
+  ]);
 
-  const vagas = [
-    { id: 1, titulo: "Desenvolvedor Full Stack", departamento: "TI", candidatos: 12, status: "aberta" },
-    { id: 2, titulo: "Designer UX/UI", departamento: "Design", candidatos: 8, status: "aberta" },
-    { id: 3, titulo: "Gerente de Projetos", departamento: "Gestão", candidatos: 15, status: "em-analise" },
-  ];
+  const [vagasHistorico] = useState<Vaga[]>([
+    {
+      id: 100,
+      titulo: "Gerente de Projetos",
+      departamento: "Gestão",
+      descricao: "Gestão de projetos estratégicos",
+      status: "preenchida",
+      criadaEm: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
+      preenchidaEm: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
+      candidatos: []
+    },
+    {
+      id: 101,
+      titulo: "Analista de Dados",
+      departamento: "BI",
+      descricao: "Análise e visualização de dados",
+      status: "preenchida",
+      criadaEm: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000),
+      preenchidaEm: new Date(Date.now() - 75 * 24 * 60 * 60 * 1000),
+      candidatos: []
+    },
+  ]);
+
+  const calcularTempoAberto = (criadaEm: Date, preenchidaEm?: Date) => {
+    const fim = preenchidaEm || new Date();
+    const diff = fim.getTime() - criadaEm.getTime();
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    return `${dias}d ${horas}h`;
+  };
+
+  const integrarLinkedin = () => {
+    setLinkedinIntegrado(true);
+    toast({
+      title: "✅ LinkedIn Integrado!",
+      description: "Suas vagas agora serão sincronizadas com o LinkedIn.",
+    });
+  };
+
+  const criarVaga = () => {
+    if (!tituloVaga || !departamentoVaga || !descricaoVaga) {
+      toast({
+        title: "⚠️ Campos obrigatórios",
+        description: "Preencha todos os campos para criar a vaga.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const novaVaga: Vaga = {
+      id: Date.now(),
+      titulo: tituloVaga,
+      departamento: departamentoVaga,
+      descricao: descricaoVaga,
+      status: "aberta",
+      criadaEm: new Date(),
+      candidatos: []
+    };
+
+    setVagas([novaVaga, ...vagas]);
+    setTituloVaga("");
+    setDepartamentoVaga("");
+    setDescricaoVaga("");
+    
+    toast({
+      title: "✅ Vaga criada!",
+      description: "A vaga foi publicada com sucesso.",
+    });
+  };
+
+  const preencherVaga = (id: number) => {
+    setVagas(vagas.map(v => 
+      v.id === id 
+        ? { ...v, status: "preenchida" as const, preenchidaEm: new Date() }
+        : v
+    ));
+    toast({
+      title: "✅ Vaga preenchida!",
+      description: "O contador foi pausado.",
+    });
+  };
 
   const gerarDescricaoIA = () => {
     const descricaoGerada = `Estamos em busca de um profissional talentoso e motivado para integrar nossa equipe dinâmica. 
@@ -65,6 +176,7 @@ Oferecemos:
     });
   };
 
+
   return (
     <DashboardLayout>
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
@@ -76,71 +188,50 @@ Oferecemos:
               headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Recrutamento e Alertas IA
-            </h1>
-            <p className="text-muted-foreground">Gerencie vagas e monitore o engajamento da equipe</p>
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Gestão de Talentos
+                </h1>
+                <p className="text-muted-foreground">Gerencie vagas, candidatos e integração com LinkedIn</p>
+              </div>
+              <Button 
+                onClick={integrarLinkedin}
+                variant={linkedinIntegrado ? "outline" : "default"}
+                className="gap-2"
+                disabled={linkedinIntegrado}
+              >
+                <Linkedin className="h-5 w-5" />
+                {linkedinIntegrado ? "LinkedIn Integrado" : "Integrar LinkedIn"}
+              </Button>
+            </div>
           </div>
-
-          {/* Alertas de Turnover */}
-          <Card className="border-orange-500/20 shadow-lg">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
-                <AlertTriangle className="h-5 w-5" />
-                Alertas de Predição de Turnover
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {alertasIA.map((alerta) => (
-                <div
-                  key={alerta.id}
-                  className={`p-4 rounded-lg border-2 ${
-                    alerta.nivel === "alto"
-                      ? "bg-red-500/10 border-red-500/30"
-                      : "bg-yellow-500/10 border-yellow-500/30"
-                  } hover:shadow-md transition-all`}
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <h3 className="font-bold text-lg">{alerta.colaborador}</h3>
-                      <p className="text-sm text-muted-foreground">{alerta.departamento}</p>
-                    </div>
-                    <Badge
-                      variant={alerta.nivel === "alto" ? "destructive" : "secondary"}
-                      className={alerta.nivel === "alto" ? "" : "bg-yellow-500 text-white"}
-                    >
-                      Risco {alerta.nivel}
-                    </Badge>
-                  </div>
-                  <div className="bg-background/50 p-3 rounded-md mb-3">
-                    <p className="text-sm font-medium mb-1">📊 Análise da IA:</p>
-                    <p className="text-sm text-muted-foreground">{alerta.motivo}</p>
-                  </div>
-                  <Button variant="outline" size="sm">
-                    Ver Detalhes Completos
-                  </Button>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
 
           <div className="grid lg:grid-cols-2 gap-6">
             {/* Criar Nova Vaga */}
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Briefcase className="h-5 w-5 text-primary" />
+                  <Plus className="h-5 w-5 text-primary" />
                   Criar Nova Vaga
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Título da Vaga</label>
-                  <Input placeholder="Ex: Desenvolvedor Full Stack" />
+                  <Input 
+                    placeholder="Ex: Desenvolvedor Full Stack" 
+                    value={tituloVaga}
+                    onChange={(e) => setTituloVaga(e.target.value)}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Departamento</label>
-                  <Input placeholder="Ex: Tecnologia da Informação" />
+                  <Input 
+                    placeholder="Ex: Tecnologia da Informação" 
+                    value={departamentoVaga}
+                    onChange={(e) => setDepartamentoVaga(e.target.value)}
+                  />
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
@@ -152,49 +243,161 @@ Oferecemos:
                   </div>
                   <Textarea
                     placeholder="Descreva as responsabilidades, requisitos e benefícios..."
-                    rows={8}
+                    rows={6}
                     value={descricaoVaga}
                     onChange={(e) => setDescricaoVaga(e.target.value)}
                   />
                 </div>
-                <Button className="w-full gap-2">
+                <Button className="w-full gap-2" onClick={criarVaga}>
                   <Plus className="h-4 w-4" />
                   Publicar Vaga
                 </Button>
               </CardContent>
             </Card>
 
-            {/* Vagas Ativas */}
+            {/* Vagas Ativas com Contador */}
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Users className="h-5 w-5 text-primary" />
-                  Vagas Ativas
+                  <Briefcase className="h-5 w-5 text-primary" />
+                  Vagas Criadas
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {vagas.map((vaga) => (
                   <div key={vaga.id} className="p-4 rounded-lg border bg-card hover:shadow-md transition-all">
                     <div className="flex justify-between items-start mb-2">
-                      <div>
+                      <div className="flex-1">
                         <h3 className="font-bold">{vaga.titulo}</h3>
                         <p className="text-sm text-muted-foreground">{vaga.departamento}</p>
+                        <div className="flex items-center gap-2 mt-2">
+                          <Clock className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-sm font-medium">
+                            {calcularTempoAberto(vaga.criadaEm, vaga.preenchidaEm)}
+                            {vaga.status === "preenchida" && " (pausado)"}
+                          </span>
+                        </div>
                       </div>
                       <Badge variant={vaga.status === "aberta" ? "default" : "secondary"}>
-                        {vaga.status === "aberta" ? "Aberta" : "Em Análise"}
+                        {vaga.status === "aberta" ? "Aberta" : "Preenchida"}
                       </Badge>
                     </div>
-                    <div className="flex items-center justify-between mt-3">
-                      <span className="text-sm text-muted-foreground">{vaga.candidatos} candidatos</span>
-                      <Button variant="outline" size="sm">
-                        Ver Candidatos
-                      </Button>
+                    <div className="flex items-center justify-between mt-3 gap-2">
+                      <span className="text-sm text-muted-foreground">
+                        {vaga.candidatos.length} candidatos
+                      </span>
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => setVagaSelecionada(vagaSelecionada === vaga.id ? null : vaga.id)}
+                        >
+                          Ver Leaderboard
+                        </Button>
+                        {vaga.status === "aberta" && (
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            onClick={() => preencherVaga(vaga.id)}
+                          >
+                            Preencher
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
               </CardContent>
             </Card>
           </div>
+
+          {/* Leaderboard de Candidatos */}
+          {vagaSelecionada && (
+            <Card className="shadow-lg border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Trophy className="h-5 w-5 text-yellow-500" />
+                  Leaderboard de Candidatos - {vagas.find(v => v.id === vagaSelecionada)?.titulo}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-16">Ranking</TableHead>
+                      <TableHead>Nome</TableHead>
+                      <TableHead>Pontuação IA</TableHead>
+                      <TableHead>Habilidades</TableHead>
+                      <TableHead>Experiência</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {vagas
+                      .find(v => v.id === vagaSelecionada)
+                      ?.candidatos.sort((a, b) => b.pontuacao - a.pontuacao)
+                      .map((candidato, index) => (
+                        <TableRow key={candidato.id}>
+                          <TableCell className="font-bold">
+                            {index === 0 && "🥇"}
+                            {index === 1 && "🥈"}
+                            {index === 2 && "🥉"}
+                            {index > 2 && `#${index + 1}`}
+                          </TableCell>
+                          <TableCell className="font-medium">{candidato.nome}</TableCell>
+                          <TableCell>
+                            <Badge variant={candidato.pontuacao >= 90 ? "default" : "secondary"}>
+                              {candidato.pontuacao}/100
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex flex-wrap gap-1">
+                              {candidato.habilidades.map((hab, i) => (
+                                <Badge key={i} variant="outline" className="text-xs">
+                                  {hab}
+                                </Badge>
+                              ))}
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-sm text-muted-foreground">
+                            {candidato.experiencia}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Histórico de Vagas Antigas */}
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Archive className="h-5 w-5 text-muted-foreground" />
+                Histórico de Vagas Preenchidas
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {vagasHistorico.map((vaga) => (
+                  <div key={vaga.id} className="p-4 rounded-lg border bg-muted/30">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className="font-bold text-muted-foreground">{vaga.titulo}</h3>
+                        <p className="text-sm text-muted-foreground">{vaga.departamento}</p>
+                      </div>
+                      <Badge variant="secondary">Preenchida</Badge>
+                    </div>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">
+                      <span>Tempo total: {calcularTempoAberto(vaga.criadaEm, vaga.preenchidaEm)}</span>
+                      <span>•</span>
+                      <span>Preenchida em: {vaga.preenchidaEm?.toLocaleDateString('pt-BR')}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </DashboardLayout>
