@@ -642,44 +642,42 @@ const DashboardChat = () => {
         </Card>
 
         {/* Painel de Informações */}
-        {showInfoPanel && selectedId && (
-          <ChatInfoPanel
-            channelName={selectedName}
-            channelType={selectedType}
-            description="Canal para discussões gerais da equipe"
-            members={[
-              { id: "1", name: "João Silva", role: "Desenvolvedor", isOnline: true },
-              { id: "2", name: "Maria Santos", role: "Designer", isOnline: false },
-              { id: "3", name: "Carlos Souza", role: "Gerente", isOnline: true },
-            ]}
-            files={[
-              {
-                id: "f1",
-                name: "documento.pdf",
-                uploadedBy: "João Silva",
-                uploadedAt: new Date(),
-                type: "pdf",
-              },
-            ]}
-            pinnedMessages={2}
-            onClose={() => setShowInfoPanel(false)}
-          />
-        )}
+        <ChatInfoPanel
+          channelName={selectedName}
+          channelType={selectedType}
+          description="Canal para discussões gerais da equipe"
+          members={[
+            { id: "1", name: "João Silva", role: "Desenvolvedor", isOnline: true },
+            { id: "2", name: "Maria Santos", role: "Designer", isOnline: false },
+            { id: "3", name: "Carlos Souza", role: "Gerente", isOnline: true },
+          ]}
+          files={[
+            {
+              id: "f1",
+              name: "documento.pdf",
+              uploadedBy: "João Silva",
+              uploadedAt: new Date(),
+              type: "pdf",
+            },
+          ]}
+          pinnedMessages={2}
+          open={showInfoPanel && !!selectedId}
+          onClose={() => setShowInfoPanel(false)}
+        />
 
         {/* Thread */}
-        {showThread && threadMessage && (
-          <MessageThread
-            originalMessage={{
-              id: threadMessage.id,
-              text: threadMessage.text,
-              senderName: threadMessage.senderName,
-              timestamp: threadMessage.timestamp,
-            }}
-            replies={threadReplies}
-            onClose={() => setShowThread(false)}
-            onSendReply={handleSendThreadReply}
-          />
-        )}
+        <MessageThread
+          originalMessage={{
+            id: threadMessage?.id || "",
+            text: threadMessage?.text || "",
+            senderName: threadMessage?.senderName || "",
+            timestamp: threadMessage?.timestamp || new Date(),
+          }}
+          replies={threadReplies}
+          open={showThread && !!threadMessage}
+          onClose={() => setShowThread(false)}
+          onSendReply={handleSendThreadReply}
+        />
       </div>
     </DashboardLayout>
   );

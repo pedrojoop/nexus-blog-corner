@@ -31,6 +31,11 @@ interface Message {
   reactions?: Reaction[];
   threadCount?: number;
   isPinned?: boolean;
+  quotedMessage?: {
+    id: string;
+    senderName: string;
+    text: string;
+  };
 }
 
 interface ChatMessageProps {
@@ -119,6 +124,14 @@ export const ChatMessage = ({
           </div>
         ) : (
           <div className="max-w-[70%]">
+            {message.quotedMessage && (
+              <div className="mb-2 p-2 bg-muted/50 border-l-2 border-primary rounded text-xs">
+                <div className="font-semibold text-muted-foreground mb-1">
+                  {message.quotedMessage.senderName}
+                </div>
+                <div className="truncate">{message.quotedMessage.text}</div>
+              </div>
+            )}
             <p className="text-sm whitespace-pre-wrap break-words">{message.text}</p>
             
             {message.reactions && message.reactions.length > 0 && (
