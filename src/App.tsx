@@ -35,6 +35,8 @@ import DashboardTickets from "./pages/DashboardTickets";
 import DashboardTicketsNovo from "./pages/DashboardTicketsNovo";
 import DashboardTicketsGestor from "./pages/DashboardTicketsGestor";
 import DashboardTicketsDetalhes from "./pages/DashboardTicketsDetalhes";
+import DashboardOnboarding from "./pages/DashboardOnboarding";
+import DashboardOnboardingAdmin from "./pages/DashboardOnboardingAdmin";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +72,8 @@ const App = () => (
           <Route path="/dashboard/rh/recrutamento" element={<DashboardRHRecrutamento />} />
             <Route path="/dashboard/rh/lms" element={<DashboardRHLMS />} />
             <Route path="/dashboard/rh/caas" element={<DashboardRHCaaS />} />
+            <Route path="/dashboard/onboarding" element={<DashboardOnboarding />} />
+            <Route path="/dashboard/onboarding/admin" element={<DashboardOnboardingAdmin />} />
             <Route path="/dashboard/treinamento" element={<DashboardTreinamento />} />
           <Route path="/dashboard/tickets" element={<DashboardTickets />} />
           <Route path="/dashboard/tickets/novo" element={<DashboardTicketsNovo />} />

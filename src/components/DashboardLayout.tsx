@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, MessageSquare, Calendar, FileText, FolderKanban, Users, Settings, Menu, Briefcase, ChevronDown, BookOpen } from "lucide-react";
+import { Home, MessageSquare, Calendar, FileText, FolderKanban, Users, Settings, Menu, Briefcase, ChevronDown, BookOpen, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -17,6 +17,15 @@ const menuItems = [
   { icon: FolderKanban, label: "Projetos", path: "/dashboard/projetos" },
   { icon: Users, label: "Pessoas", path: "/dashboard/pessoas" },
   { icon: BookOpen, label: "Treinamento", path: "/dashboard/treinamento" },
+  { 
+    icon: Sparkles, 
+    label: "Jornada do Colaborador", 
+    path: "/dashboard/onboarding",
+    submenu: [
+      { label: "Meu Onboarding & PDI", path: "/dashboard/onboarding" },
+      { label: "Gestão (Admin)", path: "/dashboard/onboarding/admin" },
+    ]
+  },
   { 
     icon: Briefcase, 
     label: "RH", 
@@ -52,6 +61,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     const openMenus: string[] = [];
     if (location.pathname.startsWith("/dashboard/rh")) openMenus.push("/dashboard/rh");
     if (location.pathname.startsWith("/dashboard/tickets")) openMenus.push("/dashboard/tickets");
+    if (location.pathname.startsWith("/dashboard/onboarding")) openMenus.push("/dashboard/onboarding");
     return openMenus;
   };
   
