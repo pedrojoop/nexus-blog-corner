@@ -46,7 +46,16 @@ const menuItems = [
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [openSubmenus, setOpenSubmenus] = useState<string[]>(["/dashboard/rh", "/dashboard/tickets"]);
+  
+  // Auto-open submenus based on current route
+  const getInitialOpenSubmenus = () => {
+    const openMenus: string[] = [];
+    if (location.pathname.startsWith("/dashboard/rh")) openMenus.push("/dashboard/rh");
+    if (location.pathname.startsWith("/dashboard/tickets")) openMenus.push("/dashboard/tickets");
+    return openMenus;
+  };
+  
+  const [openSubmenus, setOpenSubmenus] = useState<string[]>(getInitialOpenSubmenus());
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,8 +133,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                         className={cn(
                           "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 group",
                           location.pathname.startsWith(item.path)
-                            ? "bg-primary text-primary-foreground shadow-md" 
-                            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm"
+                            ? "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-lg shadow-primary/20 scale-[1.02]" 
+                            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm hover:scale-[1.01]"
                         )}
                       >
                         <Icon className="h-5 w-5 flex-shrink-0" />
@@ -146,10 +155,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                               key={subItem.path}
                               to={subItem.path}
                               className={cn(
-                                "block px-3 py-2 text-sm rounded-md transition-all",
+                                "block px-3 py-2 text-sm rounded-md transition-all duration-300",
                                 location.pathname === subItem.path
-                                  ? "bg-accent text-accent-foreground font-medium"
-                                  : "text-muted-foreground hover:bg-accent/50"
+                                  ? "bg-gradient-to-r from-nexus-accent to-nexus-accent/90 text-primary-foreground font-semibold shadow-md scale-[1.02] border-l-2 border-primary"
+                                  : "text-muted-foreground hover:bg-accent/50 hover:scale-[1.01] hover:translate-x-1"
                               )}
                             >
                               {subItem.label}
@@ -164,8 +173,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       className={cn(
                         "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 group",
                         isActive 
-                          ? "bg-primary text-primary-foreground shadow-md" 
-                          : "text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm hover:-translate-y-0.5"
+                          ? "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-lg shadow-primary/20 scale-[1.02]" 
+                          : "text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm hover:scale-[1.01] hover:-translate-y-0.5"
                       )}
                     >
                       <Icon className="h-5 w-5 flex-shrink-0" />
@@ -184,7 +193,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       {/* Main Content */}
       <main 
         className={cn(
-          "pt-16 transition-all duration-300",
+          "pt-16 transition-all duration-300 animate-fade-in",
           isSidebarOpen ? "ml-64" : "ml-20"
         )}
       >
