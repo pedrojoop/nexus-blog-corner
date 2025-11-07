@@ -2,7 +2,6 @@ import DashboardLayout from "@/components/DashboardLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import DepartmentManagement from "@/components/settings/DepartmentManagement";
-import RoleManagement from "@/components/settings/RoleManagement";
 import UserManagement from "@/components/settings/UserManagement";
 import PermissionsManagement from "@/components/settings/PermissionsManagement";
 
@@ -17,19 +16,14 @@ const DashboardConfiguracoes = () => {
       </div>
 
       <Tabs defaultValue="departments" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="departments">Departamentos</TabsTrigger>
-          <TabsTrigger value="roles">Cargos</TabsTrigger>
           <TabsTrigger value="users">Usuários</TabsTrigger>
-          <TabsTrigger value="permissions">Permissões</TabsTrigger>
+          <TabsTrigger value="permissions">Cargos e Permissões</TabsTrigger>
         </TabsList>
 
         <TabsContent value="departments" className="space-y-4">
           <DepartmentManagement />
-        </TabsContent>
-
-        <TabsContent value="roles" className="space-y-4">
-          <RoleManagement />
         </TabsContent>
 
         <TabsContent value="users" className="space-y-4">
