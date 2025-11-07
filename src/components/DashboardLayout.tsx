@@ -1,9 +1,18 @@
 import { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Home, MessageSquare, Calendar, FileText, FolderKanban, Users, Settings, Menu, Briefcase, ChevronDown, BookOpen, Sparkles } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Home, MessageSquare, Calendar, FileText, FolderKanban, Users, Settings, Menu, Briefcase, ChevronDown, BookOpen, Sparkles, User, BarChart3, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -54,6 +63,7 @@ const menuItems = [
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   
   // Auto-open submenus based on current route
@@ -100,9 +110,41 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <div className="w-2 h-2 bg-nexus-accent rounded-full animate-pulse"></div>
               <span className="text-sm">Online</span>
             </div>
-            <div className="w-10 h-10 bg-nexus-accent rounded-full flex items-center justify-center text-primary-foreground font-semibold">
-              PL
-            </div>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="focus:outline-none focus:ring-2 focus:ring-nexus-accent focus:ring-offset-2 rounded-full">
+                  <Avatar className="h-10 w-10 cursor-pointer hover:opacity-90 transition-opacity border-2 border-nexus-accent">
+                    <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Pedro" />
+                    <AvatarFallback className="bg-nexus-accent text-primary-foreground font-semibold">PL</AvatarFallback>
+                  </Avatar>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56 bg-card border-border z-[100]" align="end">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">Pedro Lima</p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      diretoria@nexuscommunity.com
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => navigate("/dashboard/perfil?tab=info")} className="cursor-pointer">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Meu Perfil</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate("/dashboard/perfil")} className="cursor-pointer">
+                  <BarChart3 className="mr-2 h-4 w-4" />
+                  <span>Meu Dashboard</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => navigate("/auth")} className="cursor-pointer text-destructive focus:text-destructive">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Sair</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>
