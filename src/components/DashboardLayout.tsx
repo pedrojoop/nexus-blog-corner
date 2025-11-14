@@ -23,39 +23,17 @@ const menuItems = [
   { icon: MessageSquare, label: "Chat", path: "/dashboard/chat" },
   { icon: Calendar, label: "Eventos", path: "/dashboard/eventos" },
   { icon: FileText, label: "Documentos", path: "/dashboard/documentos" },
-  { icon: FolderKanban, label: "Projetos", path: "/dashboard/projetos" },
   { icon: Users, label: "Pessoas", path: "/dashboard/pessoas" },
   { icon: BookOpen, label: "Treinamento", path: "/dashboard/treinamento" },
-  { 
-    icon: Sparkles, 
-    label: "Jornada do Colaborador", 
-    path: "/dashboard/onboarding",
-    submenu: [
-      { label: "Meu Onboarding & PDI", path: "/dashboard/onboarding" },
-      { label: "Gestão (Admin)", path: "/dashboard/onboarding/admin" },
-    ]
-  },
   { 
     icon: Briefcase, 
     label: "RH", 
     path: "/dashboard/rh",
     submenu: [
       { label: "Inteligência Preditiva", path: "/dashboard/rh" },
-      { label: "Gestão de Ponto", path: "/dashboard/rh/ponto" },
       { label: "Cultura e Engajamento", path: "/dashboard/rh/gamificacao" },
-      { label: "Gestão de Talentos", path: "/dashboard/rh/recrutamento" },
       { label: "Treinamentos (LMS)", path: "/dashboard/rh/lms" },
       { label: "Culture-as-a-Service", path: "/dashboard/rh/caas" },
-    ]
-  },
-  { 
-    icon: MessageSquare, 
-    label: "Tickets", 
-    path: "/dashboard/tickets",
-    submenu: [
-      { label: "Meus Tickets", path: "/dashboard/tickets" },
-      { label: "Novo Ticket", path: "/dashboard/tickets/novo" },
-      { label: "Gestão (Admin)", path: "/dashboard/tickets/gestor" },
     ]
   },
   { icon: Settings, label: "Configurações", path: "/dashboard/configuracoes" },
@@ -70,8 +48,6 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const getInitialOpenSubmenus = () => {
     const openMenus: string[] = [];
     if (location.pathname.startsWith("/dashboard/rh")) openMenus.push("/dashboard/rh");
-    if (location.pathname.startsWith("/dashboard/tickets")) openMenus.push("/dashboard/tickets");
-    if (location.pathname.startsWith("/dashboard/onboarding")) openMenus.push("/dashboard/onboarding");
     return openMenus;
   };
   
