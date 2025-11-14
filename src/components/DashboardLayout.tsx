@@ -30,7 +30,9 @@ const menuItems = [
     label: "RH", 
     path: "/dashboard/rh",
     submenu: [
-      { label: "Inteligência Preditiva", path: "/dashboard/rh" },
+      { label: "Visão Geral", path: "/dashboard/rh" },
+      { label: "IA de Cuidado", path: "/dashboard/ia-cuidado" },
+      { label: "IA de Diagnóstico", path: "/dashboard/rh/ia-diagnostico" },
       { label: "Cultura e Engajamento", path: "/dashboard/rh/gamificacao" },
       { label: "Treinamentos (LMS)", path: "/dashboard/rh/lms" },
       { label: "Culture-as-a-Service", path: "/dashboard/rh/caas" },
