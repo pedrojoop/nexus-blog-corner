@@ -23,7 +23,6 @@ import DashboardDocumentos from "./pages/DashboardDocumentos";
 import DashboardPessoas from "./pages/DashboardPessoas";
 import DashboardConfiguracoes from "./pages/DashboardConfiguracoes";
 import DashboardRH from "./pages/DashboardRH";
-import DashboardIACuidado from "./pages/DashboardIACuidado";
 import DashboardIADiagnostico from "./pages/DashboardIADiagnostico";
 import DashboardRHGamificacao from "./pages/DashboardRHGamificacao";
 import DashboardRHLMS from "./pages/DashboardRHLMS";
@@ -58,8 +57,7 @@ const App = () => (
           <Route path="/dashboard/documentos" element={<DashboardDocumentos />} />
           <Route path="/dashboard/pessoas" element={<DashboardPessoas />} />
           <Route path="/dashboard/rh" element={<DashboardRH />} />
-          <Route path="/dashboard/ia-cuidado" element={<DashboardIACuidado />} />
-          <Route path="/dashboard/rh/ia-diagnostico" element={<DashboardIADiagnostico />} />
+          <Route path="/dashboard/rh/ia-cultura" element={<DashboardIADiagnostico />} />
           <Route path="/dashboard/rh/gamificacao" element={<DashboardRHGamificacao />} />
           <Route path="/dashboard/rh/lms" element={<DashboardRHLMS />} />
           <Route path="/dashboard/rh/caas" element={<DashboardRHCaaS />} />
