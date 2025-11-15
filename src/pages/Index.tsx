@@ -2,555 +2,397 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, Users, TrendingUp, Zap, Heart, AlertTriangle, BarChart3, Target, Linkedin, Play } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, CheckCircle, Sparkles, AlertTriangle, BarChart3, Target, Users, TrendingUp, Zap, Heart, Activity, Linkedin, Shield, BookOpen, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { ProductTour } from "@/components/ProductTour";
 
 const Index = () => {
-  const [showTour, setShowTour] = useState(false);
-  const problemsSection = useScrollAnimation();
+  const problemSection = useScrollAnimation();
   const solutionSection = useScrollAnimation();
+  const howItWorksSection = useScrollAnimation();
   const pricingSection = useScrollAnimation();
-  const aboutSection = useScrollAnimation();
+  const visionSection = useScrollAnimation();
   const ctaSection = useScrollAnimation();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
-      <ProductTour open={showTour} onOpenChange={setShowTour} />
       
       {/* Hero Section */}
-      <section className="relative bg-nexus-green py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]" style={{
+      <section className="relative bg-gradient-to-br from-primary via-primary to-primary/90 py-24 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="inline-block bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
-            Plataforma SaaS B2B de Engajamento
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Acabe com o Alto Turnover.<br />Construa uma <span className="text-nexus-accent">Cultura de Retenção</span> com Dados Reais.
+          <Badge className="bg-white/20 text-white border-white/30 mb-6 text-sm px-4 py-2">
+            Plataforma de Diagnóstico de Cultura para Empresas Híbridas e Remotas
+          </Badge>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            Sua cultura remota é uma <br className="hidden md:block" /><span className="text-accent">'caixa-preta'</span>?
           </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            A plataforma SaaS que transforma a cultura organizacional em vantagem competitiva. 
-            Hub central para engajamento de colaboradores e gestão preditiva de pessoas.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              onClick={() => setShowTour(true)}
-              className="bg-nexus-accent text-white hover:bg-nexus-accent/90 shadow-xl border-2 border-white/20 gap-2"
-            >
-              <Play className="h-5 w-5" />
-              Explore a Plataforma
-            </Button>
+          <h2 className="text-xl md:text-2xl text-white/95 mb-10 max-w-4xl mx-auto leading-relaxed font-medium">
+            O Nexus é o primeiro <strong>Diagnóstico de Cultura</strong> para empresas híbridas. 
+            Nossa IA identifica o risco de burnout a nível de time — sem vigiar pessoas — e lhe dá as ações para resolver.
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <Link to="/contato">
+              <Button size="lg" className="bg-accent text-white hover:bg-accent/90 shadow-2xl text-lg px-8 py-6">
+                Agende seu Diagnóstico <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
             <Link to="/auth">
-              <Button size="lg" variant="outline" className="bg-white text-nexus-green hover:bg-white/90 shadow-lg">
-                Começar Gratuitamente <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 shadow-lg text-lg px-8 py-6 border-2 border-white">
+                Começar Gratuitamente
               </Button>
             </Link>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-6 mt-12 text-white/90 text-sm">
+          <div className="flex flex-wrap justify-center gap-8 text-white/90 text-sm">
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-nexus-accent" />
-              <span>14 dias grátis</span>
+              <CheckCircle className="h-5 w-5 text-accent" />
+              <span className="font-medium">14 dias grátis</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-nexus-accent" />
-              <span>Setup em minutos</span>
+              <CheckCircle className="h-5 w-5 text-accent" />
+              <span className="font-medium">Setup em minutos</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-nexus-accent" />
-              <span>Suporte dedicado</span>
+              <CheckCircle className="h-5 w-5 text-accent" />
+              <span className="font-medium">Dados agregados e anônimos</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Problems Section */}
-      <section ref={problemsSection.ref} className="py-20 bg-white">
+      {/* Problem Section */}
+      <section ref={problemSection.ref} className="py-20 md:py-28 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className={`text-center mb-16 transition-all duration-700 ${problemsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="text-3xl md:text-5xl font-bold text-nexus-green mb-6">
-              O Custo Oculto do Desengajamento
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-700 ${problemSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="inline-flex items-center gap-2 bg-red-500/10 text-red-600 px-4 py-2 rounded-full mb-6">
+              <AlertTriangle className="h-5 w-5" />
+              <span className="font-semibold">A Dor do Trabalho Híbrido</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+              No trabalho híbrido, você não vê o burnout chegar.<br />
+              <span className="text-muted-foreground">Você só recebe o pedido de demissão.</span>
             </h2>
-            <p className="sr-only">Soluções para Reduzir o Turnover em Equipes Híbridas e Remotas</p>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Em um mundo de trabalho remoto e híbrido, o desengajamento se tornou o maior vilão da produtividade. 
-              Ele aumenta custos, destrói a retenção e gera um <strong>turnover que drena o orçamento</strong>. 
-              Gestores de RH enfrentam um cenário crítico que exige soluções baseadas em dados.
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
+              No escritório, você via o isolamento e a sobrecarga. No home-office, você só tem dados de produtividade (Jira) 
+              e ignora os dados de cultura. <strong className="text-foreground">Você só descobre o problema na entrevista de desligamento</strong> — e aí, é tarde demais.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: AlertTriangle,
-                title: "Cultura Fragilizada",
-                description: "Colaboradores desconectados da missão, resultando em baixa produtividade e comprometimento."
-              },
-              {
-                icon: BarChart3,
-                title: "Rotatividade Elevada",
-                description: "Perda constante de talentos-chave e custos elevados de substituição que drenam o orçamento."
-              },
-              {
-                icon: Users,
-                title: "Equipes Fragmentadas",
-                description: "Falta de coesão, comunicação falha e colaboradores que se sentem isolados e desmotivados."
-              }
-            ].map((problem, index) => (
-              <Card 
-                key={index} 
-                className="text-center border border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
-                style={{
-                  animation: problemsSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15}s both` : 'none'
-                }}>
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-nexus-green rounded-full flex items-center justify-center mx-auto mb-6">
-                    <problem.icon className="h-8 w-8 text-white" />
+            <div className="grid md:grid-cols-3 gap-6 mt-12">
+              <Card className="border-red-200 bg-red-50/50">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <AlertTriangle className="h-6 w-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-semibold text-nexus-green mb-4">{problem.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{problem.description}</p>
+                  <h3 className="font-bold text-foreground mb-2">Visibilidade Zero</h3>
+                  <p className="text-sm text-muted-foreground">Você não vê isolamento ou sobrecarga acontecendo</p>
                 </CardContent>
               </Card>
-            ))}
+              <Card className="border-orange-200 bg-orange-50/50">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="h-6 w-6 text-orange-600" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-2">Reação Tardia</h3>
+                  <p className="text-sm text-muted-foreground">Você só age quando já perdeu o talento</p>
+                </CardContent>
+              </Card>
+              <Card className="border-red-200 bg-red-50/50">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp className="h-6 w-6 text-red-600" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-2">Custos Ocultos</h3>
+                  <p className="text-sm text-muted-foreground">Turnover custa 6-9 meses de salário por pessoa</p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Solution Section */}
-      <section ref={solutionSection.ref} className="py-20 bg-gray-50">
+      <section ref={solutionSection.ref} className="py-20 md:py-28 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className={`transition-all duration-700 ${solutionSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <h2 className="text-3xl md:text-5xl font-bold text-nexus-green mb-6">
-                A Solução: Um Hub<br />Central de Cultura
+          <div className={`max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center transition-all duration-700 ${solutionSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div>
+              <Badge className="bg-blue-500/10 text-blue-600 mb-6 text-sm px-4 py-2">
+                A Solução
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
+                De 'Caixa-Preta' para 'Painel de Ação'
               </h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                <strong>Nexus Community</strong> é a plataforma SaaS B2B que unifica comunicação, reconhecimento e gestão de cultura em um só lugar. 
-                Oferecemos ferramentas baseadas em dados para <strong>medir e melhorar o engajamento</strong>, 
-                prevenir turnover e criar equipes mais felizes e produtivas.
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                Apresentamos o <strong>Nexus Diagnóstico</strong>: a primeira IA que detecta o risco de burnout a nível de time,
+                sem vigiar pessoas. Transforme dados brutos em ações de cultura com um clique.
               </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0" />
-                  <span className="text-gray-700 font-medium">Hub central para comunicação e eventos</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0" />
-                  <span className="text-gray-700 font-medium">Sistema de reconhecimento entre pares</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0" />
-                  <span className="text-gray-700 font-medium">IA preditiva para detectar risco de turnover</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-nexus-green flex-shrink-0" />
-                  <span className="text-gray-700 font-medium">Analytics avançado de engajamento</span>
-                </div>
+
+              <div className="space-y-6">
+                <Card className="bg-muted/50 border-0 shadow-none">
+                  <CardContent className="flex items-start gap-4 p-6">
+                    <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
+                      <Activity className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-foreground mb-1">O Diagnóstico (O Cérebro)</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Nossa IA analisa dados agregados e anônimos (sem vigiar indivíduos) e identifica padrões sistêmicos de risco.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-muted/50 border-0 shadow-none">
+                  <CardContent className="flex items-start gap-4 p-6">
+                    <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
+                      <Sparkles className="w-6 h-6 text-green-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-foreground mb-1">A Ação (Os Botões)</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Um diagnóstico sem ação é inútil. Nossa IA sugere ações de cultura (CaaS) que você pode disparar com um clique.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                {
-                  icon: Heart,
-                  title: "Cultura Forte",
-                  description: "Valores e missão vivos no dia a dia."
-                },
-                {
-                  icon: Zap,
-                  title: "Alto Engajamento",
-                  description: "Equipes motivadas e felizes no trabalho."
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Redução de Turnover",
-                  description: "Retenção de talentos baseada em dados."
-                },
-                {
-                  icon: Target,
-                  title: "Decisões Inteligentes",
-                  description: "Analytics para RH e liderança proativa."
-                }
-              ].map((feature, index) => (
-                <Card 
-                  key={index} 
-                  className="text-center border border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
-                  style={{
-                    animation: solutionSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15 + 0.3}s both` : 'none'
-                  }}>
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-nexus-green-lighter rounded-full flex items-center justify-center mx-auto mb-4">
-                      <feature.icon className="h-6 w-6 text-nexus-green" />
-                    </div>
-                    <h3 className="font-semibold text-nexus-green mb-2">{feature.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            {/* Mockup Image */}
+            <img 
+              src="/mockup-dashboard.png"
+              alt="Nexus Dashboard Mockup"
+              className="rounded-xl shadow-2xl border border-muted/40"
+            />
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section ref={aboutSection.ref} className="py-20 bg-white">
+      {/* How It Works Section */}
+      <section ref={howItWorksSection.ref} className="py-20 md:py-28 bg-muted/50">
         <div className="container mx-auto px-4">
-          <div className={`text-center mb-16 transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="text-3xl md:text-5xl font-bold text-nexus-green mb-6">
-              Quem Está Por Trás da Nexus
+          <div className={`max-w-6xl mx-auto text-center transition-all duration-700 ${howItWorksSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <Badge className="bg-purple-500/10 text-purple-600 mb-6 text-sm px-4 py-2">
+              Como Funciona
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
+              Uma plataforma que seu time ama usar.<br />
+              <span className="text-muted-foreground">E que gera os dados que você precisa.</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
-              Somos uma <strong>startup digital-native</strong> focada em resolver o maior desafio do futuro do trabalho: 
-              manter equipes remotas e híbridas engajadas, conectadas e produtivas. Nosso time fundador combina <strong>expertise 
-              em negócios, tecnologia e inovação</strong> para entregar uma plataforma escalável e baseada em dados.
+            <p className="text-lg text-muted-foreground leading-relaxed mb-12">
+              Descubra como o Nexus transforma o engajamento em dados acionáveis para a sua cultura.
             </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-            {[
-              {
-                name: "Pedro Matheus Lima da Cruz",
-                role: "CEO",
-                description: "Estratégia de Negócios e Vendas B2B",
-                linkedin: "#"
-              },
-              {
-                name: "João Lucas Cordeiro Santana",
-                role: "CTO",
-                description: "Arquitetura de Software e Escalabilidade",
-                linkedin: "#"
-              },
-              {
-                name: "Lucas Rodrigues de Azevedo",
-                role: "CIO",
-                description: "Inovação e Integração de Sistemas",
-                linkedin: "#"
-              }
-            ].map((member, index) => (
-              <Card 
-                key={index} 
-                className="text-center border border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
-                style={{
-                  animation: aboutSection.isVisible ? `slide-up 0.6s ease-out ${index * 0.15}s both` : 'none'
-                }}>
-                <CardContent className="p-8">
-                  <div className="w-20 h-20 bg-nexus-green-lighter rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="h-10 w-10 text-nexus-green" />
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="border-0 bg-white/5 shadow-none backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
+                    <BookOpen className="w-8 h-8 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-nexus-green mb-1">{member.name}</h3>
-                  <p className="text-sm font-semibold text-nexus-accent mb-3">{member.role}</p>
-                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">{member.description}</p>
-                  <a 
-                    href={member.linkedin} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-nexus-green hover:text-nexus-accent transition-colors"
-                  >
-                    <Linkedin className="h-4 w-4" />
-                    <span className="text-sm font-medium">LinkedIn</span>
-                  </a>
+                  <h3 className="font-bold text-foreground mb-2 text-lg">LMS & Gamificação</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Gere crescimento para o time e dados de engajamento para a IA.
+                  </p>
                 </CardContent>
               </Card>
-            ))}
-          </div>
 
-          <div className={`max-w-4xl mx-auto transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Card className="border-2 border-nexus-green bg-nexus-green-lighter/30">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-nexus-green mb-4 text-center">Nossa Missão</h3>
-                <p className="text-gray-700 leading-relaxed text-center">
-                  Criamos a <strong>Nexus Community</strong> porque acreditamos que o futuro do trabalho exige mais do que ferramentas — 
-                  exige <strong>conexão humana, cultura intencional e dados acionáveis</strong>. Nosso objetivo é empoderar gestores de RH e 
-                  líderes a <strong>construir uma cultura que proteja o investimento em talento</strong>, garantindo a longevidade da equipe, 
-                  reduzindo turnover e criando ambientes de trabalho mais saudáveis e produtivos.
-                </p>
-              </CardContent>
-            </Card>
+              <Card className="border-0 bg-white/5 shadow-none backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-orange-600" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-2 text-lg">Comunidade (Feed & Eventos)</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Gere conexão para o time e o pulso social para a IA.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 bg-white/5 shadow-none backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+                    <Award className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-2 text-lg">Rituais (CaaS)</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Gere rituais de cultura para o time e os dados de ação para a IA.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section ref={pricingSection.ref} className="py-20 bg-gray-50">
+      <section ref={pricingSection.ref} className="py-20 md:py-28 bg-background">
         <div className="container mx-auto px-4">
-          <div className={`text-center mb-16 transition-all duration-700 ${pricingSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="inline-block bg-nexus-green text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              Planos Escaláveis
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-nexus-green mb-6">
-              Planos que Crescem com Você
+          <div className={`max-w-6xl mx-auto text-center transition-all duration-700 ${pricingSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <Badge className="bg-emerald-500/10 text-emerald-600 mb-6 text-sm px-4 py-2">
+              Planos & Preços
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
+              Planos que evoluem com a sua cultura.<br />
+              <span className="text-muted-foreground">Comece a engajar ou vá direto ao diagnóstico.</span>
             </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Modelo de <strong>assinatura recorrente por usuário</strong>. Escolha o plano ideal para sua equipe. 
-              Todos incluem suporte especializado e atualizações gratuitas.
+            <p className="text-lg text-muted-foreground leading-relaxed mb-12">
+              Nossos planos são desenhados para cada fase da sua empresa. Escolha o que melhor se adapta às suas necessidades.
             </p>
-            
-            <div className="flex items-center justify-center gap-4 mb-12">
-              <Button variant="outline" size="sm" className="border-nexus-green text-nexus-green">Mensal</Button>
-              <Button size="sm" className="bg-nexus-green text-white hover:bg-nexus-green-light">Anual (2 meses grátis)</Button>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Engage Plan */}
+              <Card className="border-2 border-muted/30 bg-muted/10">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Engage</h3>
+                  <p className="text-sm text-muted-foreground mb-4">A fundação da sua cultura.</p>
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold text-foreground">R$ 1.290</span>
+                    <span className="text-sm text-muted-foreground">/mês</span>
+                    <p className="text-xs text-muted-foreground mt-2">Para times de até 50 usuários</p>
+                  </div>
+                  <ul className="list-none space-y-3 mb-6">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>LMS & Gamificação</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Comunidade (Feed & Eventos)</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Rituais (CaaS Básico)</span>
+                    </li>
+                    <li className="flex items-center gap-2 opacity-50">
+                      <Shield className="w-4 h-4 text-muted-foreground" />
+                      <span>Sem a IA de Diagnóstico</span>
+                    </li>
+                  </ul>
+                  <Button className="w-full" variant="outline">Começar Agora</Button>
+                </CardContent>
+              </Card>
+
+              {/* Diagnose Plan */}
+              <Card className="border-2 border-accent bg-primary text-primary-foreground shadow-xl">
+                <CardContent className="p-8">
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-accent text-white">Mais Popular</Badge>
+                  </div>
+                  <h3 className="text-2xl font-bold text-primary-foreground mb-2">Diagnose</h3>
+                  <p className="text-sm text-primary-foreground/80 mb-4">O diagnóstico acionável.</p>
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold text-primary-foreground">R$ 4.790</span>
+                    <span className="text-sm text-primary-foreground/80">/mês</span>
+                    <p className="text-xs text-primary-foreground/80 mt-2">Para empresas de até 150 usuários</p>
+                  </div>
+                  <ul className="list-none space-y-3 mb-6">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Tudo do Plano Engage</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>✅ A "IA DE DIAGNÓSTICO"</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>CaaS Avançado</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Dashboards de Gestor</span>
+                    </li>
+                  </ul>
+                  <Button className="w-full bg-accent text-primary-foreground hover:bg-accent/90">Começar Agora</Button>
+                </CardContent>
+              </Card>
+
+              {/* Enterprise Plan */}
+              <Card className="border-2 border-muted/30 bg-muted/10">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Enterprise</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Escala, Inteligência Avançada e Personalização.</p>
+                  <div className="mb-6">
+                    <span className="text-2xl font-bold text-foreground">Fale Conosco</span>
+                    <p className="text-xs text-muted-foreground mt-2">151+ Usuários</p>
+                  </div>
+                  <ul className="list-none space-y-3 mb-6">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Tudo do Plano Diagnose</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>✅ IA Avançada (Benchmarks)</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Dashboards C-Level</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Segurança/SSO</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Opção de White-Label</span>
+                    </li>
+                  </ul>
+                  <Button className="w-full" variant="outline">Fale Conosco</Button>
+                </CardContent>
+              </Card>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {/* Starter Plan */}
-            <Card 
-              className="border-2 border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
-              style={{
-                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.1s both' : 'none'
-              }}>
-              <CardContent className="p-6 text-center">
-                <h3 className="text-2xl font-bold text-nexus-green mb-2">Starter</h3>
-                <p className="text-sm text-nexus-accent font-medium mb-2">Para Equipes em Construção</p>
-                <div className="bg-nexus-green/10 py-2 px-3 rounded-lg mb-4">
-                  <p className="text-lg font-bold text-nexus-green">Até 25 Usuários</p>
-                </div>
-                
-                <div className="mb-6">
-                  <span className="text-3xl font-bold text-nexus-green">R$ 699</span>
-                  <span className="text-gray-600 text-sm block">/mês (fixo)</span>
-                  <p className="text-xs text-nexus-accent mt-2">R$ 7.500 anual (10% OFF)</p>
-                </div>
-
-                <div className="space-y-3 mb-6 text-left">
-                  {[
-                    "Gestão de documentos: 10 GB",
-                    "Feed social da empresa",
-                    "Gestão de eventos e calendário",
-                    "Diretório de pessoas",
-                    "Chat integrado",
-                    "Permissões básicas"
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-nexus-green flex-shrink-0" />
-                      <span className="text-xs text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link to="/auth">
-                  <Button variant="outline" className="w-full border-nexus-green text-nexus-green hover:bg-nexus-green hover:text-white">
-                    Começar Agora
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Growth Plan */}
-            <Card 
-              className="border-2 border-nexus-accent bg-white relative hover:shadow-2xl transition-all duration-300"
-              style={{
-                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.2s both' : 'none'
-              }}>
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <div className="bg-nexus-accent text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                  ★ Mais Popular
-                </div>
-              </div>
-              <CardContent className="p-6 text-center">
-                <h3 className="text-2xl font-bold text-nexus-green mb-2">Growth</h3>
-                <p className="text-sm text-nexus-accent font-medium mb-2">Para Escalabilidade e Retenção</p>
-                <div className="bg-nexus-accent/10 py-2 px-3 rounded-lg mb-4">
-                  <p className="text-lg font-bold text-nexus-accent">Até 100 Usuários</p>
-                </div>
-                
-                <div className="mb-6">
-                  <span className="text-3xl font-bold text-nexus-green">R$ 1.999</span>
-                  <span className="text-gray-600 text-sm block">/mês (fixo)</span>
-                  <p className="text-xs text-nexus-accent mt-2">R$ 21.600 anual (10% OFF)</p>
-                </div>
-
-                <div className="space-y-3 mb-6 text-left">
-                  {[
-                    "Tudo do Starter, mais:",
-                    "Gestão de documentos: 100 GB",
-                    "Chat de voz e vídeo",
-                    "Time tracking e gestão de ponto",
-                    "Quadro Kanban de projetos",
-                    "Analytics avançado de engajamento",
-                    "Sistema de gamificação e recompensas",
-                    "IA preditiva de turnover"
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-nexus-accent flex-shrink-0" />
-                      <span className={`text-xs ${index === 0 ? 'font-bold text-nexus-green' : 'text-gray-700'}`}>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link to="/auth">
-                  <Button className="w-full bg-nexus-green text-white hover:bg-nexus-green-light shadow-lg">
-                    Começar Agora
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Enterprise Plan */}
-            <Card 
-              className="border-2 border-gray-200 bg-white hover:shadow-xl transition-all duration-300"
-              style={{
-                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.3s both' : 'none'
-              }}>
-              <CardContent className="p-6 text-center">
-                <h3 className="text-2xl font-bold text-nexus-green mb-2">Enterprise</h3>
-                <p className="text-sm text-nexus-accent font-medium mb-2">Para Grandes Corporações e Customização</p>
-                <div className="bg-gray-100 py-2 px-3 rounded-lg mb-4">
-                  <p className="text-lg font-bold text-gray-700">Mais de 101 Usuários</p>
-                </div>
-                
-                <div className="mb-6">
-                  <span className="text-3xl font-bold text-nexus-green">Personalizado</span>
-                  <span className="text-gray-600 text-sm block mt-1">Consulte-nos</span>
-                </div>
-
-                <div className="space-y-3 mb-6 text-left">
-                  {[
-                    "Tudo do Growth, mais:",
-                    "Armazenamento personalizado",
-                    "Personalização total da plataforma",
-                    "Suporte 24/7 dedicado",
-                    "Integrações customizadas",
-                    "SLA garantido",
-                    "Consultoria de cultura organizacional"
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-nexus-green flex-shrink-0" />
-                      <span className={`text-xs ${index === 0 ? 'font-bold text-nexus-green' : 'text-gray-700'}`}>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link to="/auth">
-                  <Button variant="outline" className="w-full border-nexus-green text-nexus-green hover:bg-nexus-green hover:text-white">
-                    Falar com Vendas
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* White-Label Licensing Plan */}
-            <Card 
-              className="border-2 border-nexus-accent bg-gradient-to-br from-nexus-green/10 to-nexus-accent/10 hover:shadow-2xl transition-all duration-300 relative"
-              style={{
-                animation: pricingSection.isVisible ? 'slide-up 0.6s ease-out 0.4s both' : 'none'
-              }}>
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <div className="bg-gradient-to-r from-nexus-green to-nexus-accent text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg">
-                  LICENCIAMENTO PREMIUM
-                </div>
-              </div>
-              <CardContent className="p-6 text-center">
-                <h3 className="text-2xl font-bold text-nexus-green mb-2">White-Label</h3>
-                <p className="text-sm text-nexus-accent font-medium mb-2">A Solução Estratégica para Consultorias</p>
-                <div className="bg-gradient-to-r from-nexus-green/20 to-nexus-accent/20 py-2 px-3 rounded-lg mb-4">
-                  <p className="text-sm font-bold text-nexus-green">Grandes Ecossistemas</p>
-                </div>
-                
-                <div className="mb-6">
-                  <span className="text-2xl font-bold text-nexus-green">Sob Medida</span>
-                  <span className="text-gray-600 text-xs block mt-1">Modelo de parceria estratégica</span>
-                </div>
-
-                <div className="space-y-3 mb-6 text-left">
-                  {[
-                    "Branding Total e Personalização (Sua marca, nossa tecnologia)",
-                    "Fee Fixo Inicial (Inclui Setup e Onboarding de Parceria)",
-                    "Suporte Nível 3 Dedicado ao Parceiro",
-                    "Treinamento e Implantação (Opcional)",
-                    "Manutenção e Atualizações (Taxa Recorrente Opcional)"
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-nexus-accent flex-shrink-0 mt-0.5" />
-                      <span className="text-xs text-gray-700 leading-tight">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link to="/auth">
-                  <Button className="w-full bg-gradient-to-r from-nexus-green to-nexus-accent text-white hover:opacity-90 shadow-lg">
-                    Solicitar Proposta de Parceria
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section ref={ctaSection.ref} className="py-24 bg-nexus-green relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
-        <div className={`container mx-auto px-4 text-center relative z-10 transition-all duration-700 ${ctaSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Pronto para Reduzir o <span className="text-nexus-accent">Turnover</span>?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Junte-se às empresas que transformaram sua cultura organizacional e reduziram custos com 
-            <strong> rotatividade de funcionários</strong> usando a Nexus Community.
-          </p>
-          
-          <Link to="/auth">
-            <Button size="lg" className="bg-white text-nexus-green hover:bg-white/90 shadow-xl mb-12">
-              Começar Teste Gratuito de 14 Dias <ArrowRight className="ml-2 h-5 w-5" />
+      {/* Vision Section */}
+      <section ref={visionSection.ref} className="py-20 md:py-28 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <div className={`max-w-5xl mx-auto text-center transition-all duration-700 ${visionSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <Badge className="bg-sky-500/10 text-sky-600 mb-6 text-sm px-4 py-2">
+              Nossa Visão
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
+              O benefício que atrai talentos remotos.
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              O Nexus é a prova de que sua empresa investe ativamente em um ambiente de trabalho saudável.
+              É a plataforma que você coloca com orgulho na sua página de vagas, mostrando que você não 'adivinha',
+              você 'diagnostica' e 'age'.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section ref={ctaSection.ref} className="py-20 md:py-28 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className={`max-w-5xl mx-auto text-center transition-all duration-700 ${ctaSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+              Pare de "voar às cegas". <br className="hidden md:block" />Comece a diagnosticar.
+            </h2>
+            <p className="text-lg text-primary-foreground/90 leading-relaxed mb-8">
+              Agende uma conversa de 15 minutos e veja o diagnóstico que podemos gerar para sua cultura.
+            </p>
+            <Button size="lg" className="bg-accent text-primary-foreground hover:bg-accent/90 shadow-xl">
+              Quero meu Diagnóstico
             </Button>
-          </Link>
-          
-          <div className="flex flex-wrap justify-center gap-8 text-white/90 text-sm">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-nexus-accent" />
-              <span className="font-medium">Sem cartão de crédito</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-nexus-accent" />
-              <span className="font-medium">Setup em 5 minutos</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-nexus-accent" />
-              <span className="font-medium">Suporte dedicado em português</span>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-12">
+      <footer className="bg-muted py-12 border-t border-border">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center justify-center text-center space-y-6">
-            {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-nexus-green rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">N</span>
-              </div>
-              <span className="text-2xl font-bold text-nexus-green">Nexus Community</span>
-            </div>
-            
-            {/* Fundadores */}
-            <div className="text-sm text-gray-600">
-              <p className="mb-2 font-medium text-nexus-green">Fundado por</p>
-              <p>Pedro Matheus Lima da Cruz (CEO) • João Lucas Cordeiro Santana (CTO) • Lucas Rodrigues de Azevedo (CIO)</p>
-            </div>
-
-            {/* Links Legais */}
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
-              <Link to="/termos" className="hover:text-nexus-green transition-colors">Termos de Uso</Link>
-              <span className="text-gray-300">|</span>
-              <Link to="/privacidade" className="hover:text-nexus-green transition-colors">Política de Privacidade</Link>
-              <span className="text-gray-300">|</span>
-              <Link to="/contato" className="hover:text-nexus-green transition-colors">Contato</Link>
-            </div>
-
-            {/* Copyright */}
-            <div className="border-t border-gray-200 pt-6 w-full">
-              <p className="text-gray-500 text-sm">
-                © {new Date().getFullYear()} Nexus Community. Todos os direitos reservados.
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="font-bold text-foreground mb-4">Nexus People & Culture</h3>
+              <p className="text-sm text-muted-foreground">
+                Plataforma de Diagnóstico de Cultura para empresas híbridas e remotas.
               </p>
             </div>
           </div>
