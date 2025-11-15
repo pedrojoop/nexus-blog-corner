@@ -30,12 +30,10 @@ const menuItems = [
     label: "RH", 
     path: "/dashboard/rh",
     submenu: [
-      { label: "Visão Geral", path: "/dashboard/rh" },
-      { label: "IA de Cuidado", path: "/dashboard/ia-cuidado" },
-      { label: "IA de Diagnóstico", path: "/dashboard/rh/ia-diagnostico" },
-      { label: "Cultura e Engajamento", path: "/dashboard/rh/gamificacao" },
+      { label: "IA de Cultura e Engajamento", path: "/dashboard/rh/ia-cultura" },
       { label: "Treinamentos (LMS)", path: "/dashboard/rh/lms" },
       { label: "Culture-as-a-Service", path: "/dashboard/rh/caas" },
+      { label: "Gamificação", path: "/dashboard/rh/gamificacao" },
     ]
   },
   { icon: Settings, label: "Configurações", path: "/dashboard/configuracoes" },
