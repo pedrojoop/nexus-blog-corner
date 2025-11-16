@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, CheckCircle, Sparkles, AlertTriangle, BarChart3, Users, TrendingUp, Activity, Shield, BookOpen, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { DashboardMockup } from "@/components/DashboardMockup";
 
 const Index = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
@@ -103,32 +104,8 @@ const Index = () => {
                 <div className="absolute inset-0 bg-nexus-accent/20 blur-3xl rounded-full scale-110"></div>
                 
                 {/* Mockup container with subtle animation */}
-                <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 shadow-2xl hover:scale-[1.02] transition-transform duration-500">
-                  <img 
-                    src="/mockup-dashboard.png"
-                    alt="Nexus Dashboard - IA de Diagnóstico de Cultura"
-                    className="rounded-xl shadow-2xl w-full"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent) {
-                        const placeholder = document.createElement('div');
-                        placeholder.className = 'bg-gradient-to-br from-nexus-green-lighter to-white rounded-xl p-8 aspect-video flex items-center justify-center';
-                        placeholder.innerHTML = `
-                          <div class="text-center space-y-4">
-                            <div class="w-16 h-16 mx-auto text-nexus-accent">
-                              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                              </svg>
-                            </div>
-                            <p class="text-foreground font-semibold">Dashboard de Diagnóstico de Cultura</p>
-                          </div>
-                        `;
-                        parent.appendChild(placeholder);
-                      }
-                    }}
-                  />
+                <div className="relative hover:scale-[1.02] transition-transform duration-500">
+                  <DashboardMockup variant="hero" />
                 </div>
               </div>
             </div>
@@ -211,41 +188,9 @@ const Index = () => {
 
             {/* Interactive Dashboard Preview with Hotspots */}
             <div className="relative">
-              {/* Main dashboard image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-muted/40 bg-gradient-to-br from-nexus-green-lighter/20 to-background">
-                <img 
-                  src="/mockup-dashboard.png"
-                  alt="Dashboard IA de Diagnóstico - Interface Completa"
-                  className="w-full"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `
-                        <div class="bg-gradient-to-br from-nexus-green-lighter to-white p-12 aspect-video flex items-center justify-center">
-                          <div class="text-center space-y-6 max-w-2xl">
-                            <div class="flex gap-4 justify-center">
-                              <div class="w-16 h-16 bg-nexus-accent/20 rounded-xl flex items-center justify-center">
-                                <svg class="w-8 h-8 text-nexus-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                </svg>
-                              </div>
-                              <div class="w-16 h-16 bg-orange-500/20 rounded-xl flex items-center justify-center">
-                                <svg class="w-8 h-8 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                </svg>
-                              </div>
-                            </div>
-                            <div>
-                              <h3 class="text-2xl font-bold text-foreground mb-2">Dashboard de IA de Diagnóstico</h3>
-                              <p class="text-muted-foreground">Alertas em tempo real e sugestões de ação</p>
-                            </div>
-                          </div>
-                        </div>
-                      `;
-                    }
-                  }}
-                />
+              {/* Main dashboard mockup */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-muted/40">
+                <DashboardMockup variant="solution" />
                 
                 {/* Hotspot 1 - Top Left (Alerta de TI) */}
                 <div 
