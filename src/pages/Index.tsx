@@ -3,14 +3,16 @@ import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle, Sparkles, AlertTriangle, BarChart3, Users, TrendingUp, Activity, Shield, BookOpen, Award } from "lucide-react";
+import { ArrowRight, CheckCircle, Sparkles, AlertTriangle, BarChart3, Users, TrendingUp, Activity, Shield, BookOpen, Award, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { DashboardMockup } from "@/components/DashboardMockup";
+import { InteractiveDemoModal } from "@/components/InteractiveDemoModal";
 
 const Index = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
   const [hoveredHotspot, setHoveredHotspot] = useState<string | null>(null);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   
   const problemSection = useScrollAnimation();
   const solutionSection = useScrollAnimation();
@@ -70,15 +72,15 @@ const Index = () => {
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
-                <Link to="/auth">
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="bg-white/10 text-white hover:bg-white/20 border-2 border-white/30 backdrop-blur-sm text-lg px-8 py-6 transition-all duration-300"
-                  >
-                    Começar Gratuitamente
-                  </Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  onClick={() => setIsDemoModalOpen(true)}
+                  className="bg-white/10 text-white hover:bg-white/20 border-2 border-white/30 backdrop-blur-sm text-lg px-8 py-6 transition-all duration-300"
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  Testar Demo Interativa
+                </Button>
               </div>
               
               <div className="flex flex-wrap gap-6 text-white/90 text-sm pt-4">
@@ -618,6 +620,9 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Interactive Demo Modal */}
+      <InteractiveDemoModal open={isDemoModalOpen} onOpenChange={setIsDemoModalOpen} />
     </div>
   );
 };
