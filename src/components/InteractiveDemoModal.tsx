@@ -11,22 +11,29 @@ interface InteractiveDemoModalProps {
 export const InteractiveDemoModal = ({ open, onOpenChange }: InteractiveDemoModalProps) => {
   const [step, setStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [selectedRitual, setSelectedRitual] = useState<string | null>(null);
 
   const handleNextStep = () => {
-    if (step === 2) {
+    if (step === 3) {
       setIsProcessing(true);
       setTimeout(() => {
         setIsProcessing(false);
-        setStep(3);
+        setStep(4);
       }, 2000);
     } else {
       setStep(step + 1);
     }
   };
 
+  const handleRitualSelect = (ritual: string) => {
+    setSelectedRitual(ritual);
+    setStep(3);
+  };
+
   const handleClose = () => {
     setStep(1);
     setIsProcessing(false);
+    setSelectedRitual(null);
     onOpenChange(false);
   };
 
@@ -54,30 +61,37 @@ export const InteractiveDemoModal = ({ open, onOpenChange }: InteractiveDemoModa
               <div className={`px-4 py-2 rounded-lg ${step === 1 ? 'bg-white/20' : 'bg-white/5'}`}>
                 <div className="flex items-center gap-3">
                   <AlertTriangle className="w-5 h-5" />
-                  <span className="font-medium">Alertas</span>
+                  <span className="font-medium">Dashboard</span>
                 </div>
               </div>
               <div className={`px-4 py-2 rounded-lg ${step === 2 ? 'bg-white/20' : 'bg-white/5'}`}>
                 <div className="flex items-center gap-3">
                   <TrendingDown className="w-5 h-5" />
-                  <span className="font-medium">Diagnóstico</span>
+                  <span className="font-medium">CaaS Library</span>
                 </div>
               </div>
               <div className={`px-4 py-2 rounded-lg ${step === 3 ? 'bg-white/20' : 'bg-white/5'}`}>
                 <div className="flex items-center gap-3">
                   <Zap className="w-5 h-5" />
-                  <span className="font-medium">Ações</span>
+                  <span className="font-medium">Configuração</span>
+                </div>
+              </div>
+              <div className={`px-4 py-2 rounded-lg ${step === 4 ? 'bg-white/20' : 'bg-white/5'}`}>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5" />
+                  <span className="font-medium">Impacto</span>
                 </div>
               </div>
             </nav>
 
             {/* Step Indicator */}
             <div className="mt-auto">
-              <div className="text-xs text-white/60 mb-2">Passo {step} de 3</div>
+              <div className="text-xs text-white/60 mb-2">Passo {step} de 4</div>
               <div className="flex gap-1">
                 <div className={`h-1 flex-1 rounded ${step >= 1 ? 'bg-nexus-accent' : 'bg-white/20'}`} />
                 <div className={`h-1 flex-1 rounded ${step >= 2 ? 'bg-nexus-accent' : 'bg-white/20'}`} />
                 <div className={`h-1 flex-1 rounded ${step >= 3 ? 'bg-nexus-accent' : 'bg-white/20'}`} />
+                <div className={`h-1 flex-1 rounded ${step >= 4 ? 'bg-nexus-accent' : 'bg-white/20'}`} />
               </div>
             </div>
           </div>
@@ -87,22 +101,42 @@ export const InteractiveDemoModal = ({ open, onOpenChange }: InteractiveDemoModa
             {/* Header */}
             <div className="h-16 bg-background border-b px-8 flex items-center">
               <h3 className="text-lg font-semibold">
-                {step === 1 && "Dashboard - Alertas em Tempo Real"}
-                {step === 2 && "Análise Detalhada - Time de Engenharia"}
-                {step === 3 && "Ação Executada com Sucesso"}
+                {step === 1 && "Dashboard - Diagnóstico Rico"}
+                {step === 2 && "Biblioteca de Rituais (CaaS)"}
+                {step === 3 && "Configuração de Ritual"}
+                {step === 4 && "Impacto Projetado"}
               </h3>
             </div>
 
             {/* Content Area */}
             <div className="flex-1 p-8 overflow-auto">
-              {/* Step 1: Alert */}
+              {/* Step 1: Dashboard Rico */}
               {step === 1 && (
                 <div className="animate-fade-in">
                   <div className="mb-6">
-                    <h4 className="text-2xl font-bold mb-2">Alertas Críticos</h4>
+                    <h4 className="text-2xl font-bold mb-2">Dashboard - Diagnóstico em Tempo Real</h4>
                     <p className="text-muted-foreground">
-                      Nossa IA identificou padrões de risco em tempo real
+                      Visão completa da saúde cultural da sua organização
                     </p>
+                  </div>
+
+                  {/* Context Metrics */}
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    <div className="bg-background border rounded-lg p-4">
+                      <div className="text-sm text-muted-foreground mb-1">eNPS Geral</div>
+                      <div className="text-2xl font-bold text-foreground">+42</div>
+                      <div className="text-xs text-green-600 dark:text-green-400">+5 vs mês anterior</div>
+                    </div>
+                    <div className="bg-background border rounded-lg p-4">
+                      <div className="text-sm text-muted-foreground mb-1">Taxa de Turnover</div>
+                      <div className="text-2xl font-bold text-foreground">8.2%</div>
+                      <div className="text-xs text-green-600 dark:text-green-400">-2.1% vs mês anterior</div>
+                    </div>
+                    <div className="bg-background border rounded-lg p-4">
+                      <div className="text-sm text-muted-foreground mb-1">Engajamento Médio</div>
+                      <div className="text-2xl font-bold text-foreground">78%</div>
+                      <div className="text-xs text-muted-foreground">Estável</div>
+                    </div>
                   </div>
 
                   <div 
@@ -160,90 +194,164 @@ export const InteractiveDemoModal = ({ open, onOpenChange }: InteractiveDemoModa
 
                     {/* CTA */}
                     <div className="flex items-center justify-center gap-2 text-foreground font-semibold group-hover:text-nexus-green transition-colors">
-                      <span>Clique para Investigar</span>
+                      <span>Analisar Causa Raiz & Agir</span>
                       <span className="text-2xl animate-pulse">→</span>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Step 2: Diagnosis */}
+              {/* Step 2: CaaS Library */}
               {step === 2 && (
                 <div className="animate-fade-in">
                   <div className="mb-6">
-                    <h4 className="text-2xl font-bold mb-2">Diagnóstico da IA</h4>
+                    <h4 className="text-2xl font-bold mb-2">Biblioteca de Rituais (CaaS)</h4>
                     <p className="text-muted-foreground">
-                      Análise profunda dos dados de cultura e comportamento
+                      Recomendação da IA: Selecione uma Intervenção Cultural
                     </p>
                   </div>
 
-                  <div className="max-w-3xl space-y-6">
-                    {/* AI Analysis Card */}
-                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 border border-blue-300 dark:border-blue-800 rounded-xl p-6">
-                      <div className="flex items-start gap-3 mb-4">
-                        <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                          <Zap className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        </div>
-                        <div className="flex-1">
-                          <h5 className="font-bold text-lg mb-2 text-foreground">Causa Raiz Identificada</h5>
-                          <p className="text-foreground/90 leading-relaxed">
-                            O time está <strong>sobrecarregado</strong> após o último sprint. 
-                            A análise mostra <strong>baixa adesão aos rituais de 1:1</strong> e 
-                            ausência de pausas estruturadas nos últimos 14 dias.
-                          </p>
-                        </div>
+                  <div className="grid grid-cols-3 gap-6 max-w-5xl">
+                    {/* Card A - Recommended */}
+                    <div
+                      onClick={() => handleRitualSelect('decompression')}
+                      className="group relative bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-2 border-green-500 rounded-xl p-6 cursor-pointer hover:scale-105 hover:shadow-2xl hover:border-nexus-green transition-all"
+                    >
+                      <div className="absolute -top-3 right-4 bg-nexus-green text-white text-xs font-bold px-3 py-1 rounded-full">
+                        RECOMENDADO
                       </div>
-                    </div>
-
-                    {/* Detailed Insights */}
-                    <div className="bg-background border rounded-xl p-6 space-y-4">
-                      <h6 className="font-semibold text-foreground mb-3">Insights Detalhados:</h6>
                       
-                      <div className="flex items-start gap-3 pb-3 border-b">
-                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2" />
-                        <div>
-                          <div className="font-medium text-foreground">3 Desenvolvedores Sêniores</div>
-                          <div className="text-sm text-muted-foreground">Sem interação social há 5 dias consecutivos</div>
-                        </div>
+                      <div className="text-4xl mb-4">🧊</div>
+                      <h5 className="font-bold text-lg mb-3 text-foreground">
+                        Quebra-Gelo de Descompressão
+                      </h5>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Ritual estruturado para aliviar sobrecarga e reconectar o time.
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs bg-green-200 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">
+                          Rápido
+                        </span>
+                        <span className="text-xs bg-orange-200 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-2 py-1 rounded">
+                          Anti-Burnout
+                        </span>
                       </div>
 
-                      <div className="flex items-start gap-3 pb-3 border-b">
-                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2" />
-                        <div>
-                          <div className="font-medium text-foreground">Rituais de 1:1</div>
-                          <div className="text-sm text-muted-foreground">Apenas 40% de adesão (meta: 85%)</div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2" />
-                        <div>
-                          <div className="font-medium text-foreground">Horas Extras</div>
-                          <div className="text-sm text-muted-foreground">Aumento de 35% nas últimas 2 semanas</div>
-                        </div>
+                      <div className="text-center font-semibold text-nexus-green group-hover:text-nexus-green-light">
+                        Clique para Configurar →
                       </div>
                     </div>
 
-                    {/* Action Button */}
-                    <div className="bg-gradient-to-r from-nexus-green to-nexus-green-light rounded-xl p-8 text-center">
-                      <h5 className="text-white font-bold text-xl mb-3">
-                        Ação Recomendada pela IA
+                    {/* Card B */}
+                    <div className="bg-background border-2 border-border rounded-xl p-6 hover:border-nexus-green/50 hover:scale-105 transition-all cursor-pointer opacity-80">
+                      <div className="text-4xl mb-4">🗣️</div>
+                      <h5 className="font-bold text-lg mb-3 text-foreground">
+                        Roda de Feedback 1:1
                       </h5>
-                      <p className="text-white/90 mb-6">
-                        Implementar ritual de descompressão e reforçar conexões 1:1
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Conversas estruturadas de alinhamento profundo.
                       </p>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        <span className="text-xs bg-blue-200 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">
+                          Profundo
+                        </span>
+                        <span className="text-xs bg-purple-200 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded">
+                          Alinhamento
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Card C */}
+                    <div className="bg-background border-2 border-border rounded-xl p-6 hover:border-nexus-green/50 hover:scale-105 transition-all cursor-pointer opacity-80">
+                      <div className="text-4xl mb-4">🏆</div>
+                      <h5 className="font-bold text-lg mb-3 text-foreground">
+                        Kudos Session
+                      </h5>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Momento dedicado ao reconhecimento público.
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        <span className="text-xs bg-yellow-200 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">
+                          Reconhecimento
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 text-center">
+                    <p className="text-sm text-muted-foreground">
+                      💡 Cada ritual é baseado em ciências comportamentais e customizado para seu contexto
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 3: Configuration */}
+              {step === 3 && (
+                <div className="animate-fade-in">
+                  <div className="mb-6">
+                    <h4 className="text-2xl font-bold mb-2">Configurar Ritual: Quebra-Gelo de Descompressão</h4>
+                    <p className="text-muted-foreground">
+                      Configure o ritual sem escrever código - tudo no-code
+                    </p>
+                  </div>
+
+                  <div className="max-w-2xl bg-background border rounded-xl p-8 space-y-6">
+                    {/* Config Fields */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Público Alvo
+                      </label>
+                      <div className="bg-muted/50 border rounded-lg px-4 py-3 text-foreground">
+                        Time de Engenharia (8 pessoas)
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Canal de Integração
+                      </label>
+                      <div className="bg-muted/50 border rounded-lg px-4 py-3 text-foreground flex items-center gap-3">
+                        <span className="text-2xl">💬</span>
+                        <span>Slack - #engineering-team</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Frequência & Horário
+                      </label>
+                      <div className="bg-muted/50 border rounded-lg px-4 py-3 text-foreground flex items-center gap-3">
+                        <Calendar className="w-5 h-5" />
+                        <span>Semanal - Sexta-feira às 16h</span>
+                      </div>
+                    </div>
+
+                    <div className="border-t pt-6">
+                      <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-300 dark:border-blue-800 rounded-lg p-4 mb-6">
+                        <div className="flex items-start gap-3">
+                          <Zap className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                          <div className="text-sm text-foreground">
+                            <strong>Preview do Ritual:</strong> O Nexus enviará uma mensagem no Slack toda sexta às 16h com 3 perguntas leves de quebra-gelo para o time responder de forma assíncrona.
+                          </div>
+                        </div>
+                      </div>
+
                       <Button
                         onClick={handleNextStep}
                         disabled={isProcessing}
-                        className="bg-white text-nexus-green hover:bg-white/90 font-semibold px-8 py-6 text-lg shadow-xl"
+                        className="w-full bg-nexus-green hover:bg-nexus-green/90 text-white font-semibold py-6 text-lg shadow-xl animate-pulse"
                       >
                         {isProcessing ? (
                           <span className="flex items-center gap-2">
-                            <span className="w-5 h-5 border-2 border-nexus-green border-t-transparent rounded-full animate-spin" />
-                            Processando...
+                            <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            Ativando Ritual...
                           </span>
                         ) : (
-                          "Gerar Ação de Correção (CaaS)"
+                          "Disparar Ritual Agora ⚡"
                         )}
                       </Button>
                     </div>
@@ -251,8 +359,8 @@ export const InteractiveDemoModal = ({ open, onOpenChange }: InteractiveDemoModa
                 </div>
               )}
 
-              {/* Step 3: Success */}
-              {step === 3 && (
+              {/* Step 4: Impact */}
+              {step === 4 && (
                 <div className="animate-fade-in flex items-center justify-center h-full">
                   <div className="max-w-2xl text-center">
                     {/* Success Animation */}
@@ -263,34 +371,56 @@ export const InteractiveDemoModal = ({ open, onOpenChange }: InteractiveDemoModa
                     </div>
 
                     <h4 className="text-3xl font-bold text-foreground mb-4">
-                      Ação Executada com Sucesso! 🎉
+                      Ritual Ativado com Sucesso! 🎉
                     </h4>
                     
                     <p className="text-xl text-muted-foreground mb-8">
-                      Ritual de <strong className="text-foreground">"Descompressão em Equipe"</strong> agendado 
-                      e alertas de prioridade enviados para os gestores.
+                      O ritual <strong className="text-foreground">"Quebra-Gelo de Descompressão"</strong> está configurado e pronto para rodar automaticamente.
                     </p>
 
-                    {/* Results */}
+                    {/* Impact Projection */}
                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border border-green-300 dark:border-green-800 rounded-xl p-6 mb-8">
-                      <h5 className="font-semibold text-foreground mb-4">O que foi feito:</h5>
+                      <h5 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                        <Zap className="w-5 h-5 text-green-600 dark:text-green-400" />
+                        Impacto Projetado pela IA
+                      </h5>
+                      <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="bg-background/50 rounded-lg p-4">
+                          <div className="text-sm text-muted-foreground mb-1">Redução de Risco de Burnout</div>
+                          <div className="text-3xl font-bold text-green-600 dark:text-green-400">-15%</div>
+                          <div className="text-xs text-muted-foreground mt-1">Esperado em 2 semanas</div>
+                        </div>
+                        <div className="bg-background/50 rounded-lg p-4">
+                          <div className="text-sm text-muted-foreground mb-1">Aumento de Engajamento</div>
+                          <div className="text-3xl font-bold text-green-600 dark:text-green-400">+10%</div>
+                          <div className="text-xs text-muted-foreground mt-1">Esperado em 3 semanas</div>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        * Projeções baseadas em dados históricos de +500 times similares
+                      </p>
+                    </div>
+
+                    {/* Confirmation */}
+                    <div className="bg-background border rounded-xl p-6 mb-8">
+                      <h5 className="font-semibold text-foreground mb-4">✅ Ritual Configurado:</h5>
                       <div className="space-y-3 text-left">
                         <div className="flex items-start gap-3">
                           <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
                           <span className="text-foreground">
-                            Ritual de "Team Recharge Day" agendado para quinta-feira
+                            Mensagem agendada no Slack #engineering-team para sexta, 16h
                           </span>
                         </div>
                         <div className="flex items-start gap-3">
                           <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
                           <span className="text-foreground">
-                            Notificações enviadas aos 3 desenvolvedores para 1:1s
+                            Notificações de 1:1 enviadas aos 3 desenvolvedores sêniores
                           </span>
                         </div>
                         <div className="flex items-start gap-3">
                           <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
                           <span className="text-foreground">
-                            Alerta de carga de trabalho enviado aos gestores
+                            Dashboard de acompanhamento ativado para monitorar evolução
                           </span>
                         </div>
                       </div>
@@ -309,7 +439,7 @@ export const InteractiveDemoModal = ({ open, onOpenChange }: InteractiveDemoModa
                         }}
                         className="bg-nexus-green hover:bg-nexus-green/90 text-white font-semibold px-8 py-6 text-lg shadow-xl"
                       >
-                        Quero isso na minha empresa
+                        Começar Teste Grátis
                       </Button>
                       
                       <div>
