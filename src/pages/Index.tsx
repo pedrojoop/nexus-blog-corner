@@ -33,40 +33,41 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-nexus-creme">
       <Header />
       
-      {/* Hero Section - Split Layout */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-nexus-green via-nexus-green-light to-nexus-green">
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+      {/* Hero Section - Editorial High Contrast Layout */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23202A25' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
             {/* Left Side - Text Content */}
-            <div className="text-white space-y-8 animate-fade-in">
-              <Badge className="bg-nexus-accent/20 text-white border-nexus-accent/40 backdrop-blur-sm text-sm px-4 py-2">
-                Plataforma de Diagnóstico de Cultura para Empresas Híbridas e Remotas
+            <div className="space-y-8 animate-fade-in">
+              <Badge className="bg-nexus-acento/10 text-nexus-acento border border-nexus-acento/20 text-sm px-4 py-2 font-medium">
+                Plataforma de Diagnóstico de Cultura para Empresas Híbridas
               </Badge>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                Sua cultura remota é uma <br />
-                <span className="text-nexus-accent">
+              <h1 className="font-playfair text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-nexus-tinta">
+                Sua cultura remota é uma{" "}
+                <span className="italic">
                   'caixa-preta'
                 </span>?
               </h1>
               
-              <h2 className="text-xl md:text-2xl text-white/95 leading-relaxed font-medium max-w-2xl">
-                O Nexus é o primeiro <strong>Diagnóstico de Cultura</strong> para empresas híbridas. 
+              <p className="text-xl md:text-2xl text-nexus-tinta leading-relaxed max-w-2xl">
+                O Nexus é o primeiro <strong className="font-semibold">Diagnóstico de Cultura</strong> para empresas híbridas. 
                 Nossa IA identifica o risco de burnout a nível de time — sem vigiar pessoas — e lhe dá as ações para resolver.
-              </h2>
+              </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-6">
                 <Link to="/contato">
                   <Button 
                     size="lg" 
-                    className="group bg-nexus-accent text-white hover:bg-nexus-accent/90 shadow-2xl text-lg px-8 py-6 transition-all duration-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.4)] hover:scale-105"
+                    className="group bg-nexus-acento hover:bg-nexus-acento-hover text-white shadow-button text-base font-medium px-8 py-6 transition-all duration-300 hover:shadow-lg"
                   >
                     Agende seu Diagnóstico 
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -76,36 +77,33 @@ const Index = () => {
                   size="lg" 
                   variant="outline" 
                   onClick={() => setIsDemoModalOpen(true)}
-                  className="bg-white/10 text-white hover:bg-white/20 border-2 border-white/30 backdrop-blur-sm text-lg px-8 py-6 transition-all duration-300"
+                  className="bg-transparent text-nexus-acento hover:text-nexus-acento-hover border-2 border-nexus-acento hover:border-nexus-acento-hover hover:bg-nexus-acento/5 text-base font-medium px-8 py-6 transition-all duration-300"
                 >
                   <Play className="mr-2 h-5 w-5" />
-                  Testar Demo Interativa
+                  Testar Demo
                 </Button>
               </div>
               
-              <div className="flex flex-wrap gap-6 text-white/90 text-sm pt-4">
+              <div className="flex flex-wrap gap-6 text-nexus-tinta/80 text-sm pt-4">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-nexus-accent" />
+                  <CheckCircle className="h-5 w-5 text-nexus-acento" />
                   <span className="font-medium">14 dias grátis</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-nexus-accent" />
+                  <CheckCircle className="h-5 w-5 text-nexus-acento" />
                   <span className="font-medium">Setup em minutos</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-nexus-accent" />
-                  <span className="font-medium">Dados agregados e anônimos</span>
+                  <CheckCircle className="h-5 w-5 text-nexus-acento" />
+                  <span className="font-medium">Dados anônimos</span>
                 </div>
               </div>
             </div>
             
-            {/* Right Side - Product Mockup */}
+            {/* Right Side - Diagnostic Card (Elevated with Pure White) */}
             <div className="relative animate-slide-up lg:block hidden">
               <div className="relative">
-                {/* Glow effect behind mockup */}
-                <div className="absolute inset-0 bg-nexus-accent/20 blur-3xl rounded-full scale-110"></div>
-                
-                {/* Mockup container with subtle animation */}
+                {/* The elevated card mockup */}
                 <div className="relative hover:scale-[1.02] transition-transform duration-500">
                   <DashboardMockup variant="hero" />
                 </div>

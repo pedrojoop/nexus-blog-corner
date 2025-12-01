@@ -8,66 +8,78 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base colors - Editorial aesthetic with warm neutrals */
-    --background: 35 25% 98%;
-    --foreground: 155 40% 18%;
+    /* Nexus Editorial Design System - High Contrast Priority */
+    
+    /* Background: Creme (#FDFCF9) - Warm off-white base */
+    --background: 40 33% 98%;
+    
+    /* Foreground: Tinta (#202A25) - Dark ink with subtle green */
+    --foreground: 155 14% 15%;
 
+    /* Cards: Pure white for elevated elements */
     --card: 0 0% 100%;
-    --card-foreground: 155 40% 18%;
+    --card-foreground: 155 14% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 155 40% 18%;
+    --popover-foreground: 155 14% 15%;
 
-    /* Primary: Deep forest green (terroso, dessaturado) */
-    --primary: 155 35% 22%;
-    --primary-foreground: 35 35% 98%;
+    /* Primary: Floresta (#193A3F) - Deep forest for secondary CTAs */
+    --primary: 185 37% 17%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Warm terracotta */
-    --secondary: 15 45% 88%;
-    --secondary-foreground: 155 40% 18%;
+    /* Secondary: Subtle variations */
+    --secondary: 40 25% 92%;
+    --secondary-foreground: 155 14% 15%;
 
-    /* Muted: Warm cream/beige */
-    --muted: 35 30% 92%;
-    --muted-foreground: 35 12% 45%;
+    /* Muted: For less prominent text (60-80% opacity) */
+    --muted: 40 20% 90%;
+    --muted-foreground: 155 14% 15%;
 
-    /* Accent: Burnt orange for CTAs */
-    --accent: 18 75% 55%;
+    /* Accent: Acento (#2A857B) - Vibrant teal for primary CTAs */
+    --accent: 173 51% 34%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    /* Destructive/Alert: Alerta (#D9534F) - For warnings and alerts */
+    --destructive: 3 64% 58%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 35 20% 88%;
-    --input: 35 20% 88%;
-    --ring: 155 35% 22%;
+    /* Borders and inputs */
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 173 51% 34%;
 
-    /* Nexus Community Editorial Design System */
-    --nexus-forest: 155 35% 22%;
-    --nexus-forest-light: 155 28% 32%;
-    --nexus-forest-dark: 155 45% 15%;
+    /* Nexus Specific Colors - High Contrast Editorial Palette */
     
-    --nexus-terracotta: 15 45% 75%;
-    --nexus-terracotta-light: 15 35% 88%;
+    /* Creme - Page background */
+    --nexus-creme: 40 33% 98%;
     
-    --nexus-cream: 35 40% 95%;
-    --nexus-warm-gray: 35 12% 60%;
+    /* Tinta - Primary text color */
+    --nexus-tinta: 155 14% 15%;
     
-    --nexus-burnt-orange: 18 75% 55%;
-    --nexus-burnt-orange-dark: 18 80% 45%;
+    /* Branco Puro - Elevated cards */
+    --nexus-white: 0 0% 100%;
     
-    /* Editorial gradients - sophisticated and organic */
-    --gradient-hero: linear-gradient(135deg, hsl(155 45% 15%), hsl(155 35% 22%), hsl(155 28% 30%));
-    --gradient-warm: linear-gradient(180deg, hsl(35 40% 98%), hsl(35 30% 92%));
-    --gradient-editorial: linear-gradient(120deg, hsl(155 35% 22% / 0.03), hsl(15 45% 75% / 0.08));
-    --gradient-accent: linear-gradient(135deg, hsl(18 80% 55%), hsl(18 75% 48%));
+    /* Acento - Primary action color (#2A857B) */
+    --nexus-acento: 173 51% 34%;
+    --nexus-acento-hover: 173 51% 28%;
     
-    /* Sophisticated shadows - editorial depth */
-    --shadow-editorial: 0 4px 24px -6px hsl(155 35% 22% / 0.12);
-    --shadow-editorial-lg: 0 12px 48px -12px hsl(155 35% 22% / 0.18);
-    --shadow-warm: 0 8px 32px -8px hsl(18 75% 55% / 0.15);
+    /* Floresta - Secondary action/dark backgrounds (#193A3F) */
+    --nexus-floresta: 185 37% 17%;
+    --nexus-floresta-hover: 185 37% 22%;
     
-    /* Photo overlay for editorial photography */
-    --overlay-editorial: linear-gradient(180deg, hsl(155 45% 15% / 0.7), hsl(155 35% 22% / 0.4));
+    /* Alerta - Warnings and critical metrics (#D9534F) */
+    --nexus-alerta: 3 64% 58%;
+    --nexus-alerta-hover: 3 64% 52%;
+    
+    /* Editorial Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(185 37% 17%), hsl(173 51% 34%));
+    --gradient-warm: linear-gradient(180deg, hsl(40 33% 98%), hsl(40 25% 96%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(40 20% 98%));
+    
+    /* Sophisticated shadows for depth */
+    --shadow-card: 0 2px 8px -2px hsl(155 14% 15% / 0.08), 0 4px 16px -4px hsl(155 14% 15% / 0.06);
+    --shadow-card-hover: 0 8px 24px -4px hsl(155 14% 15% / 0.12), 0 12px 32px -8px hsl(155 14% 15% / 0.08);
+    --shadow-button: 0 2px 6px -1px hsl(173 51% 34% / 0.2);
 
     --radius: 0.5rem;
 

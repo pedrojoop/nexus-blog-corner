@@ -7,50 +7,84 @@ interface DashboardMockupProps {
 export const DashboardMockup = ({ variant = 'hero' }: DashboardMockupProps) => {
   if (variant === 'hero') {
     return (
-      <div className="bg-gradient-to-br from-nexus-green to-nexus-green-light rounded-2xl p-8 aspect-[4/3] flex items-center justify-center shadow-2xl relative overflow-hidden">
-        {/* Glassmorphism Card */}
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-2xl w-full max-w-md animate-fade-in">
-          {/* Header */}
-          <div className="mb-4">
-            <h3 className="text-white font-semibold text-lg mb-1">
-              Diagnóstico de Time: Engenharia & Produto
-            </h3>
-            <div className="flex items-center gap-2 mt-3">
-              <AlertTriangle className="w-6 h-6 text-orange-500 animate-pulse" />
-              <span className="text-orange-500 font-bold text-xl">
-                Risco de Burnout: ALTO
-              </span>
+      <div className="relative rounded-2xl overflow-hidden shadow-card border border-border bg-nexus-white p-8 transition-all duration-500 hover:shadow-card-hover">
+        {/* Card Header */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-playfair text-2xl font-bold text-nexus-tinta">Diagnóstico de Time</h3>
+            <span className="bg-nexus-acento/10 text-nexus-acento border border-nexus-acento/20 font-medium px-3 py-1.5 rounded-full text-sm">
+              Engenharia & Produto
+            </span>
+          </div>
+        </div>
+
+        {/* Main Alert */}
+        <div className="bg-nexus-alerta/5 border-l-4 border-nexus-alerta p-6 rounded-lg mb-6 shadow-sm">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-nexus-alerta/10 flex items-center justify-center flex-shrink-0">
+              <AlertTriangle className="h-6 w-6 text-nexus-alerta" />
+            </div>
+            <div className="flex-1">
+              <h4 className="text-xl font-bold text-nexus-alerta mb-1">Risco de Burnout: ALTO</h4>
+              <p className="text-sm text-nexus-tinta/70">Detecção: 3 desenvolvedores sêniores apresentam padrões de risco sistêmico</p>
             </div>
           </div>
+        </div>
 
-          {/* Chart */}
-          <div className="mb-4 bg-white/5 rounded-lg p-4">
-            <div className="text-white/70 text-sm mb-2 flex items-center gap-2">
-              <TrendingDown className="w-4 h-4" />
+        {/* Engagement Chart */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-3">
+            <h5 className="text-sm font-semibold text-nexus-tinta/70 flex items-center gap-2">
+              <TrendingDown className="h-4 w-4 text-nexus-alerta" />
               Engajamento (Last 30 days)
-            </div>
-            <svg viewBox="0 0 200 60" className="w-full h-16">
-              <polyline
-                points="0,20 40,25 80,15 120,30 160,45 200,55"
-                fill="none"
-                stroke="rgb(239, 68, 68)"
-                strokeWidth="2"
-                className="drop-shadow-lg"
-              />
-              <circle cx="200" cy="55" r="3" fill="rgb(239, 68, 68)" />
-            </svg>
+            </h5>
           </div>
+          
+          {/* Simple SVG Line Chart */}
+          <svg className="w-full h-24" viewBox="0 0 300 80" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#D9534F" stopOpacity="0.2"/>
+                <stop offset="100%" stopColor="#D9534F" stopOpacity="0.02"/>
+              </linearGradient>
+            </defs>
+            
+            {/* Grid lines */}
+            <line x1="0" y1="20" x2="300" y2="20" stroke="#e5e7eb" strokeWidth="1"/>
+            <line x1="0" y1="40" x2="300" y2="40" stroke="#e5e7eb" strokeWidth="1"/>
+            <line x1="0" y1="60" x2="300" y2="60" stroke="#e5e7eb" strokeWidth="1"/>
+            
+            {/* Area under the line */}
+            <path 
+              d="M 0 25 L 50 30 L 100 20 L 150 35 L 200 45 L 250 55 L 300 65 L 300 80 L 0 80 Z" 
+              fill="url(#chartGradient)"
+            />
+            
+            {/* The declining line */}
+            <path 
+              d="M 0 25 L 50 30 L 100 20 L 150 35 L 200 45 L 250 55 L 300 65" 
+              stroke="#D9534F" 
+              strokeWidth="2.5" 
+              fill="none"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
 
-          {/* Alerts List */}
-          <div className="space-y-2">
-            <div className="flex items-start gap-2 text-white/90 text-sm bg-white/5 rounded p-2">
-              <Users className="w-4 h-4 mt-0.5 text-orange-400 flex-shrink-0" />
-              <span>3 Desenvolvedores Sêniores sem interação há 5 dias.</span>
-            </div>
-            <div className="flex items-start gap-2 text-white/90 text-sm bg-white/5 rounded p-2">
-              <Calendar className="w-4 h-4 mt-0.5 text-orange-400 flex-shrink-0" />
-              <span>Adesão aos rituais de 1:1 caiu para 40%.</span>
-            </div>
+        {/* Alert List */}
+        <div className="space-y-3">
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-nexus-alerta/5 border border-nexus-alerta/10">
+            <Users className="h-5 w-5 text-nexus-alerta flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-nexus-tinta/70">
+              <span className="font-semibold text-nexus-tinta">3 Desenvolvedores Sêniores</span> sem interação há 5 dias
+            </p>
+          </div>
+          
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-nexus-alerta/5 border border-nexus-alerta/10">
+            <Calendar className="h-5 w-5 text-nexus-alerta flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-nexus-tinta/70">
+              Adesão aos rituais de <span className="font-semibold text-nexus-tinta">1:1 caiu para 40%</span>
+            </p>
           </div>
         </div>
       </div>
