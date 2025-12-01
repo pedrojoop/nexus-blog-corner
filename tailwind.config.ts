@@ -57,11 +57,28 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Nexus Community Brand Colors
-        'nexus-green': "hsl(var(--nexus-green))",
-        'nexus-green-light': "hsl(var(--nexus-green-light))",
-        'nexus-green-lighter': "hsl(var(--nexus-green-lighter))",
-        'nexus-accent': "hsl(var(--nexus-accent))",
+        // Nexus Community Editorial Design System
+        'nexus-forest': {
+          DEFAULT: "hsl(var(--nexus-forest))",
+          light: "hsl(var(--nexus-forest-light))",
+          dark: "hsl(var(--nexus-forest-dark))",
+        },
+        'nexus-terracotta': {
+          DEFAULT: "hsl(var(--nexus-terracotta))",
+          light: "hsl(var(--nexus-terracotta-light))",
+        },
+        'nexus-cream': "hsl(var(--nexus-cream))",
+        'nexus-warm-gray': "hsl(var(--nexus-warm-gray))",
+        'nexus-burnt-orange': {
+          DEFAULT: "hsl(var(--nexus-burnt-orange))",
+          dark: "hsl(var(--nexus-burnt-orange-dark))",
+        },
+      },
+      fontFamily: {
+        // Serif for editorial titles (H1, H2)
+        'playfair': ['Playfair Display', 'serif'],
+        // Sans-serif for body and UI (keeping Inter as fallback)
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
