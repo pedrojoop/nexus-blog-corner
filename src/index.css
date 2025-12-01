@@ -8,47 +8,66 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 155 70% 15%;
+    /* Base colors - Editorial aesthetic with warm neutrals */
+    --background: 35 25% 98%;
+    --foreground: 155 40% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 155 70% 15%;
+    --card-foreground: 155 40% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 155 70% 15%;
+    --popover-foreground: 155 40% 18%;
 
-    --primary: 155 70% 15%;
-    --primary-foreground: 0 0% 98%;
+    /* Primary: Deep forest green (terroso, dessaturado) */
+    --primary: 155 35% 22%;
+    --primary-foreground: 35 35% 98%;
 
-    --secondary: 155 15% 95%;
-    --secondary-foreground: 155 70% 15%;
+    /* Secondary: Warm terracotta */
+    --secondary: 15 45% 88%;
+    --secondary-foreground: 155 40% 18%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted: Warm cream/beige */
+    --muted: 35 30% 92%;
+    --muted-foreground: 35 12% 45%;
 
-    --accent: 155 20% 90%;
-    --accent-foreground: 155 70% 15%;
+    /* Accent: Burnt orange for CTAs */
+    --accent: 18 75% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 155 70% 15%;
+    --border: 35 20% 88%;
+    --input: 35 20% 88%;
+    --ring: 155 35% 22%;
 
-    /* Nexus Community Design System */
-    --nexus-green: 155 70% 15%;
-    --nexus-green-light: 155 35% 25%;
-    --nexus-green-lighter: 155 20% 90%;
-    --nexus-accent: 155 85% 35%;
+    /* Nexus Community Editorial Design System */
+    --nexus-forest: 155 35% 22%;
+    --nexus-forest-light: 155 28% 32%;
+    --nexus-forest-dark: 155 45% 15%;
     
-    /* Custom gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(155 70% 15%), hsl(155 35% 25%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(155 5% 98%));
+    --nexus-terracotta: 15 45% 75%;
+    --nexus-terracotta-light: 15 35% 88%;
     
-    /* Shadows with brand colors */
-    --shadow-nexus: 0 10px 30px -10px hsl(155 70% 15% / 0.1);
-    --shadow-nexus-lg: 0 20px 60px -20px hsl(155 70% 15% / 0.15);
+    --nexus-cream: 35 40% 95%;
+    --nexus-warm-gray: 35 12% 60%;
+    
+    --nexus-burnt-orange: 18 75% 55%;
+    --nexus-burnt-orange-dark: 18 80% 45%;
+    
+    /* Editorial gradients - sophisticated and organic */
+    --gradient-hero: linear-gradient(135deg, hsl(155 45% 15%), hsl(155 35% 22%), hsl(155 28% 30%));
+    --gradient-warm: linear-gradient(180deg, hsl(35 40% 98%), hsl(35 30% 92%));
+    --gradient-editorial: linear-gradient(120deg, hsl(155 35% 22% / 0.03), hsl(15 45% 75% / 0.08));
+    --gradient-accent: linear-gradient(135deg, hsl(18 80% 55%), hsl(18 75% 48%));
+    
+    /* Sophisticated shadows - editorial depth */
+    --shadow-editorial: 0 4px 24px -6px hsl(155 35% 22% / 0.12);
+    --shadow-editorial-lg: 0 12px 48px -12px hsl(155 35% 22% / 0.18);
+    --shadow-warm: 0 8px 32px -8px hsl(18 75% 55% / 0.15);
+    
+    /* Photo overlay for editorial photography */
+    --overlay-editorial: linear-gradient(180deg, hsl(155 45% 15% / 0.7), hsl(155 35% 22% / 0.4));
 
     --radius: 0.5rem;
 
@@ -70,33 +89,34 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 155 70% 8%;
-    --foreground: 0 0% 98%;
+    /* Dark mode with editorial sophistication */
+    --background: 155 40% 8%;
+    --foreground: 35 35% 95%;
 
-    --card: 155 70% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 155 35% 12%;
+    --card-foreground: 35 35% 95%;
 
-    --popover: 155 70% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 155 35% 12%;
+    --popover-foreground: 35 35% 95%;
 
-    --primary: 155 85% 35%;
-    --primary-foreground: 155 70% 8%;
+    --primary: 155 40% 65%;
+    --primary-foreground: 155 45% 12%;
 
-    --secondary: 155 20% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 15 35% 22%;
+    --secondary-foreground: 35 35% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 155 20% 18%;
+    --muted-foreground: 35 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 18 75% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 155 25% 20%;
+    --input: 155 25% 20%;
+    --ring: 155 40% 65%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
