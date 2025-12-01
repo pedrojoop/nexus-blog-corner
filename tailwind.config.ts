@@ -57,27 +57,27 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Nexus Community Editorial Design System
-        'nexus-forest': {
-          DEFAULT: "hsl(var(--nexus-forest))",
-          light: "hsl(var(--nexus-forest-light))",
-          dark: "hsl(var(--nexus-forest-dark))",
+        // Nexus Community Editorial Design System - High Contrast
+        'nexus-creme': "hsl(var(--nexus-creme))",
+        'nexus-tinta': "hsl(var(--nexus-tinta))",
+        'nexus-white': "hsl(var(--nexus-white))",
+        'nexus-acento': {
+          DEFAULT: "hsl(var(--nexus-acento))",
+          hover: "hsl(var(--nexus-acento-hover))",
         },
-        'nexus-terracotta': {
-          DEFAULT: "hsl(var(--nexus-terracotta))",
-          light: "hsl(var(--nexus-terracotta-light))",
+        'nexus-floresta': {
+          DEFAULT: "hsl(var(--nexus-floresta))",
+          hover: "hsl(var(--nexus-floresta-hover))",
         },
-        'nexus-cream': "hsl(var(--nexus-cream))",
-        'nexus-warm-gray': "hsl(var(--nexus-warm-gray))",
-        'nexus-burnt-orange': {
-          DEFAULT: "hsl(var(--nexus-burnt-orange))",
-          dark: "hsl(var(--nexus-burnt-orange-dark))",
+        'nexus-alerta': {
+          DEFAULT: "hsl(var(--nexus-alerta))",
+          hover: "hsl(var(--nexus-alerta-hover))",
         },
       },
       fontFamily: {
-        // Serif for editorial titles (H1, H2)
+        // Serif for editorial titles (H1, H2, H3)
         'playfair': ['Playfair Display', 'serif'],
-        // Sans-serif for body and UI (keeping Inter as fallback)
+        // Sans-serif for body and UI
         'sans': ['Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
