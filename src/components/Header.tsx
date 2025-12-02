@@ -7,52 +7,52 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="w-full bg-nexus-creme border-b border-border">
-      <div className="container mx-auto px-4 py-5 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-3">
-          <div className="w-9 h-9 bg-nexus-floresta rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">N</span>
+    <header className="w-full bg-transparent border-b border-white/10 backdrop-blur-md sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <Link to="/" className="flex items-center space-x-3 group">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-nexus-gold-dark flex items-center justify-center transition-transform group-hover:scale-105">
+            <span className="text-primary-foreground font-bold text-xl font-space">N</span>
           </div>
-          <span className="text-xl font-semibold text-nexus-tinta">Nexus</span>
+          <span className="text-xl font-bold text-white font-space">Nexus</span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
           <Link 
             to="/" 
-            className={`text-sm font-medium transition-colors hover:text-nexus-acento ${
-              isActive('/') ? 'text-nexus-acento font-semibold' : 'text-nexus-tinta'
+            className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
+              isActive('/') ? 'text-primary' : 'text-white/80'
             }`}
           >
             Início
           </Link>
           <Link 
             to="/blog" 
-            className={`text-sm font-medium transition-colors hover:text-nexus-acento ${
-              isActive('/blog') ? 'text-nexus-acento font-semibold' : 'text-nexus-tinta'
+            className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
+              isActive('/blog') ? 'text-primary' : 'text-white/80'
             }`}
           >
             Blog
           </Link>
           <Link 
             to="/servicos" 
-            className={`text-sm font-medium transition-colors hover:text-nexus-acento ${
-              isActive('/servicos') ? 'text-nexus-acento font-semibold' : 'text-nexus-tinta'
+            className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
+              isActive('/servicos') ? 'text-primary' : 'text-white/80'
             }`}
           >
             Serviços
           </Link>
           <Link 
             to="/sobre" 
-            className={`text-sm font-medium transition-colors hover:text-nexus-acento ${
-              isActive('/sobre') ? 'text-nexus-acento font-semibold' : 'text-nexus-tinta'
+            className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
+              isActive('/sobre') ? 'text-primary' : 'text-white/80'
             }`}
           >
             Sobre
           </Link>
           <Link 
             to="/contato" 
-            className={`text-sm font-medium transition-colors hover:text-nexus-acento ${
-              isActive('/contato') ? 'text-nexus-acento font-semibold' : 'text-nexus-tinta'
+            className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
+              isActive('/contato') ? 'text-primary' : 'text-white/80'
             }`}
           >
             Contato
@@ -61,12 +61,12 @@ const Header = () => {
 
         <div className="flex items-center space-x-4">
           <Link to="/auth">
-            <Button variant="ghost" size="sm" className="text-nexus-tinta hover:text-nexus-acento hover:bg-transparent">
+            <Button variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-white/10">
               Entrar
             </Button>
           </Link>
           <Link to="/auth">
-            <Button size="sm" className="bg-nexus-floresta hover:bg-nexus-floresta-hover text-white font-medium shadow-sm">
+            <Button size="sm" className="btn-gold">
               Começar Grátis
             </Button>
           </Link>

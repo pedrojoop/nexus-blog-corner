@@ -1,9 +1,8 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle, Sparkles, AlertTriangle, BarChart3, Users, TrendingUp, Activity, Shield, BookOpen, Award, Play } from "lucide-react";
+import { ArrowRight, CheckCircle, Sparkles, AlertTriangle, BarChart3, Users, TrendingUp, Activity, Shield, BookOpen, Award, Play, Eye, Clock, DollarSign, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { DashboardMockup } from "@/components/DashboardMockup";
@@ -11,14 +10,12 @@ import { InteractiveDemoModal } from "@/components/InteractiveDemoModal";
 
 const Index = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
-  const [hoveredHotspot, setHoveredHotspot] = useState<string | null>(null);
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   
   const problemSection = useScrollAnimation();
   const solutionSection = useScrollAnimation();
   const howItWorksSection = useScrollAnimation();
   const pricingSection = useScrollAnimation();
-  const visionSection = useScrollAnimation();
   const ctaSection = useScrollAnimation();
 
   const pricing = {
@@ -33,33 +30,37 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-nexus-creme">
+    <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section - Editorial High Contrast Layout */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23202A25' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
+      {/* Hero Section - Dark Luxurious */}
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        {/* Glow Orbs */}
+        <div className="glow-orb glow-orb-gold w-96 h-96 -top-48 -left-48 animate-pulse-glow" />
+        <div className="glow-orb glow-orb-green w-[500px] h-[500px] top-1/2 right-0 translate-x-1/2 -translate-y-1/2 animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+        <div className="glow-orb glow-orb-gold w-64 h-64 bottom-0 left-1/3 animate-pulse-glow" style={{ animationDelay: '3s' }} />
+        
+        {/* Radial gradient center illumination */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(150_25%_20%)_0%,_transparent_70%)]" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
             {/* Left Side - Text Content */}
-            <div className="space-y-8 animate-fade-in">
-              <Badge className="bg-nexus-acento/10 text-nexus-acento border border-nexus-acento/20 text-sm px-4 py-2 font-medium">
+            <div className="space-y-8 animate-fade-in-up">
+              <Badge className="bg-primary/20 text-primary border border-primary/30 text-sm px-4 py-2 font-medium">
                 Plataforma de Diagnóstico de Cultura para Empresas Híbridas
               </Badge>
               
-              <h1 className="font-playfair text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-nexus-tinta">
+              <h1 className="font-space text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-white">
                 Sua cultura remota é uma{" "}
-                <span className="italic">
+                <span className="text-primary relative inline-block">
                   'caixa-preta'
+                  <span className="absolute -inset-1 bg-primary/20 blur-lg rounded-lg -z-10" />
                 </span>?
               </h1>
               
-              <p className="text-xl md:text-2xl text-nexus-tinta leading-relaxed max-w-2xl">
-                O Nexus é o primeiro <strong className="font-semibold">Diagnóstico de Cultura</strong> para empresas híbridas. 
+              <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-2xl">
+                O Nexus é o primeiro <strong className="text-white font-semibold">Diagnóstico de Cultura</strong> para empresas híbridas. 
                 Nossa IA identifica o risco de burnout a nível de time — sem vigiar pessoas — e lhe dá as ações para resolver.
               </p>
               
@@ -67,7 +68,7 @@ const Index = () => {
                 <Link to="/contato">
                   <Button 
                     size="lg" 
-                    className="group bg-nexus-acento hover:bg-nexus-acento-hover text-white shadow-button text-base font-medium px-8 py-6 transition-all duration-300 hover:shadow-lg"
+                    className="btn-gold group text-base px-10 py-7"
                   >
                     Agende seu Diagnóstico 
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -77,549 +78,383 @@ const Index = () => {
                   size="lg" 
                   variant="outline" 
                   onClick={() => setIsDemoModalOpen(true)}
-                  className="bg-transparent text-nexus-acento hover:text-nexus-acento-hover border-2 border-nexus-acento hover:border-nexus-acento-hover hover:bg-nexus-acento/5 text-base font-medium px-8 py-6 transition-all duration-300"
+                  className="bg-transparent text-white hover:text-primary border border-white/20 hover:border-primary/50 hover:bg-white/5 text-base font-medium px-8 py-7 transition-all duration-300"
                 >
                   <Play className="mr-2 h-5 w-5" />
                   Testar Demo
                 </Button>
               </div>
               
-              <div className="flex flex-wrap gap-6 text-nexus-tinta/80 text-sm pt-4">
+              <div className="flex flex-wrap gap-6 text-white/60 text-sm pt-4">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-nexus-acento" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                   <span className="font-medium">14 dias grátis</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-nexus-acento" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                   <span className="font-medium">Setup em minutos</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-nexus-acento" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                   <span className="font-medium">Dados anônimos</span>
                 </div>
               </div>
             </div>
             
-            {/* Right Side - Diagnostic Card (Elevated with Pure White) */}
-            <div className="relative animate-slide-up lg:block hidden">
-              <div className="relative">
-                {/* The elevated card mockup */}
-                <div className="relative hover:scale-[1.02] transition-transform duration-500">
-                  <DashboardMockup variant="hero" />
-                </div>
-              </div>
+            {/* Right Side - Floating 3D Dashboard */}
+            <div className="relative lg:block hidden animate-fade-in-up animation-delay-400">
+              <DashboardMockup variant="hero" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section ref={problemSection.ref} className="py-24 md:py-32 bg-gradient-to-b from-muted/30 to-background">
-        <div className="container mx-auto px-4">
-          <div className={`max-w-4xl mx-auto text-center space-y-8 transition-all duration-700 ${problemSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="inline-flex items-center gap-2 bg-red-500/10 text-red-600 px-5 py-2 rounded-full">
+      {/* Problem Section - Glass Cards */}
+      <section ref={problemSection.ref} className="py-24 md:py-32 relative overflow-hidden">
+        {/* Background glow */}
+        <div className="glow-orb glow-orb-gold w-80 h-80 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 opacity-30" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className={`max-w-5xl mx-auto text-center space-y-8 transition-all duration-700 ${problemSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="inline-flex items-center gap-2 bg-nexus-alert/20 text-nexus-alert px-5 py-2 rounded-full border border-nexus-alert/30">
               <AlertTriangle className="h-5 w-5" />
               <span className="font-semibold">A Dor do Trabalho Híbrido</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+            <h2 className="font-space text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
               No trabalho híbrido, você não vê o burnout chegar.<br />
-              <span className="text-muted-foreground">Você só recebe o pedido de demissão.</span>
+              <span className="text-white/50">Você só recebe o pedido de demissão.</span>
             </h2>
             
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              No escritório, você via o isolamento e a sobrecarga. No home-office, você só tem dados de produtividade (Jira) 
-              e ignora os dados de cultura. <strong className="text-foreground">Você só descobre o problema na entrevista de desligamento</strong> — e aí, é tarde demais.
+            <p className="text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
+              No escritório, você via o isolamento e a sobrecarga. No home-office, você só tem dados de produtividade 
+              e ignora os dados de cultura. <strong className="text-white">Você só descobre o problema na entrevista de desligamento</strong> — e aí, é tarde demais.
             </p>
             
-            <div className="grid md:grid-cols-3 gap-6 pt-8">
-              <Card className="border-red-200/60 bg-gradient-to-b from-red-50/80 to-red-50/40 backdrop-blur-sm hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center mx-auto">
-                    <AlertTriangle className="h-7 w-7 text-red-600" />
-                  </div>
-                  <h3 className="font-bold text-lg text-foreground">Visibilidade Zero</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">Você não vê isolamento ou sobrecarga acontecendo</p>
-                </CardContent>
-              </Card>
+            {/* Glass Cards Grid */}
+            <div className="grid md:grid-cols-3 gap-6 pt-12">
+              <div className="glass-card p-8 text-center space-y-4 hover-lift group">
+                <div className="w-16 h-16 rounded-2xl bg-nexus-alert/20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <Eye className="h-8 w-8 text-nexus-alert" />
+                </div>
+                <h3 className="font-space font-bold text-xl text-white">Visibilidade Zero</h3>
+                <p className="text-sm text-white/60 leading-relaxed">Você não vê isolamento ou sobrecarga acontecendo</p>
+              </div>
               
-              <Card className="border-orange-200/60 bg-gradient-to-b from-orange-50/80 to-orange-50/40 backdrop-blur-sm hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto">
-                    <Users className="h-7 w-7 text-orange-600" />
-                  </div>
-                  <h3 className="font-bold text-lg text-foreground">Reação Tardia</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">Você só age quando já perdeu o talento</p>
-                </CardContent>
-              </Card>
+              <div className="glass-card p-8 text-center space-y-4 hover-lift group">
+                <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <Clock className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="font-space font-bold text-xl text-white">Reação Tardia</h3>
+                <p className="text-sm text-white/60 leading-relaxed">Você só age quando já perdeu o talento</p>
+              </div>
               
-              <Card className="border-red-200/60 bg-gradient-to-b from-red-50/80 to-red-50/40 backdrop-blur-sm hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center mx-auto">
-                    <TrendingUp className="h-7 w-7 text-red-600" />
-                  </div>
-                  <h3 className="font-bold text-lg text-foreground">Custos Ocultos</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">Turnover custa 6-9 meses de salário por pessoa</p>
-                </CardContent>
-              </Card>
+              <div className="glass-card p-8 text-center space-y-4 hover-lift group">
+                <div className="w-16 h-16 rounded-2xl bg-nexus-alert/20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <DollarSign className="h-8 w-8 text-nexus-alert" />
+                </div>
+                <h3 className="font-space font-bold text-xl text-white">Custos Ocultos</h3>
+                <p className="text-sm text-white/60 leading-relaxed">Turnover custa 6-9 meses de salário por pessoa</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Solution Section - Interactive Hotspots */}
-      <section ref={solutionSection.ref} className="py-24 md:py-32 bg-background">
-        <div className="container mx-auto px-4">
+      {/* Solution Section - HUD Style */}
+      <section ref={solutionSection.ref} className="py-24 md:py-32 relative overflow-hidden">
+        {/* Connecting line animation placeholder */}
+        <div className="absolute left-1/2 top-0 w-px h-32 bg-gradient-to-b from-transparent via-primary to-transparent" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className={`max-w-6xl mx-auto space-y-12 transition-all duration-700 ${solutionSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-center space-y-6">
-              <Badge className="bg-nexus-accent/10 text-nexus-accent border-nexus-accent/20 text-sm px-5 py-2">
+              <Badge className="bg-primary/20 text-primary border border-primary/30 text-sm px-5 py-2">
                 A Solução
               </Badge>
               
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                De 'Caixa-Preta' para 'Painel de Ação'
+              <h2 className="font-space text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                De 'Caixa-Preta' para{" "}
+                <span className="text-primary">'Painel de Ação'</span>
               </h2>
               
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                Apresentamos o <strong className="text-foreground">Nexus Diagnóstico</strong>: a primeira IA que detecta o risco de burnout a nível de time,
+              <p className="text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
+                Apresentamos o <strong className="text-white">Nexus Diagnóstico</strong>: a primeira IA que detecta o risco de burnout a nível de time,
                 sem vigiar pessoas. Transforme dados brutos em ações de cultura com um clique.
               </p>
             </div>
 
-            {/* Interactive Dashboard Preview with Hotspots */}
+            {/* HUD Dashboard Preview */}
             <div className="relative">
-              {/* Main dashboard mockup */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-muted/40">
+              <div className="glass-card p-8 md:p-12">
                 <DashboardMockup variant="solution" />
-                
-                {/* Hotspot 1 - Top Left (Alerta de TI) */}
-                <div 
-                  className="absolute top-[25%] left-[15%] cursor-pointer group"
-                  onMouseEnter={() => setHoveredHotspot('alert')}
-                  onMouseLeave={() => setHoveredHotspot(null)}
-                >
-                  <div className="relative">
-                    {/* Pulsing dot */}
-                    <div className="w-6 h-6 bg-orange-500 rounded-full animate-ping absolute"></div>
-                    <div className="w-6 h-6 bg-orange-500 rounded-full relative border-4 border-white shadow-lg"></div>
-                    
-                    {/* Tooltip */}
-                    {hoveredHotspot === 'alert' && (
-                      <div className="absolute left-8 top-0 w-72 bg-white rounded-xl shadow-2xl p-6 border border-muted z-10 animate-fade-in">
-                        <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <AlertTriangle className="w-5 h-5 text-orange-600" />
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-foreground mb-1">Alerta Sistêmico</h4>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                              Identificamos a queda de engajamento <strong>antes</strong> que vire turnover.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                
-                {/* Hotspot 2 - Bottom Right (Ação Recomendada) */}
-                <div 
-                  className="absolute bottom-[30%] right-[15%] cursor-pointer group"
-                  onMouseEnter={() => setHoveredHotspot('action')}
-                  onMouseLeave={() => setHoveredHotspot(null)}
-                >
-                  <div className="relative">
-                    {/* Pulsing dot */}
-                    <div className="w-6 h-6 bg-nexus-accent rounded-full animate-ping absolute"></div>
-                    <div className="w-6 h-6 bg-nexus-accent rounded-full relative border-4 border-white shadow-lg"></div>
-                    
-                    {/* Tooltip */}
-                    {hoveredHotspot === 'action' && (
-                      <div className="absolute right-8 bottom-0 w-72 bg-white rounded-xl shadow-2xl p-6 border border-muted z-10 animate-fade-in">
-                        <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 bg-nexus-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Sparkles className="w-5 h-5 text-nexus-accent" />
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-foreground mb-1">Ação Inteligente</h4>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                              Nossa IA não aponta só o problema; ela sugere a <strong>ação de cultura (CaaS)</strong> para resolvê-lo.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
               </div>
             </div>
 
-            {/* Features Grid */}
+            {/* Feature Cards */}
             <div className="grid md:grid-cols-2 gap-8 pt-8">
-              <Card className="bg-gradient-to-br from-nexus-green-lighter/30 to-background border-nexus-accent/20 hover:border-nexus-accent/40 transition-all duration-300 hover:shadow-xl">
-                <CardContent className="flex items-start gap-4 p-8">
-                  <div className="w-14 h-14 rounded-2xl bg-nexus-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Activity className="w-7 h-7 text-nexus-accent" />
+              <div className="glass-card-gold p-8 hover-lift">
+                <div className="flex items-start gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Activity className="w-7 h-7 text-primary" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-foreground">O Diagnóstico (O Cérebro)</h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <h3 className="font-space font-bold text-xl text-white">O Diagnóstico (O Cérebro)</h3>
+                    <p className="text-white/60 leading-relaxed">
                       Nossa IA analisa dados agregados e anônimos (sem vigiar indivíduos) e identifica padrões sistêmicos de risco.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
-              <Card className="bg-gradient-to-br from-nexus-green-lighter/30 to-background border-nexus-accent/20 hover:border-nexus-accent/40 transition-all duration-300 hover:shadow-xl">
-                <CardContent className="flex items-start gap-4 p-8">
-                  <div className="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-7 h-7 text-green-600" />
+              <div className="glass-card-gold p-8 hover-lift">
+                <div className="flex items-start gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Zap className="w-7 h-7 text-primary" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-foreground">A Ação (Os Botões)</h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <h3 className="font-space font-bold text-xl text-white">A Ação (Os Botões)</h3>
+                    <p className="text-white/60 leading-relaxed">
                       Um diagnóstico sem ação é inútil. Nossa IA sugere ações de cultura (CaaS) que você pode disparar com um clique.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section ref={howItWorksSection.ref} className="py-24 md:py-32 bg-gradient-to-b from-muted/50 to-muted/20">
-        <div className="container mx-auto px-4">
+      <section ref={howItWorksSection.ref} className="py-24 md:py-32 relative overflow-hidden">
+        <div className="glow-orb glow-orb-green w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 opacity-30" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className={`max-w-6xl mx-auto text-center space-y-12 transition-all duration-700 ${howItWorksSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="space-y-6">
-              <Badge className="bg-purple-500/10 text-purple-600 border-purple-500/20 text-sm px-5 py-2">
+              <Badge className="bg-white/10 text-white border border-white/20 text-sm px-5 py-2">
                 Como Funciona
               </Badge>
               
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+              <h2 className="font-space text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Uma plataforma que seu time ama usar.<br />
-                <span className="text-muted-foreground">E que gera os dados que você precisa.</span>
+                <span className="text-white/50">E que gera os dados que você precisa.</span>
               </h2>
               
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              <p className="text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
                 Descubra como o Nexus transforma o engajamento em dados acionáveis para a sua cultura.
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <Card className="bg-white/60 backdrop-blur-sm border-purple-200/40 hover:border-purple-300/60 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group">
-                <CardContent className="p-8 space-y-4">
-                  <div className="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                    <BookOpen className="w-8 h-8 text-purple-600" />
-                  </div>
-                  <h3 className="font-bold text-xl text-foreground">LMS & Gamificação</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Gere crescimento para o time e dados de engajamento para a IA.
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="glass-card p-8 space-y-4 hover-lift group">
+                <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-space font-bold text-xl text-white">LMS & Gamificação</h3>
+                <p className="text-white/60 leading-relaxed">
+                  Gere crescimento para o time e dados de engajamento para a IA.
+                </p>
+              </div>
 
-              <Card className="bg-white/60 backdrop-blur-sm border-orange-200/40 hover:border-orange-300/60 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group">
-                <CardContent className="p-8 space-y-4">
-                  <div className="w-16 h-16 rounded-2xl bg-orange-500/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                    <Users className="w-8 h-8 text-orange-600" />
-                  </div>
-                  <h3 className="font-bold text-xl text-foreground">Comunidade (Feed & Eventos)</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Gere conexão para o time e o pulso social para a IA.
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="glass-card p-8 space-y-4 hover-lift group">
+                <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <BarChart3 className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-space font-bold text-xl text-white">Analytics de Cultura</h3>
+                <p className="text-white/60 leading-relaxed">
+                  Transforme interações em métricas de saúde organizacional.
+                </p>
+              </div>
 
-              <Card className="bg-white/60 backdrop-blur-sm border-green-200/40 hover:border-green-300/60 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group">
-                <CardContent className="p-8 space-y-4">
-                  <div className="w-16 h-16 rounded-2xl bg-green-500/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                    <Award className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h3 className="font-bold text-xl text-foreground">Rituais (CaaS)</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Gere rituais de cultura para o time e os dados de ação para a IA.
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="glass-card p-8 space-y-4 hover-lift group">
+                <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <Shield className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-space font-bold text-xl text-white">Privacidade First</h3>
+                <p className="text-white/60 leading-relaxed">
+                  Dados agregados e anônimos. Sem vigilância individual.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Section - Premium with Toggle */}
-      <section ref={pricingSection.ref} className="py-24 md:py-32 bg-background">
-        <div className="container mx-auto px-4">
-          <div className={`max-w-6xl mx-auto space-y-12 transition-all duration-700 ${pricingSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      {/* Pricing Section - Minimalist Glass */}
+      <section ref={pricingSection.ref} className="py-24 md:py-32 relative overflow-hidden">
+        <div className="glow-orb glow-orb-gold w-80 h-80 bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 opacity-20" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className={`max-w-5xl mx-auto space-y-12 transition-all duration-700 ${pricingSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-center space-y-6">
-              <Badge className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20 text-sm px-5 py-2">
-                Planos & Preços
+              <Badge className="bg-primary/20 text-primary border border-primary/30 text-sm px-5 py-2">
+                Preços
               </Badge>
               
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                Planos que evoluem com a sua cultura.<br />
-                <span className="text-muted-foreground">Comece a engajar ou vá direto ao diagnóstico.</span>
+              <h2 className="font-space text-4xl md:text-5xl font-bold text-white">
+                Escolha seu plano
               </h2>
               
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                Nossos planos são desenhados para cada fase da sua empresa. Escolha o que melhor se adapta às suas necessidades.
-              </p>
-              
-              {/* Billing Cycle Toggle */}
-              <div className="flex items-center justify-center gap-4 pt-4">
-                <span className={`text-sm font-medium transition-colors ${billingCycle === 'monthly' ? 'text-foreground' : 'text-muted-foreground'}`}>
-                  Mensal
-                </span>
+              {/* Billing Toggle */}
+              <div className="flex items-center justify-center gap-4">
+                <span className={`text-sm font-medium ${billingCycle === 'monthly' ? 'text-white' : 'text-white/50'}`}>Mensal</span>
                 <button
                   onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'annual' : 'monthly')}
-                  className={`relative w-16 h-8 rounded-full transition-colors duration-300 ${
-                    billingCycle === 'annual' ? 'bg-nexus-accent' : 'bg-muted'
-                  }`}
+                  className="relative w-14 h-7 bg-white/10 rounded-full border border-white/20 transition-colors"
                 >
-                  <div
-                    className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${
-                      billingCycle === 'annual' ? 'translate-x-8' : 'translate-x-0'
-                    }`}
-                  />
+                  <span className={`absolute top-1 w-5 h-5 bg-primary rounded-full transition-transform ${billingCycle === 'annual' ? 'translate-x-7' : 'translate-x-1'}`} />
                 </button>
-                <div className="flex items-center gap-2">
-                  <span className={`text-sm font-medium transition-colors ${billingCycle === 'annual' ? 'text-foreground' : 'text-muted-foreground'}`}>
-                    Anual
-                  </span>
-                  {billingCycle === 'annual' && (
-                    <Badge className="bg-green-500/10 text-green-600 border-green-500/20 animate-fade-in">
-                      Economize 2 meses!
-                    </Badge>
-                  )}
-                </div>
+                <span className={`text-sm font-medium ${billingCycle === 'annual' ? 'text-white' : 'text-white/50'}`}>Anual <span className="text-primary">(2 meses grátis)</span></span>
               </div>
             </div>
 
+            {/* Pricing Cards */}
             <div className="grid md:grid-cols-3 gap-8">
               {/* Engage Plan */}
-              <Card className="border-2 border-muted/40 bg-gradient-to-b from-background to-muted/20 hover:border-muted/60 transition-all duration-300 hover:shadow-lg">
-                <CardContent className="p-8 space-y-6">
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-foreground">Engage</h3>
-                    <p className="text-sm text-muted-foreground">A fundação da sua cultura.</p>
-                  </div>
-                  
-                  <div>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-bold text-foreground">
-                        R$ {billingCycle === 'monthly' ? '1.290' : '12.900'}
-                      </span>
-                      <span className="text-muted-foreground">
-                        /{billingCycle === 'monthly' ? 'mês' : 'ano'}
-                      </span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-2">Para times de até 50 usuários</p>
-                  </div>
-                  
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-sm">LMS & Gamificação</span>
+              <div className="glass-card p-8 space-y-6 hover-lift">
+                <div>
+                  <h3 className="font-space font-bold text-xl text-white mb-2">Engage</h3>
+                  <p className="text-white/60 text-sm">Para times que querem começar</p>
+                </div>
+                <div className="space-y-1">
+                  <span className="font-space text-4xl font-bold text-white">
+                    R${billingCycle === 'monthly' ? pricing.engage.monthly : Math.round(pricing.engage.annual / 12)}
+                  </span>
+                  <span className="text-white/50">/mês</span>
+                </div>
+                <ul className="space-y-3">
+                  {['LMS & Gamificação', 'Analytics básico', 'Até 50 usuários', 'Suporte por email'].map((feature) => (
+                    <li key={feature} className="flex items-center gap-2 text-white/70 text-sm">
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                      {feature}
                     </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-sm">Comunidade (Feed & Eventos)</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-sm">Rituais (CaaS Básico)</span>
-                    </li>
-                    <li className="flex items-center gap-3 opacity-50">
-                      <Shield className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                      <span className="text-sm">Sem a IA de Diagnóstico</span>
-                    </li>
-                  </ul>
-                  
-                  <Button className="w-full" variant="outline">Começar Agora</Button>
-                </CardContent>
-              </Card>
+                  ))}
+                </ul>
+                <Button variant="outline" className="w-full bg-transparent border-white/20 text-white hover:bg-white/10 hover:border-white/40">
+                  Começar
+                </Button>
+              </div>
 
-              {/* Diagnose Plan - HIGHLIGHTED */}
-              <Card className="relative border-2 border-nexus-accent bg-gradient-to-br from-nexus-green via-nexus-green-light to-nexus-green text-white shadow-2xl hover:shadow-[0_0_60px_rgba(45,212,191,0.3)] transition-all duration-300 scale-105 hover:scale-110">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-nexus-accent text-white border-0 shadow-lg px-4 py-1">
-                    Mais Popular
+              {/* Diagnose Plan - Featured */}
+              <div className="glass-card-gold p-8 space-y-6 hover-lift relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <Badge className="bg-primary text-primary-foreground px-4 py-1 font-semibold">
+                    Popular
                   </Badge>
                 </div>
-                
-                <CardContent className="p-8 space-y-6">
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-bold">Diagnose</h3>
-                    <p className="text-sm text-white/80">O diagnóstico acionável.</p>
-                  </div>
-                  
-                  <div>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-bold">
-                        R$ {billingCycle === 'monthly' ? '4.790' : '47.900'}
-                      </span>
-                      <span className="text-white/80">
-                        /{billingCycle === 'monthly' ? 'mês' : 'ano'}
-                      </span>
-                    </div>
-                    <p className="text-xs text-white/70 mt-2">Para empresas de até 150 usuários</p>
-                  </div>
-                  
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-nexus-accent flex-shrink-0" />
-                      <span className="text-sm">Tudo do Plano Engage</span>
+                <div>
+                  <h3 className="font-space font-bold text-xl text-white mb-2">Diagnose</h3>
+                  <p className="text-white/60 text-sm">Diagnóstico completo de cultura</p>
+                </div>
+                <div className="space-y-1">
+                  <span className="font-space text-4xl font-bold text-white">
+                    R${billingCycle === 'monthly' ? pricing.diagnose.monthly : Math.round(pricing.diagnose.annual / 12)}
+                  </span>
+                  <span className="text-white/50">/mês</span>
+                </div>
+                <ul className="space-y-3">
+                  {['Tudo do Engage', 'IA Diagnóstico de Burnout', 'Ações CaaS integradas', 'Até 200 usuários', 'Suporte prioritário'].map((feature) => (
+                    <li key={feature} className="flex items-center gap-2 text-white/70 text-sm">
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                      {feature}
                     </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-nexus-accent flex-shrink-0" />
-                      <span className="text-sm font-bold">✅ A "IA DE DIAGNÓSTICO"</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-nexus-accent flex-shrink-0" />
-                      <span className="text-sm">CaaS Avançado</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-nexus-accent flex-shrink-0" />
-                      <span className="text-sm">Dashboards de Gestor</span>
-                    </li>
-                  </ul>
-                  
-                  <Button className="w-full bg-nexus-accent text-white hover:bg-nexus-accent/90 shadow-lg">
-                    Começar Agora
-                  </Button>
-                </CardContent>
-              </Card>
+                  ))}
+                </ul>
+                <Button className="w-full btn-gold">
+                  Começar Agora
+                </Button>
+              </div>
 
               {/* Enterprise Plan */}
-              <Card className="border-2 border-muted/40 bg-gradient-to-b from-background to-muted/20 hover:border-muted/60 transition-all duration-300 hover:shadow-lg">
-                <CardContent className="p-8 space-y-6">
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-foreground">Enterprise</h3>
-                    <p className="text-sm text-muted-foreground">Escala, Inteligência Avançada e Personalização.</p>
-                  </div>
-                  
-                  <div>
-                    <span className="text-2xl font-bold text-foreground">Fale Conosco</span>
-                    <p className="text-xs text-muted-foreground mt-2">151+ Usuários</p>
-                  </div>
-                  
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-sm">Tudo do Plano Diagnose</span>
+              <div className="glass-card p-8 space-y-6 hover-lift">
+                <div>
+                  <h3 className="font-space font-bold text-xl text-white mb-2">Enterprise</h3>
+                  <p className="text-white/60 text-sm">Para grandes organizações</p>
+                </div>
+                <div className="space-y-1">
+                  <span className="font-space text-4xl font-bold text-white">Custom</span>
+                </div>
+                <ul className="space-y-3">
+                  {['Tudo do Diagnose', 'SSO & integrações', 'Usuários ilimitados', 'SLA dedicado', 'Onboarding premium'].map((feature) => (
+                    <li key={feature} className="flex items-center gap-2 text-white/70 text-sm">
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                      {feature}
                     </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-sm font-bold">✅ IA Avançada (Benchmarks)</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-sm">Dashboards C-Level</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-sm">Segurança/SSO</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-sm">Opção de White-Label</span>
-                    </li>
-                  </ul>
-                  
-                  <Button className="w-full" variant="outline">Fale Conosco</Button>
-                </CardContent>
-              </Card>
+                  ))}
+                </ul>
+                <Button variant="outline" className="w-full bg-transparent border-white/20 text-white hover:bg-white/10 hover:border-white/40">
+                  Falar com Vendas
+                </Button>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Vision Section */}
-      <section ref={visionSection.ref} className="py-24 md:py-32 bg-gradient-to-b from-muted/50 to-muted/20">
-        <div className="container mx-auto px-4">
-          <div className={`max-w-5xl mx-auto text-center space-y-8 transition-all duration-700 ${visionSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Badge className="bg-sky-500/10 text-sky-600 border-sky-500/20 text-sm px-5 py-2">
-              Nossa Visão
-            </Badge>
-            
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-              O benefício que atrai talentos remotos.
-            </h2>
-            
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              O Nexus é a prova de que sua empresa investe ativamente em um ambiente de trabalho saudável.
-              É a plataforma que você coloca com orgulho na sua página de vagas, mostrando que você não 'adivinha',
-              você 'diagnostica' e 'age'.
-            </p>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section ref={ctaSection.ref} className="py-24 md:py-32 bg-gradient-to-br from-nexus-green via-nexus-green-light to-nexus-green text-white">
-        <div className="container mx-auto px-4">
-          <div className={`max-w-5xl mx-auto text-center space-y-8 transition-all duration-700 ${ctaSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              Pare de "voar às cegas". <br className="hidden md:block" />Comece a diagnosticar.
+      <section ref={ctaSection.ref} className="py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(150_25%_20%)_0%,_transparent_70%)]" />
+        <div className="glow-orb glow-orb-gold w-96 h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className={`max-w-4xl mx-auto text-center space-y-8 transition-all duration-700 ${ctaSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="font-space text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Pronto para transformar sua{" "}
+              <span className="text-primary">cultura organizacional</span>?
             </h2>
             
-            <p className="text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
-              Agende uma conversa de 15 minutos e veja o diagnóstico que podemos gerar para sua cultura.
+            <p className="text-xl text-white/60 max-w-2xl mx-auto">
+              Junte-se a centenas de empresas que já estão usando o Nexus para construir culturas mais saudáveis e produtivas.
             </p>
             
-            <Link to="/contato">
-              <Button 
-                size="lg" 
-                className="group bg-nexus-accent text-white hover:bg-nexus-accent/90 shadow-2xl text-lg px-10 py-7 transition-all duration-300 hover:shadow-[0_0_50px_rgba(45,212,191,0.5)] hover:scale-105"
-              >
-                Quero meu Diagnóstico
-                <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Link to="/contato">
+                <Button size="lg" className="btn-gold group text-base px-10 py-7">
+                  Agende sua Demo
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Link to="/sobre">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="bg-transparent text-white hover:text-primary border border-white/20 hover:border-primary/50 hover:bg-white/5 text-base font-medium px-8 py-7"
+                >
+                  Conheça a Nexus
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-muted/50 py-16 border-t border-border">
+      <footer className="border-t border-white/10 py-12">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-12 mb-12">
-              <div className="md:col-span-2 space-y-4">
-                <h3 className="font-bold text-xl text-foreground">Nexus People & Culture</h3>
-                <p className="text-muted-foreground leading-relaxed max-w-md">
-                  Plataforma de Diagnóstico de Cultura para empresas híbridas e remotas. 
-                  Transforme dados de engajamento em ações concretas.
-                </p>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-nexus-gold-dark flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-xl font-space">N</span>
               </div>
-              
-              <div className="space-y-4">
-                <h4 className="font-semibold text-foreground">Produto</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li><Link to="/servicos" className="hover:text-nexus-accent transition-colors">Funcionalidades</Link></li>
-                  <li><Link to="/servicos" className="hover:text-nexus-accent transition-colors">Preços</Link></li>
-                  <li><Link to="/blog" className="hover:text-nexus-accent transition-colors">Blog</Link></li>
-                </ul>
-              </div>
-              
-              <div className="space-y-4">
-                <h4 className="font-semibold text-foreground">Empresa</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li><Link to="/sobre" className="hover:text-nexus-accent transition-colors">Sobre</Link></li>
-                  <li><Link to="/contato" className="hover:text-nexus-accent transition-colors">Contato</Link></li>
-                </ul>
-              </div>
+              <span className="text-xl font-bold text-white font-space">Nexus</span>
             </div>
             
-            <div className="pt-8 border-t border-border/60 text-center text-sm text-muted-foreground">
-              <p>© 2025 Nexus People & Culture. Todos os direitos reservados.</p>
-            </div>
+            <nav className="flex flex-wrap items-center justify-center gap-6">
+              <Link to="/blog" className="text-sm text-white/60 hover:text-primary transition-colors">Blog</Link>
+              <Link to="/servicos" className="text-sm text-white/60 hover:text-primary transition-colors">Serviços</Link>
+              <Link to="/sobre" className="text-sm text-white/60 hover:text-primary transition-colors">Sobre</Link>
+              <Link to="/contato" className="text-sm text-white/60 hover:text-primary transition-colors">Contato</Link>
+            </nav>
+            
+            <p className="text-sm text-white/40">
+              © 2024 Nexus Community. Todos os direitos reservados.
+            </p>
           </div>
         </div>
       </footer>
 
-      {/* Interactive Demo Modal */}
+      {/* Demo Modal */}
       <InteractiveDemoModal open={isDemoModalOpen} onOpenChange={setIsDemoModalOpen} />
     </div>
   );

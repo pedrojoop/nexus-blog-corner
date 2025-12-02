@@ -2,153 +2,189 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Dark Luxurious Design System - Nexus */
 
 @layer base {
   :root {
-    /* Nexus Editorial Design System - High Contrast Priority */
+    /* Canvas - Deep Forest Green Background */
+    --background: 150 30% 13%;
     
-    /* Background: Creme (#FDFCF9) - Warm off-white base */
-    --background: 40 33% 98%;
-    
-    /* Foreground: Tinta (#202A25) - Dark ink with subtle green */
-    --foreground: 155 14% 15%;
+    /* Foreground - Pure White for maximum contrast */
+    --foreground: 0 0% 100%;
 
-    /* Cards: Pure white for elevated elements */
-    --card: 0 0% 100%;
-    --card-foreground: 155 14% 15%;
+    /* Cards - Glass effect base */
+    --card: 150 25% 17%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 155 14% 15%;
+    --popover: 150 25% 17%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Primary: Floresta (#193A3F) - Deep forest for secondary CTAs */
-    --primary: 185 37% 17%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary - Tech Gold */
+    --primary: 43 25% 68%;
+    --primary-foreground: 150 30% 13%;
 
-    /* Secondary: Subtle variations */
-    --secondary: 40 25% 92%;
-    --secondary-foreground: 155 14% 15%;
+    /* Secondary - Slightly lighter forest */
+    --secondary: 150 25% 20%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Muted: For less prominent text (60-80% opacity) */
-    --muted: 40 20% 90%;
-    --muted-foreground: 155 14% 15%;
+    /* Muted */
+    --muted: 150 20% 20%;
+    --muted-foreground: 0 0% 70%;
 
-    /* Accent: Acento (#2A857B) - Vibrant teal for primary CTAs */
-    --accent: 173 51% 34%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent - Tech Gold */
+    --accent: 43 25% 68%;
+    --accent-foreground: 150 30% 13%;
 
-    /* Destructive/Alert: Alerta (#D9534F) - For warnings and alerts */
-    --destructive: 3 64% 58%;
+    /* Destructive/Alert - Neon Red */
+    --destructive: 0 84% 71%;
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 40 15% 85%;
-    --input: 40 15% 85%;
-    --ring: 173 51% 34%;
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 43 25% 68%;
 
-    /* Nexus Specific Colors - High Contrast Editorial Palette */
+    /* Nexus Dark Theme Colors */
     
-    /* Creme - Page background */
-    --nexus-creme: 40 33% 98%;
+    /* Canvas - Deep Forest #1A3328 */
+    --nexus-canvas: 150 30% 13%;
     
-    /* Tinta - Primary text color */
-    --nexus-tinta: 155 14% 15%;
+    /* Glass - #234236 at 40% opacity */
+    --nexus-glass: 150 25% 17%;
     
-    /* Branco Puro - Elevated cards */
-    --nexus-white: 0 0% 100%;
+    /* Tech Gold - #C5BA99 */
+    --nexus-gold: 43 25% 68%;
+    --nexus-gold-dark: 43 20% 54%;
     
-    /* Acento - Primary action color (#2A857B) */
-    --nexus-acento: 173 51% 34%;
-    --nexus-acento-hover: 173 51% 28%;
+    /* Mint White - #F0FDF4 */
+    --nexus-mint: 138 76% 97%;
     
-    /* Floresta - Secondary action/dark backgrounds (#193A3F) */
-    --nexus-floresta: 185 37% 17%;
-    --nexus-floresta-hover: 185 37% 22%;
+    /* Alert Neon Red - #FF6B6B */
+    --nexus-alert: 0 100% 71%;
     
-    /* Alerta - Warnings and critical metrics (#D9534F) */
-    --nexus-alerta: 3 64% 58%;
-    --nexus-alerta-hover: 3 64% 52%;
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(43 25% 68%), hsl(43 20% 54%));
+    --gradient-canvas: radial-gradient(ellipse at center, hsl(150 25% 18%) 0%, hsl(150 30% 13%) 70%);
+    --gradient-glass: linear-gradient(135deg, hsl(150 25% 17% / 0.6), hsl(150 25% 17% / 0.3));
     
-    /* Editorial Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(185 37% 17%), hsl(173 51% 34%));
-    --gradient-warm: linear-gradient(180deg, hsl(40 33% 98%), hsl(40 25% 96%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(40 20% 98%));
-    
-    /* Sophisticated shadows for depth */
-    --shadow-card: 0 2px 8px -2px hsl(155 14% 15% / 0.08), 0 4px 16px -4px hsl(155 14% 15% / 0.06);
-    --shadow-card-hover: 0 8px 24px -4px hsl(155 14% 15% / 0.12), 0 12px 32px -8px hsl(155 14% 15% / 0.08);
-    --shadow-button: 0 2px 6px -1px hsl(173 51% 34% / 0.2);
+    /* Shadows and Glows */
+    --shadow-glass: 0 8px 32px hsl(0 0% 0% / 0.3);
+    --shadow-gold-glow: 0 0 40px hsl(43 25% 68% / 0.3);
+    --shadow-card-hover: 0 20px 60px hsl(0 0% 0% / 0.4);
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 150 30% 10%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 43 25% 68%;
+    --sidebar-primary-foreground: 150 30% 13%;
+    --sidebar-accent: 150 25% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100% / 0.1;
+    --sidebar-ring: 43 25% 68%;
   }
 
   .dark {
-    /* Dark mode with editorial sophistication */
-    --background: 155 40% 8%;
-    --foreground: 35 35% 95%;
-
-    --card: 155 35% 12%;
-    --card-foreground: 35 35% 95%;
-
-    --popover: 155 35% 12%;
-    --popover-foreground: 35 35% 95%;
-
-    --primary: 155 40% 65%;
-    --primary-foreground: 155 45% 12%;
-
-    --secondary: 15 35% 22%;
-    --secondary-foreground: 35 35% 95%;
-
-    --muted: 155 20% 18%;
-    --muted-foreground: 35 20% 65%;
-
-    --accent: 18 75% 60%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 70% 55%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 155 25% 20%;
-    --input: 155 25% 20%;
-    --ring: 155 40% 65%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Same as root - already dark theme */
+    --background: 150 30% 13%;
+    --foreground: 0 0% 100%;
+    --card: 150 25% 17%;
+    --card-foreground: 0 0% 100%;
+    --popover: 150 25% 17%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 43 25% 68%;
+    --primary-foreground: 150 30% 13%;
+    --secondary: 150 25% 20%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 150 20% 20%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 43 25% 68%;
+    --accent-foreground: 150 30% 13%;
+    --destructive: 0 84% 71%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 43 25% 68%;
   }
 }
 
 @layer base {
-* {
-  @apply border-border;
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(180deg, hsl(150 30% 13%) 0%, hsl(150 35% 10%) 100%);
+    min-height: 100vh;
+  }
 }
 
-body {
-  @apply bg-background text-foreground;
+@layer components {
+  /* Glass Card Effect */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.3);
+  }
+  
+  .glass-card-gold {
+    @apply bg-white/5 backdrop-blur-xl rounded-2xl;
+    border: 1px solid hsl(43 25% 68% / 0.2);
+    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.3), 0 0 40px hsl(43 25% 68% / 0.1);
+  }
+  
+  /* Gold Gradient Button */
+  .btn-gold {
+    background: linear-gradient(135deg, hsl(43 25% 68%), hsl(43 20% 54%));
+    @apply text-[#1A3328] font-semibold rounded-full px-8 py-3 transition-all duration-300;
+  }
+  
+  .btn-gold:hover {
+    box-shadow: 0 0 30px hsl(43 25% 68% / 0.5);
+    transform: translateY(-2px);
+  }
+  
+  /* Glow Orb */
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+  .glow-orb-gold {
+    background: hsl(43 25% 68%);
+  }
+  
+  .glow-orb-green {
+    background: hsl(150 40% 35%);
+  }
 }
 
+@layer utilities {
+  /* Text Gold */
+  .text-gold {
+    color: hsl(43 25% 68%);
+  }
+  
+  /* Hover lift effect */
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px hsl(0 0% 0% / 0.4);
+  }
+  
+  /* Glow on hover */
+  .hover-glow:hover {
+    box-shadow: 0 0 30px hsl(43 25% 68% / 0.3);
+  }
+}
+
+/* Keyframes */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -158,7 +194,74 @@ body {
   }
 }
 
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 hsl(0 100% 71%), -0.05em -0.025em 0 hsl(43 25% 68%);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 hsl(0 100% 71%), -0.05em -0.025em 0 hsl(43 25% 68%);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 hsl(0 100% 71%), 0.025em 0.025em 0 hsl(43 25% 68%);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 hsl(0 100% 71%), 0.025em 0.025em 0 hsl(43 25% 68%);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 hsl(0 100% 71%), 0.05em 0 0 hsl(43 25% 68%);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 hsl(0 100% 71%), 0.05em 0 0 hsl(43 25% 68%);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 hsl(0 100% 71%), -0.025em -0.025em 0 hsl(43 25% 68%);
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-glitch {
+  animation: glitch 1s linear infinite;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
 }
