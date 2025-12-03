@@ -19,7 +19,7 @@ const DashboardConfiguracoes = () => {
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="departments">Departamentos</TabsTrigger>
           <TabsTrigger value="users">Usuários</TabsTrigger>
-          <TabsTrigger value="permissions">Cargos e Permissões</TabsTrigger>
+          <TabsTrigger value="permissions">Cargos</TabsTrigger>
         </TabsList>
 
         <TabsContent value="departments" className="space-y-4">
