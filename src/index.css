@@ -5,9 +5,9 @@
 /* Dark Luxurious Design System - Nexus */
 
 @layer base {
-  /* Light Theme */
+  /* Light Theme - Clean & Professional */
   :root {
-    --background: 150 20% 96%;
+    --background: 0 0% 98%;
     --foreground: 150 30% 15%;
 
     --card: 0 0% 100%;
@@ -16,54 +16,54 @@
     --popover: 0 0% 100%;
     --popover-foreground: 150 30% 15%;
 
-    --primary: 150 30% 25%;
+    --primary: 150 45% 30%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 150 15% 90%;
-    --secondary-foreground: 150 30% 15%;
+    --secondary: 150 10% 94%;
+    --secondary-foreground: 150 30% 20%;
 
-    --muted: 150 15% 92%;
-    --muted-foreground: 150 20% 40%;
+    --muted: 150 10% 96%;
+    --muted-foreground: 150 15% 45%;
 
-    --accent: 43 30% 55%;
-    --accent-foreground: 150 30% 15%;
+    --accent: 43 50% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 150 15% 85%;
-    --input: 150 15% 85%;
-    --ring: 150 30% 25%;
+    --border: 150 10% 88%;
+    --input: 150 10% 88%;
+    --ring: 150 45% 30%;
 
     --radius: 1rem;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 150 30% 15%;
-    --sidebar-primary: 150 30% 25%;
+    --sidebar-primary: 150 45% 30%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 150 15% 92%;
+    --sidebar-accent: 150 10% 94%;
     --sidebar-accent-foreground: 150 30% 15%;
-    --sidebar-border: 150 15% 85%;
-    --sidebar-ring: 150 30% 25%;
+    --sidebar-border: 150 10% 88%;
+    --sidebar-ring: 150 45% 30%;
 
     /* Nexus Theme Colors - Light */
-    --nexus-canvas: 150 20% 96%;
+    --nexus-canvas: 0 0% 98%;
     --nexus-glass: 0 0% 100%;
-    --nexus-gold: 43 30% 50%;
-    --nexus-gold-dark: 43 25% 40%;
-    --nexus-mint: 150 40% 45%;
-    --nexus-accent: 43 35% 55%;
-    --nexus-alert: 0 84% 60%;
+    --nexus-gold: 43 50% 45%;
+    --nexus-gold-dark: 43 45% 35%;
+    --nexus-mint: 150 45% 35%;
+    --nexus-accent: 43 50% 45%;
+    --nexus-alert: 0 75% 55%;
 
     /* Gradients - Light */
-    --gradient-gold: linear-gradient(135deg, hsl(43 30% 50%), hsl(43 25% 40%));
-    --gradient-canvas: linear-gradient(180deg, hsl(150 20% 96%) 0%, hsl(150 15% 92%) 100%);
-    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(0 0% 100% / 0.7));
+    --gradient-gold: linear-gradient(135deg, hsl(43 50% 45%), hsl(43 45% 35%));
+    --gradient-canvas: linear-gradient(180deg, hsl(0 0% 98%) 0%, hsl(150 10% 94%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.95), hsl(0 0% 100% / 0.85));
 
     /* Shadows - Light */
-    --shadow-glass: 0 8px 32px hsl(150 30% 15% / 0.1);
-    --shadow-gold-glow: 0 0 40px hsl(43 30% 50% / 0.2);
-    --shadow-card-hover: 0 20px 60px hsl(150 30% 15% / 0.15);
+    --shadow-glass: 0 4px 24px hsl(150 30% 15% / 0.08), 0 1px 3px hsl(150 30% 15% / 0.05);
+    --shadow-gold-glow: 0 0 30px hsl(43 50% 45% / 0.15);
+    --shadow-card-hover: 0 12px 40px hsl(150 30% 15% / 0.12);
   }
 
   /* Dark Theme - Deep Forest Green (Nexus Identity) */
@@ -133,55 +133,78 @@
     @apply border-border;
   }
 
+  html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
+    transition: background 0.3s ease;
   }
+}
 
-  .dark body {
-    background: linear-gradient(180deg, hsl(150 30% 13%) 0%, hsl(150 35% 10%) 100%);
-  }
+html.dark {
+  background: linear-gradient(180deg, hsl(150 30% 13%) 0%, hsl(150 35% 10%) 100%);
 }
 
 @layer components {
   /* Glass Card Effect */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
-    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.3);
+    @apply bg-card backdrop-blur-xl border border-border rounded-2xl;
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .dark .glass-card {
+    @apply bg-white/5 border-white/10;
   }
   
   .glass-card-gold {
-    @apply bg-white/5 backdrop-blur-xl rounded-2xl;
-    border: 1px solid hsl(43 25% 68% / 0.2);
-    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.3), 0 0 40px hsl(43 25% 68% / 0.1);
+    @apply bg-card backdrop-blur-xl rounded-2xl;
+    border: 2px solid hsl(var(--accent) / 0.4);
+    box-shadow: var(--shadow-glass), var(--shadow-gold-glow);
   }
   
-  /* Gold Gradient Button */
+  .dark .glass-card-gold {
+    @apply bg-white/5;
+    border: 1px solid hsl(43 25% 68% / 0.3);
+  }
+  
+  /* Gold Gradient Button - Works in both themes */
   .btn-gold {
-    background: linear-gradient(135deg, hsl(43 25% 68%), hsl(43 20% 54%));
-    @apply text-[#1A3328] font-semibold rounded-full px-8 py-3 transition-all duration-300;
+    background: var(--gradient-gold);
+    @apply text-white font-semibold rounded-full px-8 py-3 transition-all duration-300;
+  }
+  
+  .dark .btn-gold {
+    @apply text-[#1A3328];
   }
   
   .btn-gold:hover {
-    box-shadow: 0 0 30px hsl(43 25% 68% / 0.5);
+    box-shadow: var(--shadow-gold-glow);
     transform: translateY(-2px);
   }
   
-  /* Glow Orb */
+  /* Glow Orb - Subtle in light mode, stronger in dark */
   .glow-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.4;
+    filter: blur(100px);
+    opacity: 0.1;
     pointer-events: none;
   }
   
+  .dark .glow-orb {
+    opacity: 0.4;
+    filter: blur(80px);
+  }
+  
   .glow-orb-gold {
-    background: hsl(43 25% 68%);
+    background: hsl(var(--accent));
   }
   
   .glow-orb-green {
-    background: hsl(150 40% 35%);
+    background: hsl(var(--primary));
   }
 }
 
