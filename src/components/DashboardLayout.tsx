@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -86,6 +87,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <div className="w-2 h-2 bg-nexus-accent rounded-full animate-pulse"></div>
               <span className="text-sm">Online</span>
             </div>
+            <ThemeToggle />
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

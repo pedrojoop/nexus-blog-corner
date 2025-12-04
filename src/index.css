@@ -5,72 +5,96 @@
 /* Dark Luxurious Design System - Nexus */
 
 @layer base {
+  /* Light Theme */
   :root {
-    /* Canvas - Deep Forest Green Background */
+    --background: 150 20% 96%;
+    --foreground: 150 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 30% 15%;
+
+    --primary: 150 30% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 150 15% 90%;
+    --secondary-foreground: 150 30% 15%;
+
+    --muted: 150 15% 92%;
+    --muted-foreground: 150 20% 40%;
+
+    --accent: 43 30% 55%;
+    --accent-foreground: 150 30% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 15% 85%;
+    --input: 150 15% 85%;
+    --ring: 150 30% 25%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 150 30% 15%;
+    --sidebar-primary: 150 30% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 150 15% 92%;
+    --sidebar-accent-foreground: 150 30% 15%;
+    --sidebar-border: 150 15% 85%;
+    --sidebar-ring: 150 30% 25%;
+
+    /* Nexus Theme Colors - Light */
+    --nexus-canvas: 150 20% 96%;
+    --nexus-glass: 0 0% 100%;
+    --nexus-gold: 43 30% 50%;
+    --nexus-gold-dark: 43 25% 40%;
+    --nexus-mint: 150 40% 45%;
+    --nexus-accent: 43 35% 55%;
+    --nexus-alert: 0 84% 60%;
+
+    /* Gradients - Light */
+    --gradient-gold: linear-gradient(135deg, hsl(43 30% 50%), hsl(43 25% 40%));
+    --gradient-canvas: linear-gradient(180deg, hsl(150 20% 96%) 0%, hsl(150 15% 92%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(0 0% 100% / 0.7));
+
+    /* Shadows - Light */
+    --shadow-glass: 0 8px 32px hsl(150 30% 15% / 0.1);
+    --shadow-gold-glow: 0 0 40px hsl(43 30% 50% / 0.2);
+    --shadow-card-hover: 0 20px 60px hsl(150 30% 15% / 0.15);
+  }
+
+  /* Dark Theme - Deep Forest Green (Nexus Identity) */
+  .dark {
     --background: 150 30% 13%;
-    
-    /* Foreground - Pure White for maximum contrast */
     --foreground: 0 0% 100%;
 
-    /* Cards - Glass effect base */
     --card: 150 25% 17%;
     --card-foreground: 0 0% 100%;
 
     --popover: 150 25% 17%;
     --popover-foreground: 0 0% 100%;
 
-    /* Primary - Tech Gold */
     --primary: 43 25% 68%;
     --primary-foreground: 150 30% 13%;
 
-    /* Secondary - Slightly lighter forest */
     --secondary: 150 25% 20%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Muted */
     --muted: 150 20% 20%;
     --muted-foreground: 0 0% 70%;
 
-    /* Accent - Tech Gold */
     --accent: 43 25% 68%;
     --accent-foreground: 150 30% 13%;
 
-    /* Destructive/Alert - Neon Red */
     --destructive: 0 84% 71%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Borders and inputs */
     --border: 0 0% 100% / 0.1;
     --input: 0 0% 100% / 0.1;
     --ring: 43 25% 68%;
-
-    /* Nexus Dark Theme Colors */
-    
-    /* Canvas - Deep Forest #1A3328 */
-    --nexus-canvas: 150 30% 13%;
-    
-    /* Glass - #234236 at 40% opacity */
-    --nexus-glass: 150 25% 17%;
-    
-    /* Tech Gold - #C5BA99 */
-    --nexus-gold: 43 25% 68%;
-    --nexus-gold-dark: 43 20% 54%;
-    
-    /* Mint White - #F0FDF4 */
-    --nexus-mint: 138 76% 97%;
-    
-    /* Alert Neon Red - #FF6B6B */
-    --nexus-alert: 0 100% 71%;
-    
-    /* Gradients */
-    --gradient-gold: linear-gradient(135deg, hsl(43 25% 68%), hsl(43 20% 54%));
-    --gradient-canvas: radial-gradient(ellipse at center, hsl(150 25% 18%) 0%, hsl(150 30% 13%) 70%);
-    --gradient-glass: linear-gradient(135deg, hsl(150 25% 17% / 0.6), hsl(150 25% 17% / 0.3));
-    
-    /* Shadows and Glows */
-    --shadow-glass: 0 8px 32px hsl(0 0% 0% / 0.3);
-    --shadow-gold-glow: 0 0 40px hsl(43 25% 68% / 0.3);
-    --shadow-card-hover: 0 20px 60px hsl(0 0% 0% / 0.4);
 
     --radius: 1rem;
 
@@ -82,29 +106,25 @@
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 100% / 0.1;
     --sidebar-ring: 43 25% 68%;
-  }
 
-  .dark {
-    /* Same as root - already dark theme */
-    --background: 150 30% 13%;
-    --foreground: 0 0% 100%;
-    --card: 150 25% 17%;
-    --card-foreground: 0 0% 100%;
-    --popover: 150 25% 17%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 43 25% 68%;
-    --primary-foreground: 150 30% 13%;
-    --secondary: 150 25% 20%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 150 20% 20%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 43 25% 68%;
-    --accent-foreground: 150 30% 13%;
-    --destructive: 0 84% 71%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 100% / 0.1;
-    --input: 0 0% 100% / 0.1;
-    --ring: 43 25% 68%;
+    /* Nexus Theme Colors - Dark */
+    --nexus-canvas: 150 30% 13%;
+    --nexus-glass: 150 25% 17%;
+    --nexus-gold: 43 25% 68%;
+    --nexus-gold-dark: 43 20% 54%;
+    --nexus-mint: 138 76% 97%;
+    --nexus-accent: 43 35% 65%;
+    --nexus-alert: 0 100% 71%;
+
+    /* Gradients - Dark */
+    --gradient-gold: linear-gradient(135deg, hsl(43 25% 68%), hsl(43 20% 54%));
+    --gradient-canvas: radial-gradient(ellipse at center, hsl(150 25% 18%) 0%, hsl(150 30% 13%) 70%);
+    --gradient-glass: linear-gradient(135deg, hsl(150 25% 17% / 0.6), hsl(150 25% 17% / 0.3));
+
+    /* Shadows - Dark */
+    --shadow-glass: 0 8px 32px hsl(0 0% 0% / 0.3);
+    --shadow-gold-glow: 0 0 40px hsl(43 25% 68% / 0.3);
+    --shadow-card-hover: 0 20px 60px hsl(0 0% 0% / 0.4);
   }
 }
 
@@ -115,8 +135,11 @@
 
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(180deg, hsl(150 30% 13%) 0%, hsl(150 35% 10%) 100%);
     min-height: 100vh;
+  }
+
+  .dark body {
+    background: linear-gradient(180deg, hsl(150 30% 13%) 0%, hsl(150 35% 10%) 100%);
   }
 }
 

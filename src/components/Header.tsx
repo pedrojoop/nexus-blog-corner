@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Header = () => {
   const location = useLocation();
@@ -7,20 +8,20 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="w-full bg-transparent border-b border-white/10 backdrop-blur-md sticky top-0 z-50">
+    <header className="w-full bg-background/80 border-b border-border backdrop-blur-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-nexus-gold-dark flex items-center justify-center transition-transform group-hover:scale-105">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center transition-transform group-hover:scale-105">
             <span className="text-primary-foreground font-bold text-xl font-space">N</span>
           </div>
-          <span className="text-xl font-bold text-white font-space">Nexus</span>
+          <span className="text-xl font-bold text-foreground font-space">Nexus</span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
           <Link 
             to="/" 
             className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
-              isActive('/') ? 'text-primary' : 'text-white/80'
+              isActive('/') ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
             Início
@@ -28,7 +29,7 @@ const Header = () => {
           <Link 
             to="/blog" 
             className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
-              isActive('/blog') ? 'text-primary' : 'text-white/80'
+              isActive('/blog') ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
             Blog
@@ -36,7 +37,7 @@ const Header = () => {
           <Link 
             to="/servicos" 
             className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
-              isActive('/servicos') ? 'text-primary' : 'text-white/80'
+              isActive('/servicos') ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
             Serviços
@@ -44,7 +45,7 @@ const Header = () => {
           <Link 
             to="/sobre" 
             className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
-              isActive('/sobre') ? 'text-primary' : 'text-white/80'
+              isActive('/sobre') ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
             Sobre
@@ -52,16 +53,17 @@ const Header = () => {
           <Link 
             to="/contato" 
             className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
-              isActive('/contato') ? 'text-primary' : 'text-white/80'
+              isActive('/contato') ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
             Contato
           </Link>
         </nav>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
+          <ThemeToggle variant="landing" />
           <Link to="/auth">
-            <Button variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-white/10">
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-accent/50">
               Entrar
             </Button>
           </Link>
