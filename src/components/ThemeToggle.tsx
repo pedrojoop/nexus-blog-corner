@@ -9,7 +9,10 @@ interface ThemeToggleProps {
 export const ThemeToggle = ({ variant = "dashboard" }: ThemeToggleProps) => {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as "light" | "dark") || "dark";
+      const saved = localStorage.getItem("theme") as "light" | "dark" | null;
+      if (saved) return saved;
+      // Default to system preference, fallback to dark
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
     return "dark";
   });
@@ -32,14 +35,15 @@ export const ThemeToggle = ({ variant = "dashboard" }: ThemeToggleProps) => {
       onClick={toggleTheme}
       className={
         variant === "landing"
-          ? "text-foreground hover:bg-accent/50 transition-all duration-300"
+          ? "text-foreground hover:bg-secondary transition-all duration-300"
           : "text-primary-foreground hover:bg-primary-foreground/10 transition-all duration-300"
       }
+      title={theme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"}
     >
       {theme === "dark" ? (
-        <Sun className="h-5 w-5" />
+        <Sun className="h-5 w-5 transition-transform hover:rotate-45" />
       ) : (
-        <Moon className="h-5 w-5" />
+        <Moon className="h-5 w-5 transition-transform hover:-rotate-12" />
       )}
       <span className="sr-only">Alternar tema</span>
     </Button>
