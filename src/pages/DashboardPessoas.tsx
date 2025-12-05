@@ -1,9 +1,8 @@
 import DashboardLayout from "@/components/DashboardLayout";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Search, MessageCircle, Award, Users, Filter } from "lucide-react";
+import { Search, MessageCircle, Award, Users, Sparkles, MapPin, Calendar } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Badge } from "@/components/ui/badge";
 
@@ -18,7 +17,8 @@ const DashboardPessoas = () => {
       department: "TI", 
       initials: "PL",
       skills: ["React", "TypeScript", "Node.js"],
-      joinedDate: "Jan 2023"
+      joinedDate: "Jan 2023",
+      color: "from-violet-500 to-purple-600"
     },
     { 
       name: "Lucas", 
@@ -26,53 +26,71 @@ const DashboardPessoas = () => {
       department: "TI", 
       initials: "L",
       skills: ["Arquitetura", "Cloud", "DevOps"],
-      joinedDate: "Mar 2022"
+      joinedDate: "Mar 2022",
+      color: "from-cyan-500 to-blue-600"
     },
   ];
 
   return (
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
+        {/* Header with gradient accent */}
         <div 
           ref={headerSection.ref} 
           className={`transition-all duration-700 ${headerSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <div className="mb-10">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 rounded-xl bg-primary/10">
-                <Users className="h-5 w-5 text-primary" />
+          {/* Hero Section */}
+          <div className="relative mb-8 p-8 rounded-3xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/10 overflow-hidden">
+            {/* Animated background elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+            
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="p-3 rounded-2xl bg-primary/20 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10">
+                  <Users className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold text-foreground tracking-tight">Pessoas</h1>
+                  <p className="text-muted-foreground">Conheça seus colegas de trabalho</p>
+                </div>
               </div>
-              <h1 className="text-2xl font-semibold text-foreground tracking-tight">Pessoas</h1>
+              
+              {/* Stats Row */}
+              <div className="flex gap-6 mt-6">
+                <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-background/50 backdrop-blur-sm border border-border/50">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <span className="text-2xl font-bold text-foreground">{people.length}</span>
+                    <p className="text-xs text-muted-foreground">Colaboradores</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-background/50 backdrop-blur-sm border border-border/50">
+                  <div className="p-2 rounded-lg bg-green-500/10">
+                    <MapPin className="h-4 w-4 text-green-500" />
+                  </div>
+                  <div>
+                    <span className="text-2xl font-bold text-foreground">1</span>
+                    <p className="text-xs text-muted-foreground">Departamento</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-muted-foreground text-sm ml-12">Conheça seus colegas de trabalho</p>
           </div>
 
-          {/* Search & Filter Bar */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-10">
-            <div className="flex-1 relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
-              <Input 
-                placeholder="Buscar por nome, cargo ou habilidades..." 
-                className="pl-11 h-11 bg-card/50 border-border/50 rounded-xl focus-visible:ring-1 focus-visible:ring-primary/20 focus-visible:border-primary/30 transition-all duration-300 placeholder:text-muted-foreground/60"
-              />
-            </div>
-            <Button variant="outline" className="h-11 px-4 rounded-xl border-border/50 hover:bg-accent/50 gap-2">
-              <Filter className="h-4 w-4" />
-              <span className="hidden sm:inline">Filtrar</span>
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="flex items-center gap-6 mb-8 pb-8 border-b border-border/30">
-            <div className="flex items-center gap-2">
-              <span className="text-3xl font-light text-foreground">{people.length}</span>
-              <span className="text-sm text-muted-foreground">colaboradores</span>
-            </div>
-            <div className="h-8 w-px bg-border/50" />
-            <div className="flex items-center gap-2">
-              <span className="text-3xl font-light text-foreground">1</span>
-              <span className="text-sm text-muted-foreground">departamento</span>
+          {/* Search Bar */}
+          <div className="relative mb-8">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-2xl blur-xl opacity-50" />
+            <div className="relative flex gap-3">
+              <div className="flex-1 relative group">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground transition-all duration-300 group-focus-within:text-primary group-focus-within:scale-110" />
+                <Input 
+                  placeholder="Buscar por nome, cargo ou habilidades..." 
+                  className="pl-12 h-14 bg-card/80 backdrop-blur-sm border-border/50 rounded-2xl text-base focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:border-primary/50 transition-all duration-300 shadow-lg shadow-black/5"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -80,42 +98,59 @@ const DashboardPessoas = () => {
         {/* People Grid */}
         <div 
           ref={peopleSection.ref} 
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6"
         >
           {people.map((person, index) => (
-            <Card 
+            <div 
               key={index}
-              className="group border-border/30 bg-card/30 backdrop-blur-sm hover:bg-card/60 hover:border-border/50 transition-all duration-500 overflow-hidden"
+              className="group relative"
               style={{
-                animation: peopleSection.isVisible ? `fade-in 0.5s ease-out ${index * 0.1}s both` : 'none'
+                animation: peopleSection.isVisible ? `fade-in 0.6s ease-out ${index * 0.15}s both` : 'none'
               }}
             >
-              <CardContent className="p-6">
-                <div className="flex items-start gap-5">
-                  {/* Avatar */}
-                  <Avatar className="h-16 w-16 ring-2 ring-border/30 group-hover:ring-primary/20 transition-all duration-300">
-                    <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/5 text-primary font-medium text-lg">
-                      {person.initials}
-                    </AvatarFallback>
-                  </Avatar>
+              {/* Card glow effect */}
+              <div className={`absolute -inset-1 bg-gradient-to-r ${person.color} rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500`} />
+              
+              {/* Card */}
+              <div className="relative bg-card/80 backdrop-blur-xl border border-border/50 rounded-3xl p-6 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1">
+                {/* Top gradient line */}
+                <div className={`absolute top-0 left-8 right-8 h-1 bg-gradient-to-r ${person.color} rounded-full opacity-60`} />
+                
+                <div className="flex gap-5 pt-2">
+                  {/* Avatar with ring effect */}
+                  <div className="relative">
+                    <div className={`absolute -inset-1 bg-gradient-to-r ${person.color} rounded-full blur-sm opacity-50 group-hover:opacity-80 transition-opacity duration-500`} />
+                    <Avatar className="relative h-20 w-20 ring-4 ring-background">
+                      <AvatarFallback className={`bg-gradient-to-br ${person.color} text-white font-bold text-xl`}>
+                        {person.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    {/* Online indicator */}
+                    <div className="absolute -bottom-1 -right-1 h-5 w-5 bg-green-500 rounded-full border-4 border-card shadow-lg" />
+                  </div>
                   
                   {/* Info */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-3 mb-1">
-                      <h3 className="font-medium text-foreground truncate">{person.name}</h3>
-                      <span className="text-xs text-muted-foreground/70 whitespace-nowrap">{person.joinedDate}</span>
+                    <h3 className="font-bold text-xl text-foreground mb-1 group-hover:text-primary transition-colors duration-300">{person.name}</h3>
+                    <p className="text-sm font-semibold text-primary mb-0.5">{person.role}</p>
+                    
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3" />
+                        {person.department}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        {person.joinedDate}
+                      </span>
                     </div>
                     
-                    <p className="text-sm text-primary/80 font-medium mb-1">{person.role}</p>
-                    <p className="text-xs text-muted-foreground mb-4">{person.department}</p>
-                    
                     {/* Skills */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-5">
                       {person.skills.map((skill, skillIndex) => (
                         <Badge 
                           key={skillIndex} 
-                          variant="secondary" 
-                          className="text-xs font-normal bg-secondary/50 hover:bg-secondary/70 border-0 px-2.5 py-0.5"
+                          className="text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20 border-0 px-3 py-1 rounded-full transition-all duration-300 hover:scale-105"
                         >
                           {skill}
                         </Badge>
@@ -123,34 +158,36 @@ const DashboardPessoas = () => {
                     </div>
                     
                     {/* Actions */}
-                    <div className="flex gap-2">
+                    <div className="flex gap-3">
                       <Button 
-                        size="sm" 
-                        className="h-8 px-4 rounded-lg bg-primary/90 hover:bg-primary text-primary-foreground text-xs font-medium transition-all duration-300"
+                        className={`flex-1 h-11 rounded-xl bg-gradient-to-r ${person.color} hover:opacity-90 text-white font-semibold shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]`}
                       >
-                        <MessageCircle className="h-3.5 w-3.5 mr-1.5" />
+                        <MessageCircle className="h-4 w-4 mr-2" />
                         Conversar
                       </Button>
                       <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="h-8 w-8 p-0 rounded-lg hover:bg-accent/50"
+                        variant="outline" 
+                        size="icon"
+                        className="h-11 w-11 rounded-xl border-border/50 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-500 transition-all duration-300"
                       >
-                        <Award className="h-3.5 w-3.5 text-muted-foreground" />
+                        <Award className="h-5 w-5" />
                       </Button>
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Empty State Hint */}
+        {/* Empty State */}
         {people.length === 0 && (
           <div className="text-center py-20">
-            <Users className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-            <p className="text-muted-foreground">Nenhum colaborador encontrado</p>
+            <div className="relative inline-block">
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl" />
+              <Users className="relative h-16 w-16 text-muted-foreground/50 mx-auto mb-4" />
+            </div>
+            <p className="text-muted-foreground text-lg">Nenhum colaborador encontrado</p>
           </div>
         )}
       </div>
