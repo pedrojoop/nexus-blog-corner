@@ -17,8 +17,7 @@ const DashboardPessoas = () => {
       department: "TI", 
       initials: "PL",
       skills: ["React", "TypeScript", "Node.js"],
-      joinedDate: "Jan 2023",
-      color: "from-violet-500 to-purple-600"
+      joinedDate: "Jan 2023"
     },
     { 
       name: "Lucas", 
@@ -26,8 +25,7 @@ const DashboardPessoas = () => {
       department: "TI", 
       initials: "L",
       skills: ["Arquitetura", "Cloud", "DevOps"],
-      joinedDate: "Mar 2022",
-      color: "from-cyan-500 to-blue-600"
+      joinedDate: "Mar 2022"
     },
   ];
 
@@ -109,19 +107,19 @@ const DashboardPessoas = () => {
               }}
             >
               {/* Card glow effect */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${person.color} rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500`} />
+              <div className="absolute -inset-1 bg-primary/40 rounded-3xl blur-lg opacity-0 group-hover:opacity-20 transition-all duration-500" />
               
               {/* Card */}
               <div className="relative bg-card/80 backdrop-blur-xl border border-border/50 rounded-3xl p-6 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1">
                 {/* Top gradient line */}
-                <div className={`absolute top-0 left-8 right-8 h-1 bg-gradient-to-r ${person.color} rounded-full opacity-60`} />
+                <div className="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-primary/80 to-primary/40 rounded-full" />
                 
                 <div className="flex gap-5 pt-2">
                   {/* Avatar with ring effect */}
                   <div className="relative">
-                    <div className={`absolute -inset-1 bg-gradient-to-r ${person.color} rounded-full blur-sm opacity-50 group-hover:opacity-80 transition-opacity duration-500`} />
+                    <div className="absolute -inset-1 bg-primary/50 rounded-full blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-500" />
                     <Avatar className="relative h-20 w-20 ring-4 ring-background">
-                      <AvatarFallback className={`bg-gradient-to-br ${person.color} text-white font-bold text-xl`}>
+                      <AvatarFallback className="bg-gradient-to-br from-primary to-primary/70 text-primary-foreground font-bold text-xl">
                         {person.initials}
                       </AvatarFallback>
                     </Avatar>
@@ -160,7 +158,7 @@ const DashboardPessoas = () => {
                     {/* Actions */}
                     <div className="flex gap-3">
                       <Button 
-                        className={`flex-1 h-11 rounded-xl bg-gradient-to-r ${person.color} hover:opacity-90 text-white font-semibold shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]`}
+                        className="flex-1 h-11 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
                       >
                         <MessageCircle className="h-4 w-4 mr-2" />
                         Conversar
