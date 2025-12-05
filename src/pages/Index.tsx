@@ -1,427 +1,378 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle, Sparkles, AlertTriangle, BarChart3, Users, TrendingUp, Activity, Shield, BookOpen, Award, Play, Eye, Clock, DollarSign, Zap } from "lucide-react";
+import { ArrowRight, CheckCircle, Users, MessageCircle, BookOpen, Award, Gamepad2, BarChart3, Shield, UserCheck, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { DashboardMockup } from "@/components/DashboardMockup";
 import { InteractiveDemoModal } from "@/components/InteractiveDemoModal";
 
 const Index = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   
-  const problemSection = useScrollAnimation();
-  const solutionSection = useScrollAnimation();
-  const howItWorksSection = useScrollAnimation();
-  const pricingSection = useScrollAnimation();
+  const featuresSection = useScrollAnimation();
+  const modulesSection = useScrollAnimation();
   const ctaSection = useScrollAnimation();
 
-  const pricing = {
-    engage: {
-      monthly: 1290,
-      annual: 12900,
-    },
-    diagnose: {
-      monthly: 4790,
-      annual: 47900,
-    }
-  };
+  const trustedLogos = [
+    "TechCorp", "InnovateBR", "FutureWork", "SmartHR", "CloudTeam", "DataPulse"
+  ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-warm-cream">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        {/* Glow Orbs - Only visible in dark mode */}
-        <div className="glow-orb glow-orb-gold w-96 h-96 -top-48 -left-48 animate-pulse-glow" />
-        <div className="glow-orb glow-orb-green w-[500px] h-[500px] top-1/2 right-0 translate-x-1/2 -translate-y-1/2 animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
-        <div className="glow-orb glow-orb-gold w-64 h-64 bottom-0 left-1/3 animate-pulse-glow" style={{ animationDelay: '3s' }} />
-        
-        {/* Radial gradient - theme adaptive */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--primary)/0.1)_0%,_transparent_70%)]" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+      <section className="relative pt-8 pb-16 md:pt-16 md:pb-24 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
             {/* Left Side - Text Content */}
             <div className="space-y-8 animate-fade-in-up">
-              <Badge className="bg-primary/10 text-primary border border-primary/20 text-sm px-4 py-2 font-medium">
-                Plataforma de Diagnóstico de Cultura para Empresas Híbridas
-              </Badge>
+              <span className="inline-block text-warm-brown/70 text-sm font-medium tracking-wide">
+                sejam bem vindos!
+              </span>
               
-              <h1 className="font-space text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground">
-                Sua cultura remota é uma{" "}
-                <span className="text-primary relative inline-block">
-                  'caixa-preta'
-                  <span className="absolute -inset-1 bg-primary/20 blur-lg rounded-lg -z-10" />
-                </span>?
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.1] text-warm-brown">
+                Empresas fortes começam por dentro.
               </h1>
               
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
-                O Nexus é o primeiro <strong className="text-foreground font-semibold">Diagnóstico de Cultura</strong> para empresas híbridas. 
-                Nossa IA identifica o risco de burnout a nível de time — sem vigiar pessoas — e lhe dá as ações para resolver.
+              <p className="text-lg text-warm-brown/70 leading-relaxed max-w-xl">
+                Plataforma completa de <strong className="text-warm-brown font-medium">RH Digital</strong>, Comunicação Interna, 
+                Universidade Corporativa & Comunidades, para empresas de todos os tamanhos.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 pt-6">
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Link to="/contato">
                   <Button 
                     size="lg" 
-                    className="btn-gold group text-base px-10 py-7"
+                    className="bg-warm-brown hover:bg-warm-brown/90 text-warm-cream rounded-full text-base px-8 py-6 font-medium transition-all duration-300 hover:shadow-lg"
                   >
-                    Agende seu Diagnóstico 
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    Agendar demonstração
                   </Button>
                 </Link>
                 <Button 
                   size="lg" 
                   variant="outline" 
                   onClick={() => setIsDemoModalOpen(true)}
-                  className="bg-transparent text-foreground hover:text-primary border border-border hover:border-primary/50 hover:bg-primary/5 text-base font-medium px-8 py-7 transition-all duration-300"
+                  className="bg-transparent text-warm-brown border-2 border-warm-brown/30 hover:border-warm-brown/60 hover:bg-warm-brown/5 rounded-full text-base font-medium px-8 py-6 transition-all duration-300"
                 >
-                  <Play className="mr-2 h-5 w-5" />
-                  Testar Demo
+                  Conhecer a Plataforma
                 </Button>
               </div>
               
-              <div className="flex flex-wrap gap-6 text-muted-foreground text-sm pt-4">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="font-medium">14 dias grátis</span>
+              {/* Social Proof */}
+              <div className="flex items-center gap-6 pt-4">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div 
+                      key={i} 
+                      className="w-10 h-10 rounded-full bg-gradient-to-br from-warm-terracotta to-warm-gold border-2 border-warm-cream flex items-center justify-center"
+                    >
+                      <Users className="w-4 h-4 text-warm-cream" />
+                    </div>
+                  ))}
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="font-medium">Setup em minutos</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="font-medium">Dados anônimos</span>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1">
+                    <span className="text-2xl font-serif font-medium text-warm-brown">4.9</span>
+                    <div className="flex">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} className="w-4 h-4 fill-warm-gold text-warm-gold" />
+                      ))}
+                    </div>
+                  </div>
+                  <span className="text-sm text-warm-brown/60"><strong className="text-warm-brown">70k+</strong> usuários engajados</span>
                 </div>
               </div>
             </div>
             
-            {/* Right Side - Floating 3D Dashboard */}
-            <div className="relative lg:block hidden animate-fade-in-up animation-delay-400">
-              <DashboardMockup variant="hero" />
+            {/* Right Side - Hero Image with Floating Cards */}
+            <div className="relative lg:block animate-fade-in-up animation-delay-200">
+              <div className="relative">
+                {/* Main Image Container */}
+                <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-warm-terracotta/20 to-warm-gold/20 aspect-[4/5]">
+                  <div className="absolute inset-0 bg-gradient-to-t from-warm-brown/20 to-transparent" />
+                  <img 
+                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=750&fit=crop&crop=face"
+                    alt="Profissional sorrindo"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                {/* Floating Card 1 */}
+                <div className="absolute top-1/4 -right-4 md:right-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl animate-float max-w-[200px]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">JS</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-purple-600 font-medium bg-purple-100 px-2 py-0.5 rounded-full">Universidade</span>
+                      <p className="text-xs font-semibold text-warm-brown mt-1">Jéssica Silva</p>
+                      <p className="text-[10px] text-warm-brown/60">Concluiu curso: "Inteligência Emocional"</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Floating Card 2 */}
+                <div className="absolute bottom-1/4 -left-4 md:left-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl animate-float animation-delay-400 max-w-[200px]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">MP</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-green-600 font-medium bg-green-100 px-2 py-0.5 rounded-full">Comunicação</span>
+                      <p className="text-xs font-semibold text-warm-brown mt-1">Marcos Paulo</p>
+                      <p className="text-[10px] text-warm-brown/60">Fala, amigo! Beleza? Conseguiu terminar?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Problem Section - Glass Cards */}
-      <section ref={problemSection.ref} className="py-24 md:py-32 relative overflow-hidden">
-        {/* Background glow */}
-        <div className="glow-orb glow-orb-gold w-80 h-80 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 opacity-30" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className={`max-w-5xl mx-auto text-center space-y-8 transition-all duration-700 ${problemSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="inline-flex items-center gap-2 bg-destructive/10 text-destructive px-5 py-2 rounded-full border border-destructive/20">
-              <AlertTriangle className="h-5 w-5" />
-              <span className="font-semibold">A Dor do Trabalho Híbrido</span>
-            </div>
-            
-            <h2 className="font-space text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              No trabalho híbrido, você não vê o burnout chegar.<br />
-              <span className="text-muted-foreground">Você só recebe o pedido de demissão.</span>
+      {/* Trusted By Logos */}
+      <section className="py-12 border-y border-warm-brown/10">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-60">
+            {trustedLogos.map((logo) => (
+              <span key={logo} className="text-warm-brown/80 font-serif text-lg font-medium">
+                {logo}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section ref={featuresSection.ref} className="py-20 md:py-32">
+        <div className="container mx-auto px-4">
+          <div className={`max-w-4xl mx-auto text-center space-y-6 mb-16 transition-all duration-700 ${featuresSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-warm-brown leading-tight">
+              Os melhores recursos para um time forte de alta performance
             </h2>
+            <Link to="/servicos" className="inline-flex items-center gap-2 text-warm-terracotta hover:text-warm-terracotta/80 font-medium transition-colors">
+              mapa de todas as funcionalidades
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Modules Section */}
+      <section ref={modulesSection.ref} className="pb-20 md:pb-32">
+        <div className="container mx-auto px-4">
+          <div className={`max-w-6xl mx-auto space-y-24 transition-all duration-700 ${modulesSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              No escritório, você via o isolamento e a sobrecarga. No home-office, você só tem dados de produtividade 
-              e ignora os dados de cultura. <strong className="text-foreground">Você só descobre o problema na entrevista de desligamento</strong> — e aí, é tarde demais.
+            {/* Module 1 - Comunicação Interna */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <span className="text-warm-terracotta font-medium">Comunicação Interna</span>
+                <h3 className="font-serif text-2xl md:text-3xl font-normal text-warm-brown leading-tight">
+                  Transforme a comunicação interna com as funcionalidades que sua empresa precisa!
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {['Rede Social Corporativa', 'Nuvem de Arquivos', 'Chat', 'Organograma', 'Pop-up', 'Aniversariantes'].map((item) => (
+                    <div key={item} className="flex items-center gap-2 text-warm-brown/70">
+                      <CheckCircle className="w-4 h-4 text-warm-terracotta flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-4 pt-4">
+                  <Link to="/servicos">
+                    <Button variant="outline" className="rounded-full border-warm-brown/30 text-warm-brown hover:bg-warm-brown/5">
+                      comunicação interna
+                    </Button>
+                  </Link>
+                  <Link to="/contato">
+                    <Button className="rounded-full bg-warm-brown text-warm-cream hover:bg-warm-brown/90">
+                      agendar demonstração
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div className="bg-gradient-to-br from-warm-terracotta/10 to-warm-gold/10 rounded-3xl p-8 aspect-square flex items-center justify-center">
+                <MessageCircle className="w-32 h-32 text-warm-terracotta/40" />
+              </div>
+            </div>
+
+            {/* Module 2 - RH Digital */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1 bg-gradient-to-br from-green-100/50 to-emerald-100/50 rounded-3xl p-8 aspect-square flex items-center justify-center">
+                <Users className="w-32 h-32 text-emerald-600/40" />
+              </div>
+              <div className="order-1 lg:order-2 space-y-6">
+                <span className="text-emerald-600 font-medium">RH Digital</span>
+                <h3 className="font-serif text-2xl md:text-3xl font-normal text-warm-brown leading-tight">
+                  Eleve a gestão de pessoas criando jornadas mais simples e humanas
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {['2ª Via do Holerite', 'Banco de Horas', 'Extrato de Férias', 'Registro de Ponto', 'Onboarding', 'Offboarding'].map((item) => (
+                    <div key={item} className="flex items-center gap-2 text-warm-brown/70">
+                      <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-4 pt-4">
+                  <Link to="/servicos">
+                    <Button variant="outline" className="rounded-full border-warm-brown/30 text-warm-brown hover:bg-warm-brown/5">
+                      rh digital
+                    </Button>
+                  </Link>
+                  <Link to="/contato">
+                    <Button className="rounded-full bg-warm-brown text-warm-cream hover:bg-warm-brown/90">
+                      agendar demonstração
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Module 3 - Capacitação Corporativa */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <span className="text-blue-600 font-medium">Capacitação Corporativa</span>
+                <h3 className="font-serif text-2xl md:text-3xl font-normal text-warm-brown leading-tight">
+                  Transforme o aprendizado com trilhas personalizadas para cada colaborador
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {['Cursos Personalizados', 'Trilhas de Aprendizagem', 'Biblioteca de Cursos', 'Quizzes'].map((item) => (
+                    <div key={item} className="flex items-center gap-2 text-warm-brown/70">
+                      <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-4 pt-4">
+                  <Link to="/servicos">
+                    <Button variant="outline" className="rounded-full border-warm-brown/30 text-warm-brown hover:bg-warm-brown/5">
+                      capacitação corporativa
+                    </Button>
+                  </Link>
+                  <Link to="/contato">
+                    <Button className="rounded-full bg-warm-brown text-warm-cream hover:bg-warm-brown/90">
+                      agendar demonstração
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div className="bg-gradient-to-br from-blue-100/50 to-indigo-100/50 rounded-3xl p-8 aspect-square flex items-center justify-center">
+                <BookOpen className="w-32 h-32 text-blue-600/40" />
+              </div>
+            </div>
+
+            {/* Module 4 - Cultura & Engajamento */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1 bg-gradient-to-br from-amber-100/50 to-orange-100/50 rounded-3xl p-8 aspect-square flex items-center justify-center">
+                <Award className="w-32 h-32 text-amber-600/40" />
+              </div>
+              <div className="order-1 lg:order-2 space-y-6">
+                <span className="text-amber-600 font-medium">Cultura & Engajamento</span>
+                <h3 className="font-serif text-2xl md:text-3xl font-normal text-warm-brown leading-tight">
+                  Fortaleça a cultura e engaje seu time com ferramentas modernas
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {['Gamificação', 'PDI', 'Jornada do Colaborador', 'Ranking', 'Reuniões 1:1', 'Lojinha de Recompensas'].map((item) => (
+                    <div key={item} className="flex items-center gap-2 text-warm-brown/70">
+                      <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-4 pt-4">
+                  <Link to="/servicos">
+                    <Button variant="outline" className="rounded-full border-warm-brown/30 text-warm-brown hover:bg-warm-brown/5">
+                      cultura e engajamento
+                    </Button>
+                  </Link>
+                  <Link to="/contato">
+                    <Button className="rounded-full bg-warm-brown text-warm-cream hover:bg-warm-brown/90">
+                      agendar demonstração
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Differentials Section */}
+      <section className="py-20 md:py-32 bg-warm-brown/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-6 mb-16">
+            <span className="text-warm-terracotta font-medium">nossos diferenciais</span>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-warm-brown leading-tight">
+              Perfeita para a sua empresa e para os seus colaboradores
+            </h2>
+            <p className="text-warm-brown/70 text-lg max-w-2xl mx-auto">
+              Aproxima, engaja e facilita a vida de todo mundo com soluções que têm a cara do seu time e fazem a cultura acontecer de verdade no dia a dia!
             </p>
-            
-            {/* Glass Cards Grid */}
-            <div className="grid md:grid-cols-3 gap-6 pt-12">
-              <div className="glass-card p-8 text-center space-y-4 hover-lift group">
-                <div className="w-16 h-16 rounded-2xl bg-destructive/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <Eye className="h-8 w-8 text-destructive" />
-                </div>
-                <h3 className="font-space font-bold text-xl text-foreground">Visibilidade Zero</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">Você não vê isolamento ou sobrecarga acontecendo</p>
-              </div>
-              
-              <div className="glass-card p-8 text-center space-y-4 hover-lift group">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <Clock className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-space font-bold text-xl text-foreground">Reação Tardia</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">Você só age quando já perdeu o talento</p>
-              </div>
-              
-              <div className="glass-card p-8 text-center space-y-4 hover-lift group">
-                <div className="w-16 h-16 rounded-2xl bg-destructive/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <DollarSign className="h-8 w-8 text-destructive" />
-                </div>
-                <h3 className="font-space font-bold text-xl text-foreground">Custos Ocultos</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">Turnover custa 6-9 meses de salário por pessoa</p>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Solution Section - HUD Style */}
-      <section ref={solutionSection.ref} className="py-24 md:py-32 relative overflow-hidden">
-        {/* Connecting line animation placeholder */}
-        <div className="absolute left-1/2 top-0 w-px h-32 bg-gradient-to-b from-transparent via-primary to-transparent" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className={`max-w-6xl mx-auto space-y-12 transition-all duration-700 ${solutionSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="text-center space-y-6">
-              <Badge className="bg-primary/10 text-primary border border-primary/20 text-sm px-5 py-2">
-                A Solução
-              </Badge>
-              
-              <h2 className="font-space text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                De 'Caixa-Preta' para{" "}
-                <span className="text-primary">'Painel de Ação'</span>
-              </h2>
-              
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                Apresentamos o <strong className="text-foreground">Nexus Diagnóstico</strong>: a primeira IA que detecta o risco de burnout a nível de time,
-                sem vigiar pessoas. Transforme dados brutos em ações de cultura com um clique.
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white rounded-3xl p-8 space-y-4 hover:shadow-xl transition-shadow duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-warm-terracotta/10 flex items-center justify-center">
+                <Shield className="w-7 h-7 text-warm-terracotta" />
+              </div>
+              <h3 className="font-serif text-xl font-medium text-warm-brown">Inclusão e Acessibilidade</h3>
+              <p className="text-warm-brown/60 text-sm leading-relaxed">
+                Plataforma acessível para todos os colaboradores, independente de suas necessidades especiais.
               </p>
             </div>
 
-            {/* HUD Dashboard Preview */}
-            <div className="relative">
-              <div className="glass-card p-8 md:p-12">
-                <DashboardMockup variant="solution" />
+            <div className="bg-white rounded-3xl p-8 space-y-4 hover:shadow-xl transition-shadow duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center">
+                <UserCheck className="w-7 h-7 text-emerald-600" />
               </div>
-            </div>
-
-            {/* Feature Cards */}
-            <div className="grid md:grid-cols-2 gap-8 pt-8">
-              <div className="glass-card-gold p-8 hover-lift">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Activity className="w-7 h-7 text-primary" />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-space font-bold text-xl text-foreground">O Diagnóstico (O Cérebro)</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Nossa IA analisa dados agregados e anônimos (sem vigiar indivíduos) e identifica padrões sistêmicos de risco.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="glass-card-gold p-8 hover-lift">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Zap className="w-7 h-7 text-primary" />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-space font-bold text-xl text-foreground">A Ação (Os Botões)</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Um diagnóstico sem ação é inútil. Nossa IA sugere ações de cultura (CaaS) que você pode disparar com um clique.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section ref={howItWorksSection.ref} className="py-24 md:py-32 relative overflow-hidden">
-        <div className="glow-orb glow-orb-green w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 opacity-30" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className={`max-w-6xl mx-auto text-center space-y-12 transition-all duration-700 ${howItWorksSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="space-y-6">
-              <Badge className="bg-secondary text-secondary-foreground border border-border text-sm px-5 py-2">
-                Como Funciona
-              </Badge>
-              
-              <h2 className="font-space text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Uma plataforma que seu time ama usar.<br />
-                <span className="text-muted-foreground">E que gera os dados que você precisa.</span>
-              </h2>
-              
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                Descubra como o Nexus transforma o engajamento em dados acionáveis para a sua cultura.
+              <h3 className="font-serif text-xl font-medium text-warm-brown">Personalização Total</h3>
+              <p className="text-warm-brown/60 text-sm leading-relaxed">
+                Adapte a plataforma à identidade visual e necessidades únicas da sua empresa.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="glass-card p-8 space-y-4 hover-lift group">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <BookOpen className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-space font-bold text-xl text-foreground">LMS & Gamificação</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Gere crescimento para o time e dados de engajamento para a IA.
-                </p>
+            <div className="bg-white rounded-3xl p-8 space-y-4 hover:shadow-xl transition-shadow duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+                <BarChart3 className="w-7 h-7 text-blue-600" />
               </div>
-
-              <div className="glass-card p-8 space-y-4 hover-lift group">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <BarChart3 className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-space font-bold text-xl text-foreground">Analytics de Cultura</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Transforme interações em métricas de saúde organizacional.
-                </p>
-              </div>
-
-              <div className="glass-card p-8 space-y-4 hover-lift group">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <Shield className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-space font-bold text-xl text-foreground">Privacidade First</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Dados agregados e anônimos. Sem vigilância individual.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section - Minimalist Glass */}
-      <section ref={pricingSection.ref} className="py-24 md:py-32 relative overflow-hidden">
-        <div className="glow-orb glow-orb-gold w-80 h-80 bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 opacity-20" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className={`max-w-5xl mx-auto space-y-12 transition-all duration-700 ${pricingSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="text-center space-y-6">
-              <Badge className="bg-primary/10 text-primary border border-primary/20 text-sm px-5 py-2">
-                Preços
-              </Badge>
-              
-              <h2 className="font-space text-4xl md:text-5xl font-bold text-foreground">
-                Escolha seu plano
-              </h2>
-              
-              {/* Billing Toggle */}
-              <div className="flex items-center justify-center gap-4">
-                <span className={`text-sm font-medium ${billingCycle === 'monthly' ? 'text-foreground' : 'text-muted-foreground'}`}>Mensal</span>
-                <button
-                  onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'annual' : 'monthly')}
-                  className="relative w-14 h-7 bg-secondary rounded-full border border-border transition-colors"
-                >
-                  <span className={`absolute top-1 w-5 h-5 bg-primary rounded-full transition-transform ${billingCycle === 'annual' ? 'translate-x-7' : 'translate-x-1'}`} />
-                </button>
-                <span className={`text-sm font-medium ${billingCycle === 'annual' ? 'text-foreground' : 'text-muted-foreground'}`}>Anual <span className="text-primary">(2 meses grátis)</span></span>
-              </div>
-            </div>
-
-            {/* Pricing Cards */}
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Engage Plan */}
-              <div className="glass-card p-8 space-y-6 hover-lift">
-                <div>
-                  <h3 className="font-space font-bold text-xl text-foreground mb-2">Engage</h3>
-                  <p className="text-muted-foreground text-sm">Para times que querem começar</p>
-                </div>
-                <div className="space-y-1">
-                  <span className="font-space text-4xl font-bold text-foreground">
-                    R${billingCycle === 'monthly' ? pricing.engage.monthly : Math.round(pricing.engage.annual / 12)}
-                  </span>
-                  <span className="text-muted-foreground">/mês</span>
-                </div>
-                <ul className="space-y-3">
-                  {['LMS & Gamificação', 'Analytics básico', 'Até 50 usuários', 'Suporte por email'].map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-muted-foreground text-sm">
-                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full bg-transparent border-border text-foreground hover:bg-primary/5 hover:border-primary/50">
-                  Começar
-                </Button>
-              </div>
-
-              {/* Diagnose Plan - Featured */}
-              <div className="glass-card-gold p-8 space-y-6 hover-lift relative">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <Badge className="bg-primary text-primary-foreground px-4 py-1 font-semibold">
-                    Popular
-                  </Badge>
-                </div>
-                <div>
-                  <h3 className="font-space font-bold text-xl text-foreground mb-2">Diagnose</h3>
-                  <p className="text-muted-foreground text-sm">Diagnóstico completo de cultura</p>
-                </div>
-                <div className="space-y-1">
-                  <span className="font-space text-4xl font-bold text-foreground">
-                    R${billingCycle === 'monthly' ? pricing.diagnose.monthly : Math.round(pricing.diagnose.annual / 12)}
-                  </span>
-                  <span className="text-muted-foreground">/mês</span>
-                </div>
-                <ul className="space-y-3">
-                  {['Tudo do Engage', 'IA Diagnóstico de Burnout', 'Ações CaaS integradas', 'Até 200 usuários', 'Suporte prioritário'].map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-muted-foreground text-sm">
-                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Button className="w-full btn-gold">
-                  Começar Agora
-                </Button>
-              </div>
-
-              {/* Enterprise Plan */}
-              <div className="glass-card p-8 space-y-6 hover-lift">
-                <div>
-                  <h3 className="font-space font-bold text-xl text-foreground mb-2">Enterprise</h3>
-                  <p className="text-muted-foreground text-sm">Para grandes organizações</p>
-                </div>
-                <div className="space-y-1">
-                  <span className="font-space text-4xl font-bold text-foreground">Custom</span>
-                </div>
-                <ul className="space-y-3">
-                  {['Tudo do Diagnose', 'SSO & integrações', 'Usuários ilimitados', 'SLA dedicado', 'Onboarding premium'].map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-muted-foreground text-sm">
-                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full bg-transparent border-border text-foreground hover:bg-primary/5 hover:border-primary/50">
-                  Falar com Vendas
-                </Button>
-              </div>
+              <h3 className="font-serif text-xl font-medium text-warm-brown">Dados e Analytics</h3>
+              <p className="text-warm-brown/60 text-sm leading-relaxed">
+                Acompanhe métricas de engajamento e cultura em tempo real com dashboards intuitivos.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section ref={ctaSection.ref} className="py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--primary)/0.1)_0%,_transparent_70%)]" />
-        <div className="glow-orb glow-orb-gold w-96 h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
-        
-        <div className="container mx-auto px-4 relative z-10">
+      <section ref={ctaSection.ref} className="py-20 md:py-32">
+        <div className="container mx-auto px-4">
           <div className={`max-w-4xl mx-auto text-center space-y-8 transition-all duration-700 ${ctaSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="font-space text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              Pronto para transformar sua{" "}
-              <span className="text-primary">cultura organizacional</span>?
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-warm-brown leading-tight">
+              Pronto para transformar a cultura da sua empresa?
             </h2>
-            
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Junte-se a centenas de empresas que já estão usando o Nexus para construir culturas mais saudáveis e produtivas.
+            <p className="text-warm-brown/70 text-lg max-w-2xl mx-auto">
+              Agende uma demonstração gratuita e descubra como o Nexus pode ajudar sua empresa a crescer de dentro para fora.
             </p>
-            
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link to="/contato">
-                <Button size="lg" className="btn-gold group text-base px-10 py-7">
-                  Agende sua Demo
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <Button 
+                  size="lg" 
+                  className="bg-warm-brown hover:bg-warm-brown/90 text-warm-cream rounded-full text-base px-10 py-6 font-medium"
+                >
+                  Agendar demonstração
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/sobre">
                 <Button 
                   size="lg" 
-                  variant="outline"
-                  className="bg-transparent text-foreground hover:text-primary border border-border hover:border-primary/50 hover:bg-primary/5 text-base font-medium px-8 py-7"
+                  variant="outline" 
+                  className="bg-transparent text-warm-brown border-2 border-warm-brown/30 hover:border-warm-brown/60 hover:bg-warm-brown/5 rounded-full text-base font-medium px-10 py-6"
                 >
-                  Conheça a Nexus
+                  Conhecer mais
                 </Button>
               </Link>
             </div>
@@ -430,31 +381,25 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-12">
+      <footer className="py-12 border-t border-warm-brown/10">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl font-space">N</span>
-              </div>
-              <span className="text-xl font-bold text-foreground font-space">Nexus</span>
+            <div className="flex items-center gap-2">
+              <span className="font-serif text-2xl font-semibold text-warm-brown">Nexus</span>
             </div>
-            
-            <nav className="flex flex-wrap items-center justify-center gap-6">
-              <Link to="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors">Blog</Link>
-              <Link to="/servicos" className="text-sm text-muted-foreground hover:text-primary transition-colors">Serviços</Link>
-              <Link to="/sobre" className="text-sm text-muted-foreground hover:text-primary transition-colors">Sobre</Link>
-              <Link to="/contato" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contato</Link>
-            </nav>
-            
-            <p className="text-sm text-muted-foreground/60">
-              © 2024 Nexus Community. Todos os direitos reservados.
+            <div className="flex flex-wrap justify-center gap-8 text-warm-brown/60">
+              <Link to="/blog" className="hover:text-warm-brown transition-colors">Blog</Link>
+              <Link to="/servicos" className="hover:text-warm-brown transition-colors">Serviços</Link>
+              <Link to="/sobre" className="hover:text-warm-brown transition-colors">Sobre</Link>
+              <Link to="/contato" className="hover:text-warm-brown transition-colors">Contato</Link>
+            </div>
+            <p className="text-warm-brown/40 text-sm">
+              © 2025 Nexus. Todos os direitos reservados.
             </p>
           </div>
         </div>
       </footer>
 
-      {/* Demo Modal */}
       <InteractiveDemoModal open={isDemoModalOpen} onOpenChange={setIsDemoModalOpen} />
     </div>
   );
