@@ -43,6 +43,14 @@ const Header = () => {
             Serviços
           </Link>
           <Link 
+            to="/problema" 
+            className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
+              isActive('/problema') ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            Problema
+          </Link>
+          <Link 
             to="/sobre" 
             className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
               isActive('/sobre') ? 'text-primary' : 'text-muted-foreground'
