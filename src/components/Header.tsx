@@ -59,6 +59,14 @@ const Header = () => {
             Sobre
           </Link>
           <Link 
+            to="/preco" 
+            className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
+              isActive('/preco') ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            Preço
+          </Link>
+          <Link 
             to="/contato" 
             className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
               isActive('/contato') ? 'text-primary' : 'text-muted-foreground'
