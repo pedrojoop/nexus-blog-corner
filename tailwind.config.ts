@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        'serif': ['Playfair Display', 'Georgia', 'serif'],
+        'display': ['Space Grotesk', 'sans-serif'],
         'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -23,11 +24,11 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        // Warm color palette
-        'warm-cream': "hsl(35 30% 95%)",
-        'warm-brown': "hsl(25 30% 25%)",
-        'warm-terracotta': "hsl(15 60% 55%)",
-        'warm-gold': "hsl(40 70% 55%)",
+        // Tech color palette
+        'tech-blue': "hsl(220 90% 56%)",
+        'tech-cyan': "hsl(199 89% 48%)",
+        'tech-purple': "hsl(262 83% 58%)",
+        'tech-indigo': "hsl(240 70% 60%)",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -66,21 +67,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Nexus Dark Theme Colors
-        'nexus-canvas': "hsl(var(--nexus-canvas))",
-        'nexus-glass': "hsl(var(--nexus-glass))",
-        'nexus-gold': {
-          DEFAULT: "hsl(var(--nexus-gold))",
-          dark: "hsl(var(--nexus-gold-dark))",
-        },
-        'nexus-mint': "hsl(var(--nexus-mint))",
-        'nexus-alert': "hsl(var(--nexus-alert))",
-      },
-      fontFamily: {
-        // Modern tech fonts
-        'space': ['Space Grotesk', 'sans-serif'],
-        // Sans-serif for body and UI
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -114,11 +100,11 @@ export default {
         },
         "pulse-glow": {
           "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "0.7" },
+          "50%": { opacity: "0.8" },
         },
-        "tilt": {
-          "0%, 100%": { transform: "rotateY(-5deg) rotateX(5deg)" },
-          "50%": { transform: "rotateY(5deg) rotateX(-5deg)" },
+        "cyber-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(199 89% 48% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(199 89% 48% / 0.5)" },
         },
       },
       animation: {
@@ -129,11 +115,12 @@ export default {
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
         "float": "float 3s ease-in-out infinite",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        "tilt": "tilt 6s ease-in-out infinite",
+        "cyber-pulse": "cyber-pulse 2s ease-in-out infinite",
       },
       backgroundImage: {
-        'gradient-gold': 'linear-gradient(135deg, hsl(43 25% 68%), hsl(43 20% 54%))',
-        'gradient-canvas': 'radial-gradient(ellipse at center, hsl(150 25% 18%) 0%, hsl(150 30% 13%) 70%)',
+        'gradient-tech': 'linear-gradient(135deg, hsl(199 89% 48%), hsl(262 83% 65%))',
+        'gradient-cyber': 'linear-gradient(135deg, hsl(199 89% 48%), hsl(220 90% 60%))',
+        'gradient-canvas': 'radial-gradient(ellipse at center, hsl(222 40% 14%) 0%, hsl(222 47% 8%) 70%)',
       },
     },
   },
