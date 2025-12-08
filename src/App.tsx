@@ -8,6 +8,7 @@ import Blog from "./pages/Blog";
 import Servicos from "./pages/Servicos";
 import Sobre from "./pages/Sobre";
 import Problema from "./pages/Problema";
+import Preco from "./pages/Preco";
 import Contato from "./pages/Contato";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/problema" element={<Problema />} />
+          <Route path="/preco" element={<Preco />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
