@@ -11,8 +11,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
-  Trophy, Target, Award, Sparkles, TrendingUp, 
-  Calendar, MapPin, Briefcase, Save, Lock, Unlock, User
+  Trophy, Target, Sparkles, Coins, ShoppingBag,
+  Calendar, MapPin, Briefcase, Save, Lock, Gift, User
 } from "lucide-react";
 import { toast } from "sonner";
 import { useSearchParams } from "react-router-dom";
@@ -25,21 +25,13 @@ interface Goal {
   deadline: string;
 }
 
-interface Challenge {
-  id: string;
-  title: string;
-  description: string;
-  xp: number;
-  progress: number;
-  total: number;
-}
-
-interface Reward {
-  id: string;
-  title: string;
-  description: string;
-  requiredLevel: number;
-  unlocked: boolean;
+interface StoreReward {
+  id: number;
+  nome: string;
+  valor: number;
+  nivelMinimo: number;
+  custoMoedas: number;
+  descricao: string;
   icon: string;
 }
 
@@ -104,83 +96,33 @@ const DashboardPerfil = () => {
     },
   ]);
 
-  const [challenges] = useState<Challenge[]>([
-    {
-      id: "1",
-      title: "Engajamento Semanal",
-      description: "Interagir no feed 5 vezes esta semana",
-      xp: 100,
-      progress: 3,
-      total: 5,
-    },
-    {
-      id: "2",
-      title: "Colaborador do Mês",
-      description: "Receber 10 reconhecimentos",
-      xp: 500,
-      progress: 7,
-      total: 10,
-    },
-    {
-      id: "3",
-      title: "Aprendiz Dedicado",
-      description: "Completar 3 cursos este mês",
-      xp: 300,
-      progress: 1,
-      total: 3,
-    },
+  // Moedas do usuário
+  const [userCoins, setUserCoins] = useState(850);
+
+  // Recompensas da loja (mesmas do módulo RH de Gamificação)
+  const [storeRewards] = useState<StoreReward[]>([
+    { id: 1, nome: "Vale-Presente R$50", valor: 50, nivelMinimo: 3, custoMoedas: 200, descricao: "Vale-presente para uso em lojas parceiras", icon: "🎁" },
+    { id: 2, nome: "Dia Extra de Férias", valor: 1, nivelMinimo: 5, custoMoedas: 500, descricao: "Um dia adicional de folga remunerada", icon: "🏖️" },
+    { id: 3, nome: "Vale-Presente R$100", valor: 100, nivelMinimo: 7, custoMoedas: 400, descricao: "Vale-presente premium para lojas parceiras", icon: "💳" },
+    { id: 4, nome: "Home Office Flexível", valor: 2, nivelMinimo: 8, custoMoedas: 350, descricao: "2 dias extras de home office por mês", icon: "🏠" },
+    { id: 5, nome: "Curso Profissional", valor: 500, nivelMinimo: 10, custoMoedas: 600, descricao: "Acesso a curso profissional de sua escolha", icon: "📚" },
+    { id: 6, nome: "Mentoria Executiva", valor: 0, nivelMinimo: 6, custoMoedas: 450, descricao: "Sessão de mentoria com executivo sênior", icon: "👔" },
+    { id: 7, nome: "Equipamento Premium", valor: 300, nivelMinimo: 9, custoMoedas: 800, descricao: "Upgrade de equipamento de trabalho", icon: "💻" },
+    { id: 8, nome: "Experiência Exclusiva", valor: 0, nivelMinimo: 12, custoMoedas: 1000, descricao: "Jantar ou experiência especial para você e acompanhante", icon: "✨" },
   ]);
 
-  const [rewards] = useState<Reward[]>([
-    {
-      id: "1",
-      title: "Badge Pioneiro",
-      description: "Primeiros 100 colaboradores",
-      requiredLevel: 5,
-      unlocked: true,
-      icon: "🏆",
-    },
-    {
-      id: "2",
-      title: "Mestre da Cultura",
-      description: "Alcançar nível 10",
-      requiredLevel: 10,
-      unlocked: false,
-      icon: "👑",
-    },
-    {
-      id: "3",
-      title: "Mentor Especialista",
-      description: "Mentorar 10 pessoas",
-      requiredLevel: 8,
-      unlocked: true,
-      icon: "🎓",
-    },
-    {
-      id: "4",
-      title: "Inovador",
-      description: "Completar 20 cursos",
-      requiredLevel: 12,
-      unlocked: false,
-      icon: "💡",
-    },
-    {
-      id: "5",
-      title: "Líder Comunitário",
-      description: "Organizar 5 eventos",
-      requiredLevel: 15,
-      unlocked: false,
-      icon: "⭐",
-    },
-    {
-      id: "6",
-      title: "Influenciador",
-      description: "100 posts com engajamento alto",
-      requiredLevel: 20,
-      unlocked: false,
-      icon: "🚀",
-    },
-  ]);
+  const handleRedeemReward = (reward: StoreReward) => {
+    if (currentLevel < reward.nivelMinimo) {
+      toast.error(`Você precisa ser nível ${reward.nivelMinimo} para resgatar esta recompensa`);
+      return;
+    }
+    if (userCoins < reward.custoMoedas) {
+      toast.error(`Você não tem moedas suficientes (necessário: ${reward.custoMoedas})`);
+      return;
+    }
+    setUserCoins(prev => prev - reward.custoMoedas);
+    toast.success(`🎉 ${reward.nome} resgatado com sucesso! Você será notificado em breve.`);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -259,9 +201,90 @@ const DashboardPerfil = () => {
             {/* Dashboard Tab */}
             <TabsContent value="dashboard" className="mt-6">
               <div className="grid lg:grid-cols-3 gap-6">
-                {/* Coluna Principal - Metas e Desafios */}
-                <div className="lg:col-span-2 space-y-6">
-                  {/* Metas Ativas */}
+                {/* Loja de Recompensas */}
+                <div className="lg:col-span-3 space-y-6">
+                  <Card className="shadow-lg border-l-4 border-l-accent">
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <CardTitle className="flex items-center gap-2">
+                            <ShoppingBag className="h-5 w-5 text-accent" />
+                            Loja de Recompensas
+                          </CardTitle>
+                          <CardDescription>
+                            Troque suas moedas por recompensas exclusivas
+                          </CardDescription>
+                        </div>
+                        <Badge className="gap-2 text-lg px-4 py-2 bg-accent/10 text-accent border-accent/30">
+                          <Coins className="h-5 w-5" />
+                          {userCoins} moedas
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {storeRewards.map((reward) => {
+                          const canAfford = userCoins >= reward.custoMoedas;
+                          const meetsLevel = currentLevel >= reward.nivelMinimo;
+                          const canRedeem = canAfford && meetsLevel;
+                          
+                          return (
+                            <Card 
+                              key={reward.id} 
+                              className={`hover:shadow-lg transition-all hover:-translate-y-1 ${
+                                !meetsLevel ? "opacity-60" : ""
+                              }`}
+                            >
+                              <CardContent className="p-4">
+                                <div className="text-center mb-4">
+                                  <span className="text-4xl">{reward.icon}</span>
+                                </div>
+                                <h3 className="font-bold text-center mb-2">{reward.nome}</h3>
+                                <p className="text-xs text-muted-foreground text-center mb-4 line-clamp-2">
+                                  {reward.descricao}
+                                </p>
+                                <div className="space-y-2 mb-4">
+                                  <div className="flex justify-between text-sm">
+                                    <span className="text-muted-foreground">Custo:</span>
+                                    <Badge variant={canAfford ? "default" : "secondary"} className="gap-1">
+                                      <Coins className="h-3 w-3" />
+                                      {reward.custoMoedas}
+                                    </Badge>
+                                  </div>
+                                  <div className="flex justify-between text-sm">
+                                    <span className="text-muted-foreground">Nível:</span>
+                                    <Badge variant={meetsLevel ? "default" : "secondary"} className="gap-1">
+                                      {meetsLevel ? (
+                                        <Trophy className="h-3 w-3" />
+                                      ) : (
+                                        <Lock className="h-3 w-3" />
+                                      )}
+                                      {reward.nivelMinimo}
+                                    </Badge>
+                                  </div>
+                                </div>
+                                <Button 
+                                  className="w-full gap-2" 
+                                  disabled={!canRedeem}
+                                  onClick={() => handleRedeemReward(reward)}
+                                >
+                                  <Gift className="h-4 w-4" />
+                                  {!meetsLevel 
+                                    ? `Nível ${reward.nivelMinimo}` 
+                                    : !canAfford 
+                                      ? "Moedas insuficientes" 
+                                      : "Resgatar"
+                                  }
+                                </Button>
+                              </CardContent>
+                            </Card>
+                          );
+                        })}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Minhas Metas */}
                   <Card className="shadow-lg">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -272,128 +295,35 @@ const DashboardPerfil = () => {
                         Acompanhe seu progresso nas metas de desenvolvimento
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-4">
-                      {goals.map((goal) => (
-                        <Card key={goal.id} className="hover:shadow-md transition-all">
-                          <CardContent className="p-4">
-                            <div className="flex items-start justify-between mb-3">
-                              <div className="flex-1">
-                                <h3 className="font-semibold mb-1">{goal.title}</h3>
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                  <Calendar className="h-3 w-3" />
-                                  <span>Prazo: {goal.deadline}</span>
+                    <CardContent>
+                      <div className="grid md:grid-cols-3 gap-4">
+                        {goals.map((goal) => (
+                          <Card key={goal.id} className="hover:shadow-md transition-all">
+                            <CardContent className="p-4">
+                              <div className="flex items-start justify-between mb-3">
+                                <div className="flex-1">
+                                  <h3 className="font-semibold mb-1">{goal.title}</h3>
+                                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                    <Calendar className="h-3 w-3" />
+                                    <span>Prazo: {goal.deadline}</span>
+                                  </div>
                                 </div>
+                                <Badge variant="secondary" className="gap-1">
+                                  <Trophy className="h-3 w-3" />
+                                  {goal.xp} XP
+                                </Badge>
                               </div>
-                              <Badge variant="secondary" className="gap-1">
-                                <Trophy className="h-3 w-3" />
-                                {goal.xp} XP
-                              </Badge>
-                            </div>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-sm">
-                                <span className="text-muted-foreground">Progresso</span>
-                                <span className="font-semibold">{goal.progress}%</span>
+                              <div className="space-y-2">
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-muted-foreground">Progresso</span>
+                                  <span className="font-semibold">{goal.progress}%</span>
+                                </div>
+                                <Progress value={goal.progress} className="h-2" />
                               </div>
-                              <Progress value={goal.progress} className="h-2" />
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </CardContent>
-                  </Card>
-
-                  {/* Desafios Ativos */}
-                  <Card className="shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <TrendingUp className="h-5 w-5 text-primary" />
-                        Desafios Ativos
-                      </CardTitle>
-                      <CardDescription>
-                        Complete desafios para ganhar XP extra
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      {challenges.map((challenge) => (
-                        <Card key={challenge.id} className="hover:shadow-md transition-all">
-                          <CardContent className="p-4">
-                            <div className="flex items-start justify-between mb-3">
-                              <div>
-                                <h3 className="font-semibold mb-1">{challenge.title}</h3>
-                                <p className="text-sm text-muted-foreground">{challenge.description}</p>
-                              </div>
-                              <Badge className="gap-1">
-                                <Trophy className="h-3 w-3" />
-                                +{challenge.xp} XP
-                              </Badge>
-                            </div>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-sm">
-                                <span className="text-muted-foreground">
-                                  {challenge.progress} de {challenge.total}
-                                </span>
-                                <span className="font-semibold">
-                                  {Math.round((challenge.progress / challenge.total) * 100)}%
-                                </span>
-                              </div>
-                              <Progress 
-                                value={(challenge.progress / challenge.total) * 100} 
-                                className="h-2" 
-                              />
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* Sidebar - Recompensas */}
-                <div className="space-y-6">
-                  <Card className="shadow-lg border-l-4 border-l-accent">
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Award className="h-5 w-5 text-accent" />
-                        Conquistas & Recompensas
-                      </CardTitle>
-                      <CardDescription>
-                        Desbloqueie conquistas conforme você evolui
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      {rewards.map((reward) => (
-                        <div
-                          key={reward.id}
-                          className={`p-4 rounded-lg border transition-all ${
-                            reward.unlocked
-                              ? "bg-accent/5 border-accent/30 hover:shadow-md"
-                              : "bg-muted/30 border-muted opacity-60"
-                          }`}
-                        >
-                          <div className="flex items-start gap-3">
-                            <div className="text-3xl">{reward.icon}</div>
-                            <div className="flex-1">
-                              <div className="flex items-start justify-between mb-1">
-                                <h4 className="font-semibold text-sm">{reward.title}</h4>
-                                {reward.unlocked ? (
-                                  <Unlock className="h-4 w-4 text-accent" />
-                                ) : (
-                                  <Lock className="h-4 w-4 text-muted-foreground" />
-                                )}
-                              </div>
-                              <p className="text-xs text-muted-foreground mb-2">
-                                {reward.description}
-                              </p>
-                              <Badge 
-                                variant={reward.unlocked ? "default" : "secondary"}
-                                className="text-xs"
-                              >
-                                {reward.unlocked ? "Desbloqueado" : `Nível ${reward.requiredLevel}`}
-                              </Badge>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
                     </CardContent>
                   </Card>
 
@@ -402,27 +332,24 @@ const DashboardPerfil = () => {
                     <CardHeader>
                       <CardTitle className="text-lg">Estatísticas</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">Conquistas</span>
-                        <span className="font-bold">
-                          {rewards.filter(r => r.unlocked).length}/{rewards.length}
-                        </span>
-                      </div>
-                      <Separator />
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">Metas Ativas</span>
-                        <span className="font-bold">{goals.length}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">Desafios em Andamento</span>
-                        <span className="font-bold">{challenges.length}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">Total de XP</span>
-                        <span className="font-bold text-accent">{currentXP} XP</span>
+                    <CardContent>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="text-center p-4 bg-muted/30 rounded-lg">
+                          <div className="text-3xl font-bold text-primary">{currentLevel}</div>
+                          <div className="text-sm text-muted-foreground">Nível Atual</div>
+                        </div>
+                        <div className="text-center p-4 bg-muted/30 rounded-lg">
+                          <div className="text-3xl font-bold text-accent">{currentXP}</div>
+                          <div className="text-sm text-muted-foreground">XP Total</div>
+                        </div>
+                        <div className="text-center p-4 bg-muted/30 rounded-lg">
+                          <div className="text-3xl font-bold text-primary">{userCoins}</div>
+                          <div className="text-sm text-muted-foreground">Moedas</div>
+                        </div>
+                        <div className="text-center p-4 bg-muted/30 rounded-lg">
+                          <div className="text-3xl font-bold text-accent">{goals.length}</div>
+                          <div className="text-sm text-muted-foreground">Metas Ativas</div>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
