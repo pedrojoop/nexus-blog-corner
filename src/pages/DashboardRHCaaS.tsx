@@ -8,7 +8,7 @@ import {
   Edit, Trash2, Target, MessageSquare, Send, Sparkles, Zap, Trophy,
   TrendingDown, DollarSign, Shield, ExternalLink, RotateCcw, Bell,
   Slack, Video, Settings2, CalendarClock, Brain, ChevronRight,
-  Award, Star, Flame
+  Award, Star, Flame, Cog
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -21,6 +21,7 @@ import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CulturalBaselineModal, CulturalBaseline } from "@/components/caas/CulturalBaselineModal";
 
 interface Ritual {
   id: number;
@@ -203,6 +204,8 @@ const DashboardRHCaaS = () => {
   const [manageDialogOpen, setManageDialogOpen] = useState(false);
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [correctiveDialogOpen, setCorrectiveDialogOpen] = useState(false);
+  const [baselineModalOpen, setBaselineModalOpen] = useState(false);
+  const [culturalBaseline, setCulturalBaseline] = useState<CulturalBaseline | null>(null);
   const [selectedRitual, setSelectedRitual] = useState<Ritual | null>(null);
   const [selectedAlert, setSelectedAlert] = useState<AIAlert | null>(null);
 
@@ -415,12 +418,86 @@ const DashboardRHCaaS = () => {
                     Automatize rituais culturais baseados em sinais de People Analytics para reduzir turnover
                   </p>
                 </div>
-                <Button size="lg" className="gap-2 shadow-lg hover:shadow-xl transition-all" onClick={() => setCreateDialogOpen(true)}>
-                  <Plus className="h-5 w-5" />
-                  Criar Novo Ritual
-                </Button>
+                <div className="flex gap-3">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="gap-2 border-primary/30 hover:bg-primary/5"
+                    onClick={() => setBaselineModalOpen(true)}
+                  >
+                    <Cog className="h-5 w-5" />
+                    {culturalBaseline ? "Editar Baseline" : "Configurar Baseline"}
+                  </Button>
+                  <Button size="lg" className="gap-2 shadow-lg hover:shadow-xl transition-all" onClick={() => setCreateDialogOpen(true)}>
+                    <Plus className="h-5 w-5" />
+                    Criar Novo Ritual
+                  </Button>
+                </div>
               </div>
             </div>
+
+            {/* Baseline Status Banner */}
+            {!culturalBaseline && (
+              <Card className="border-amber-500/50 bg-gradient-to-r from-amber-500/10 to-orange-500/10">
+                <CardContent className="py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-amber-500/20 rounded-lg animate-pulse">
+                        <Cog className="h-5 w-5 text-amber-600" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-amber-700 dark:text-amber-400">
+                          Configure sua Baseline Cultural
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Complete o questionário para calibrar a IA às necessidades da sua organização
+                        </p>
+                      </div>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      className="border-amber-500 text-amber-700 hover:bg-amber-500/10"
+                      onClick={() => setBaselineModalOpen(true)}
+                    >
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      Iniciar Configuração
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {culturalBaseline && (
+              <Card className="border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 to-cyan-500/5">
+                <CardContent className="py-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-emerald-500/20 rounded-lg">
+                        <CheckCircle className="h-5 w-5 text-emerald-600" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-emerald-700 dark:text-emerald-400">
+                          Baseline Cultural Configurada
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          1:1s {culturalBaseline.oneOnOneFrequency === 'weekly' ? 'Semanais' : culturalBaseline.oneOnOneFrequency === 'biweekly' ? 'Quinzenais' : 'Mensais'} • 
+                          {' '}{culturalBaseline.coreValues.length} valores core • 
+                          Limite de comunicação: {culturalBaseline.communicationLimit}
+                        </p>
+                      </div>
+                    </div>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={() => setBaselineModalOpen(true)}
+                    >
+                      <Edit className="h-4 w-4 mr-1" />
+                      Editar
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Métricas Principais */}
             <div
@@ -1380,6 +1457,14 @@ const DashboardRHCaaS = () => {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Cultural Baseline Configuration Modal */}
+      <CulturalBaselineModal
+        open={baselineModalOpen}
+        onOpenChange={setBaselineModalOpen}
+        onComplete={(baseline) => setCulturalBaseline(baseline)}
+        existingBaseline={culturalBaseline}
+      />
     </DashboardLayout>
   );
 };
