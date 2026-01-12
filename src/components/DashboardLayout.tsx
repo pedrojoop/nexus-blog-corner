@@ -26,6 +26,7 @@ const menuItems = [
   { icon: FileText, label: "Documentos", path: "/dashboard/documentos" },
   { icon: Users, label: "Pessoas", path: "/dashboard/pessoas" },
   { icon: BookOpen, label: "Treinamento", path: "/dashboard/treinamento" },
+  { icon: BarChart3, label: "Analytics", path: "/dashboard/analytics" },
   { 
     icon: Briefcase, 
     label: "RH", 
