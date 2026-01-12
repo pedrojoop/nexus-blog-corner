@@ -207,7 +207,7 @@ const DashboardAnalytics = () => {
 
         {/* Tabs Navigation */}
         <Tabs defaultValue="gestao" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5 h-12">
+          <TabsList className="grid w-full grid-cols-4 h-12">
             <TabsTrigger value="gestao" className="flex items-center gap-2">
               <PieChart className="h-4 w-4" />
               Analytics de Gestão
@@ -223,10 +223,6 @@ const DashboardAnalytics = () => {
             <TabsTrigger value="cultura" className="flex items-center gap-2">
               <Target className="h-4 w-4" />
               Cultura e Eventos
-            </TabsTrigger>
-            <TabsTrigger value="roi" className="flex items-center gap-2">
-              <DollarSign className="h-4 w-4" />
-              Impacto (ROI)
             </TabsTrigger>
           </TabsList>
 
@@ -371,7 +367,7 @@ const DashboardAnalytics = () => {
 
           {/* Seção 2: People Analytics */}
           <TabsContent value="people" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Humor Médio */}
               <Card className="glass-card">
                 <CardHeader className="pb-2">
@@ -410,25 +406,6 @@ const DashboardAnalytics = () => {
                 trendValue="+5%"
                 color="primary"
               />
-
-              {/* Alertas Ativos */}
-              <Card className="glass-card border-destructive/30">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <AlertTriangle className="h-4 w-4 text-destructive" />
-                    Alertas Ativos
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl font-bold text-destructive">{alertasAtivos}</span>
-                    <div>
-                      <p className="text-xs text-muted-foreground">Colaboradores precisando de atenção</p>
-                      <Badge variant="destructive" className="mt-1">Prioridade Alta</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -716,132 +693,6 @@ const DashboardAnalytics = () => {
                 </CardContent>
               </Card>
             </div>
-          </TabsContent>
-
-          {/* Seção 5: Relatório de Impacto (ROI) */}
-          <TabsContent value="roi" className="space-y-6">
-            {/* Cards de Destaque */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className="glass-card-tech col-span-1 md:col-span-1 bg-gradient-to-br from-primary/10 to-accent/5">
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <DollarSign className="h-10 w-10 text-primary" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">Economia Estimada</p>
-                      <p className="text-4xl font-bold text-primary">
-                        R$ {(economiaEstimada / 1000).toFixed(0)}k
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">Em custos de reposição</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card-tech col-span-1 md:col-span-1 bg-gradient-to-br from-accent/10 to-primary/5">
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <TrendingUp className="h-10 w-10 text-accent" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">ROI do Programa</p>
-                      <p className="text-4xl font-bold text-accent">{roiPrograma}x</p>
-                      <p className="text-xs text-muted-foreground mt-1">Retorno sobre investimento</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card-tech col-span-1 md:col-span-1 bg-gradient-to-br from-green-500/10 to-primary/5">
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <TrendingDown className="h-10 w-10 text-green-500" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">Redução de Turnover</p>
-                      <p className="text-4xl font-bold text-green-500">-{reducaoTurnover}%</p>
-                      <p className="text-xs text-muted-foreground mt-1">Comparado ao período anterior</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Gráfico Comparativo de Turnover */}
-            <Card className="glass-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <BarChart3 className="h-5 w-5 text-primary" />
-                  Evolução do Turnover
-                </CardTitle>
-                <CardDescription>Comparativo: Período atual vs. anterior</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[300px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={turnoverData}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                      <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" />
-                      <YAxis stroke="hsl(var(--muted-foreground))" />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: "hsl(var(--card))",
-                          border: "1px solid hsl(var(--border))",
-                          borderRadius: "8px"
-                        }}
-                      />
-                      <Legend />
-                      <Bar dataKey="anterior" name="Período Anterior" fill="hsl(var(--muted-foreground))" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="atual" name="Período Atual" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Insights de ROI */}
-            <Card className="glass-card">
-              <CardHeader>
-                <CardTitle>Insights de Impacto</CardTitle>
-                <CardDescription>Análise detalhada do retorno sobre investimento</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    {
-                      titulo: "Custo Médio de Reposição Evitado",
-                      valor: "R$ 45.000",
-                      desc: "Por colaborador retido",
-                      icon: DollarSign
-                    },
-                    {
-                      titulo: "Colaboradores Retidos",
-                      valor: "19",
-                      desc: "Que teriam saído sem intervenção",
-                      icon: Users
-                    },
-                    {
-                      titulo: "Tempo Médio até Intervenção",
-                      valor: "3.2 dias",
-                      desc: "Da detecção ao ritual",
-                      icon: Activity
-                    },
-                    {
-                      titulo: "Taxa de Sucesso de Intervenções",
-                      valor: "82%",
-                      desc: "Retenção após ritual CaaS",
-                      icon: Target
-                    },
-                  ].map((insight) => (
-                    <div key={insight.titulo} className="p-4 rounded-xl bg-muted/30 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <insight.icon className="h-5 w-5 text-primary" />
-                        <span className="text-sm text-muted-foreground">{insight.titulo}</span>
-                      </div>
-                      <p className="text-2xl font-bold text-foreground">{insight.valor}</p>
-                      <p className="text-xs text-muted-foreground">{insight.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
           </TabsContent>
         </Tabs>
       </div>
