@@ -22,43 +22,22 @@ import {
   Award
 } from "lucide-react";
 import { useState } from "react";
+import { NivelModal, Nivel } from "@/components/gamificacao/NivelModal";
+import { RecompensaModal, Recompensa } from "@/components/gamificacao/RecompensaModal";
+import { MissaoModal, Meta } from "@/components/gamificacao/MissaoModal";
+import { DeleteConfirmModal } from "@/components/gamificacao/DeleteConfirmModal";
+import { toast } from "@/hooks/use-toast";
 
 type TabType = "jornada" | "marketplace" | "missoes";
 type FilterType = "todas" | "global" | "departamento";
-
-interface Nivel {
-  nivel: number;
-  xpNecessario: number;
-  nome: string;
-  icone: "bronze" | "silver" | "gold" | "platinum" | "diamond";
-}
-
-interface Recompensa {
-  id: number;
-  nome: string;
-  valor: number;
-  xpCusto: number;
-  nivelMinimo: number;
-  descricao: string;
-  tipo: "monetario" | "beneficio" | "experiencia";
-}
-
-interface Meta {
-  id: number;
-  titulo: string;
-  descricao: string;
-  escopo: "GLOBAL" | "DEPARTAMENTO";
-  xp: number;
-  prazo: string;
-  progresso: number;
-}
 
 const DashboardRHGamificacao = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const [activeTab, setActiveTab] = useState<TabType>("jornada");
   const [filtroMissao, setFiltroMissao] = useState<FilterType>("todas");
 
-  const [niveis] = useState<Nivel[]>([
+  // Estados para os dados
+  const [niveis, setNiveis] = useState<Nivel[]>([
     { nivel: 1, xpNecessario: 0, nome: "Iniciante", icone: "bronze" },
     { nivel: 2, xpNecessario: 100, nome: "Aprendiz", icone: "bronze" },
     { nivel: 3, xpNecessario: 250, nome: "Explorador", icone: "bronze" },
@@ -71,7 +50,7 @@ const DashboardRHGamificacao = () => {
     { nivel: 10, xpNecessario: 7000, nome: "Supremo", icone: "diamond" },
   ]);
 
-  const [recompensas] = useState<Recompensa[]>([
+  const [recompensas, setRecompensas] = useState<Recompensa[]>([
     { id: 1, nome: "Vale-Presente R$50", valor: 50, xpCusto: 500, nivelMinimo: 3, descricao: "Crédito para usar em lojas parceiras", tipo: "monetario" },
     { id: 2, nome: "Dia Extra de Férias", valor: 1, xpCusto: 1000, nivelMinimo: 5, descricao: "Um dia adicional de descanso merecido", tipo: "beneficio" },
     { id: 3, nome: "Vale-Presente R$100", valor: 100, xpCusto: 800, nivelMinimo: 7, descricao: "Crédito premium para lojas parceiras", tipo: "monetario" },
@@ -80,13 +59,109 @@ const DashboardRHGamificacao = () => {
     { id: 6, nome: "Mentoria Executiva", valor: 0, xpCusto: 3000, nivelMinimo: 10, descricao: "Sessão de mentoria com liderança executiva", tipo: "experiencia" },
   ]);
 
-  const [metas] = useState<Meta[]>([
+  const [metas, setMetas] = useState<Meta[]>([
     { id: 1, titulo: "Completar 5 projetos", descricao: "Finalize 5 projetos com sucesso", escopo: "GLOBAL", xp: 500, prazo: "31/12/2025", progresso: 60 },
     { id: 2, titulo: "Participar de eventos", descricao: "Participe de 3 eventos corporativos", escopo: "DEPARTAMENTO", xp: 300, prazo: "20/12/2025", progresso: 33 },
     { id: 3, titulo: "Mentorar colaboradores", descricao: "Atue como mentor de novos membros", escopo: "GLOBAL", xp: 400, prazo: "15/01/2026", progresso: 0 },
     { id: 4, titulo: "Certificação Técnica", descricao: "Obtenha uma nova certificação", escopo: "DEPARTAMENTO", xp: 600, prazo: "28/02/2026", progresso: 25 },
     { id: 5, titulo: "Inovação do Mês", descricao: "Proponha uma melhoria implementável", escopo: "GLOBAL", xp: 800, prazo: "31/01/2026", progresso: 0 },
   ]);
+
+  // Estados para modais
+  const [nivelModalOpen, setNivelModalOpen] = useState(false);
+  const [recompensaModalOpen, setRecompensaModalOpen] = useState(false);
+  const [missaoModalOpen, setMissaoModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const [editingNivel, setEditingNivel] = useState<Nivel | null>(null);
+  const [editingRecompensa, setEditingRecompensa] = useState<Recompensa | null>(null);
+  const [editingMeta, setEditingMeta] = useState<Meta | null>(null);
+  const [deleteItem, setDeleteItem] = useState<{ type: "nível" | "recompensa" | "missão"; name: string; id: number | null } | null>(null);
+
+  // Handlers de Níveis
+  const handleSaveNivel = (nivel: Nivel) => {
+    if (editingNivel) {
+      setNiveis(niveis.map(n => n.nivel === nivel.nivel ? nivel : n));
+      toast({ title: "Nível atualizado", description: `"${nivel.nome}" foi salvo com sucesso.` });
+    } else {
+      setNiveis([...niveis, nivel].sort((a, b) => a.nivel - b.nivel));
+      toast({ title: "Nível criado", description: `"${nivel.nome}" foi adicionado com sucesso.` });
+    }
+    setEditingNivel(null);
+  };
+
+  const handleEditNivel = (nivel: Nivel) => {
+    setEditingNivel(nivel);
+    setNivelModalOpen(true);
+  };
+
+  const handleDeleteNivel = (nivel: Nivel) => {
+    setDeleteItem({ type: "nível", name: nivel.nome, id: nivel.nivel });
+    setDeleteModalOpen(true);
+  };
+
+  // Handlers de Recompensas
+  const handleSaveRecompensa = (recompensa: Recompensa) => {
+    if (editingRecompensa) {
+      setRecompensas(recompensas.map(r => r.id === recompensa.id ? recompensa : r));
+      toast({ title: "Recompensa atualizada", description: `"${recompensa.nome}" foi salva com sucesso.` });
+    } else {
+      setRecompensas([...recompensas, recompensa]);
+      toast({ title: "Recompensa criada", description: `"${recompensa.nome}" foi adicionada com sucesso.` });
+    }
+    setEditingRecompensa(null);
+  };
+
+  const handleEditRecompensa = (recompensa: Recompensa) => {
+    setEditingRecompensa(recompensa);
+    setRecompensaModalOpen(true);
+  };
+
+  const handleDeleteRecompensa = (recompensa: Recompensa) => {
+    setDeleteItem({ type: "recompensa", name: recompensa.nome, id: recompensa.id });
+    setDeleteModalOpen(true);
+  };
+
+  // Handlers de Missões
+  const handleSaveMeta = (meta: Meta) => {
+    if (editingMeta) {
+      setMetas(metas.map(m => m.id === meta.id ? meta : m));
+      toast({ title: "Missão atualizada", description: `"${meta.titulo}" foi salva com sucesso.` });
+    } else {
+      setMetas([...metas, meta]);
+      toast({ title: "Missão criada", description: `"${meta.titulo}" foi adicionada com sucesso.` });
+    }
+    setEditingMeta(null);
+  };
+
+  const handleEditMeta = (meta: Meta) => {
+    setEditingMeta(meta);
+    setMissaoModalOpen(true);
+  };
+
+  const handleDeleteMeta = (meta: Meta) => {
+    setDeleteItem({ type: "missão", name: meta.titulo, id: meta.id });
+    setDeleteModalOpen(true);
+  };
+
+  // Handler de confirmação de exclusão
+  const handleConfirmDelete = () => {
+    if (!deleteItem) return;
+
+    if (deleteItem.type === "nível" && deleteItem.id !== null) {
+      setNiveis(niveis.filter(n => n.nivel !== deleteItem.id));
+      toast({ title: "Nível excluído", description: `"${deleteItem.name}" foi removido.`, variant: "destructive" });
+    } else if (deleteItem.type === "recompensa" && deleteItem.id !== null) {
+      setRecompensas(recompensas.filter(r => r.id !== deleteItem.id));
+      toast({ title: "Recompensa excluída", description: `"${deleteItem.name}" foi removida.`, variant: "destructive" });
+    } else if (deleteItem.type === "missão" && deleteItem.id !== null) {
+      setMetas(metas.filter(m => m.id !== deleteItem.id));
+      toast({ title: "Missão excluída", description: `"${deleteItem.name}" foi removida.`, variant: "destructive" });
+    }
+
+    setDeleteItem(null);
+    setDeleteModalOpen(false);
+  };
 
   const getIconeNivel = (icone: string) => {
     switch (icone) {
@@ -199,7 +274,13 @@ const DashboardRHGamificacao = () => {
                   <Trophy className="h-6 w-6 text-primary" />
                   Timeline de Progressão
                 </h2>
-                <Button className="btn-tech gap-2">
+                <Button 
+                  className="btn-tech gap-2"
+                  onClick={() => {
+                    setEditingNivel(null);
+                    setNivelModalOpen(true);
+                  }}
+                >
                   <Plus className="h-4 w-4" />
                   Adicionar Novo Nível
                 </Button>
@@ -258,10 +339,20 @@ const DashboardRHGamificacao = () => {
 
                         {/* Ações */}
                         <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl hover:bg-primary/20">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="h-10 w-10 rounded-xl hover:bg-primary/20"
+                            onClick={() => handleEditNivel(nivel)}
+                          >
                             <Edit className="h-4 w-4" />
                           </Button>
-                          <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl hover:bg-destructive/20">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="h-10 w-10 rounded-xl hover:bg-destructive/20"
+                            onClick={() => handleDeleteNivel(nivel)}
+                          >
                             <Trash2 className="h-4 w-4 text-destructive" />
                           </Button>
                         </div>
@@ -281,7 +372,13 @@ const DashboardRHGamificacao = () => {
                   <Gift className="h-6 w-6 text-accent" />
                   Vitrine de Recompensas
                 </h2>
-                <Button className="btn-tech gap-2">
+                <Button 
+                  className="btn-tech gap-2"
+                  onClick={() => {
+                    setEditingRecompensa(null);
+                    setRecompensaModalOpen(true);
+                  }}
+                >
                   <Plus className="h-4 w-4" />
                   Nova Recompensa
                 </Button>
@@ -322,6 +419,7 @@ const DashboardRHGamificacao = () => {
                             variant="secondary" 
                             size="icon" 
                             className="h-9 w-9 rounded-xl bg-card/80 backdrop-blur-sm hover:bg-card"
+                            onClick={() => handleEditRecompensa(recompensa)}
                           >
                             <Edit className="h-4 w-4" />
                           </Button>
@@ -329,6 +427,7 @@ const DashboardRHGamificacao = () => {
                             variant="secondary" 
                             size="icon" 
                             className="h-9 w-9 rounded-xl bg-card/80 backdrop-blur-sm hover:bg-destructive hover:text-destructive-foreground"
+                            onClick={() => handleDeleteRecompensa(recompensa)}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
@@ -432,7 +531,13 @@ const DashboardRHGamificacao = () => {
                     </button>
                   </div>
 
-                  <Button className="btn-tech gap-2">
+                  <Button 
+                    className="btn-tech gap-2"
+                    onClick={() => {
+                      setEditingMeta(null);
+                      setMissaoModalOpen(true);
+                    }}
+                  >
                     <Plus className="h-4 w-4" />
                     Nova Missão
                   </Button>
@@ -443,7 +548,7 @@ const DashboardRHGamificacao = () => {
                 {metasFiltradas.map((meta) => (
                   <div
                     key={meta.id}
-                    className="group glass-card rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-transparent hover:border-primary/30"
+                    className="group glass-card rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-transparent hover:border-primary/30 relative"
                   >
                     {/* Ticket Header */}
                     <div className="flex items-start gap-4 mb-4">
@@ -496,10 +601,20 @@ const DashboardRHGamificacao = () => {
 
                       {/* Ações */}
                       <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg hover:bg-primary/20">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-8 w-8 rounded-lg hover:bg-primary/20"
+                          onClick={() => handleEditMeta(meta)}
+                        >
                           <Edit className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg hover:bg-destructive/20">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-8 w-8 rounded-lg hover:bg-destructive/20"
+                          onClick={() => handleDeleteMeta(meta)}
+                        >
                           <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
                       </div>
@@ -531,6 +646,54 @@ const DashboardRHGamificacao = () => {
           )}
         </div>
       </div>
+
+      {/* Modais */}
+      <NivelModal
+        open={nivelModalOpen}
+        onClose={() => {
+          setNivelModalOpen(false);
+          setEditingNivel(null);
+        }}
+        onSave={handleSaveNivel}
+        nivel={editingNivel}
+        isEditing={!!editingNivel}
+        nextNivelNumber={niveis.length > 0 ? Math.max(...niveis.map(n => n.nivel)) + 1 : 1}
+      />
+
+      <RecompensaModal
+        open={recompensaModalOpen}
+        onClose={() => {
+          setRecompensaModalOpen(false);
+          setEditingRecompensa(null);
+        }}
+        onSave={handleSaveRecompensa}
+        recompensa={editingRecompensa}
+        isEditing={!!editingRecompensa}
+        nextId={recompensas.length > 0 ? Math.max(...recompensas.map(r => r.id)) + 1 : 1}
+      />
+
+      <MissaoModal
+        open={missaoModalOpen}
+        onClose={() => {
+          setMissaoModalOpen(false);
+          setEditingMeta(null);
+        }}
+        onSave={handleSaveMeta}
+        meta={editingMeta}
+        isEditing={!!editingMeta}
+        nextId={metas.length > 0 ? Math.max(...metas.map(m => m.id)) + 1 : 1}
+      />
+
+      <DeleteConfirmModal
+        open={deleteModalOpen}
+        onClose={() => {
+          setDeleteModalOpen(false);
+          setDeleteItem(null);
+        }}
+        onConfirm={handleConfirmDelete}
+        itemName={deleteItem?.name || ""}
+        itemType={deleteItem?.type || "nível"}
+      />
     </DashboardLayout>
   );
 };
