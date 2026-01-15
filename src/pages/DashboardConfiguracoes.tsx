@@ -4,6 +4,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import DepartmentManagement from "@/components/settings/DepartmentManagement";
 import UserManagement from "@/components/settings/UserManagement";
 import PermissionsManagement from "@/components/settings/PermissionsManagement";
+import ThemeCustomization from "@/components/settings/ThemeCustomization";
+import { Building2, Users, Shield, Palette } from "lucide-react";
 
 const DashboardConfiguracoes = () => {
   const headerSection = useScrollAnimation();
@@ -16,10 +18,23 @@ const DashboardConfiguracoes = () => {
       </div>
 
       <Tabs defaultValue="departments" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="departments">Departamentos</TabsTrigger>
-          <TabsTrigger value="users">Usuários</TabsTrigger>
-          <TabsTrigger value="permissions">Cargos</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4 bg-secondary/30 p-1 rounded-xl">
+          <TabsTrigger value="departments" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
+            <Building2 className="w-4 h-4" />
+            <span className="hidden sm:inline">Departamentos</span>
+          </TabsTrigger>
+          <TabsTrigger value="users" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
+            <Users className="w-4 h-4" />
+            <span className="hidden sm:inline">Usuários</span>
+          </TabsTrigger>
+          <TabsTrigger value="permissions" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
+            <Shield className="w-4 h-4" />
+            <span className="hidden sm:inline">Cargos</span>
+          </TabsTrigger>
+          <TabsTrigger value="customization" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
+            <Palette className="w-4 h-4" />
+            <span className="hidden sm:inline">Personalização</span>
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="departments" className="space-y-4">
@@ -32,6 +47,10 @@ const DashboardConfiguracoes = () => {
 
         <TabsContent value="permissions" className="space-y-4">
           <PermissionsManagement />
+        </TabsContent>
+
+        <TabsContent value="customization" className="space-y-4">
+          <ThemeCustomization />
         </TabsContent>
       </Tabs>
     </DashboardLayout>
