@@ -20,6 +20,7 @@ import RetencaoTalentosEstrategias2025 from "./pages/blog/RetencaoTalentosEstrat
 import CulturaOrganizacionalROI2025 from "./pages/blog/CulturaOrganizacionalROI2025";
 import Dashboard from "./pages/Dashboard";
 import DashboardChat from "./pages/DashboardChat";
+import DashboardVideoCall from "./pages/DashboardVideoCall";
 import DashboardEventos from "./pages/DashboardEventos";
 import DashboardDocumentos from "./pages/DashboardDocumentos";
 import DashboardPessoas from "./pages/DashboardPessoas";
@@ -58,6 +59,7 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/chat" element={<DashboardChat />} />
+          <Route path="/dashboard/videocall" element={<DashboardVideoCall />} />
           <Route path="/dashboard/eventos" element={<DashboardEventos />} />
           <Route path="/dashboard/documentos" element={<DashboardDocumentos />} />
           <Route path="/dashboard/pessoas" element={<DashboardPessoas />} />
