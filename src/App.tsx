@@ -33,6 +33,7 @@ import DashboardRHCaaS from "./pages/DashboardRHCaaS";
 import DashboardTreinamento from "./pages/DashboardTreinamento";
 import DashboardPerfil from "./pages/DashboardPerfil";
 import DashboardAnalytics from "./pages/DashboardAnalytics";
+import DashboardPerformance from "./pages/DashboardPerformance";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/dashboard/rh/caas" element={<DashboardRHCaaS />} />
           <Route path="/dashboard/perfil" element={<DashboardPerfil />} />
           <Route path="/dashboard/treinamento" element={<DashboardTreinamento />} />
+          <Route path="/dashboard/performance" element={<DashboardPerformance />} />
           <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
           <Route path="/dashboard/configuracoes" element={<DashboardConfiguracoes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
