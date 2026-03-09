@@ -29,7 +29,7 @@ const DashboardConfiguracoes = () => {
           </TabsTrigger>
           <TabsTrigger value="permissions" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
             <Shield className="w-4 h-4" />
-            <span className="hidden sm:inline">Cargos</span>
+            <span className="hidden sm:inline">Cargos e Permissões</span>
           </TabsTrigger>
           <TabsTrigger value="customization" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
             <Palette className="w-4 h-4" />
