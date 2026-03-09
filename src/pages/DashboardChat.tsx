@@ -28,6 +28,7 @@ interface Message {
 
 const DashboardChat = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedName, setSelectedName] = useState("");
   const [selectedOnline, setSelectedOnline] = useState<boolean | undefined>(false);
