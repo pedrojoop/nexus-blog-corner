@@ -31,6 +31,7 @@ import DashboardRHGamificacao from "./pages/DashboardRHGamificacao";
 import DashboardRHLMS from "./pages/DashboardRHLMS";
 import DashboardRHCaaS from "./pages/DashboardRHCaaS";
 import DashboardTreinamento from "./pages/DashboardTreinamento";
+import DashboardRHJornadas from "./pages/DashboardRHJornadas";
 import DashboardPerfil from "./pages/DashboardPerfil";
 import DashboardAnalytics from "./pages/DashboardAnalytics";
 import DashboardPerformance from "./pages/DashboardPerformance";
