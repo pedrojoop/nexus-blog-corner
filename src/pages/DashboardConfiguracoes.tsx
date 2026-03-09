@@ -17,7 +17,7 @@ const DashboardConfiguracoes = () => {
         <p className="text-muted-foreground">Gerencie as configurações da plataforma</p>
       </div>
 
-      <Tabs defaultValue="departments" className="space-y-6">
+      <Tabs defaultValue="permissions" className="space-y-6">
         <TabsList className="grid w-full grid-cols-4 bg-secondary/30 p-1 rounded-xl">
           <TabsTrigger value="departments" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
             <Building2 className="w-4 h-4" />
@@ -29,7 +29,7 @@ const DashboardConfiguracoes = () => {
           </TabsTrigger>
           <TabsTrigger value="permissions" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
             <Shield className="w-4 h-4" />
-            <span className="hidden sm:inline">Cargos</span>
+            <span className="hidden sm:inline">Cargos e Permissões</span>
           </TabsTrigger>
           <TabsTrigger value="customization" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
             <Palette className="w-4 h-4" />
