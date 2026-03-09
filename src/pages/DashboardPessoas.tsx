@@ -289,7 +289,7 @@ const DashboardPessoas = () => {
             </>
           ) : (
             /* Org Chart View */
-            <div className="bg-card/60 dark:bg-card/40 backdrop-blur-xl border border-border/40 dark:border-white/10 rounded-3xl overflow-hidden">
+            <div className="bg-muted/30 border border-border/40 rounded-2xl overflow-hidden">
               <OrgChartView data={orgChartData} />
             </div>
           )}
