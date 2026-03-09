@@ -31,6 +31,7 @@ import DashboardRHGamificacao from "./pages/DashboardRHGamificacao";
 import DashboardRHLMS from "./pages/DashboardRHLMS";
 import DashboardRHCaaS from "./pages/DashboardRHCaaS";
 import DashboardTreinamento from "./pages/DashboardTreinamento";
+import DashboardRHJornadas from "./pages/DashboardRHJornadas";
 import DashboardPerfil from "./pages/DashboardPerfil";
 import DashboardAnalytics from "./pages/DashboardAnalytics";
 import DashboardPerformance from "./pages/DashboardPerformance";
@@ -69,6 +70,7 @@ const App = () => (
           <Route path="/dashboard/rh/gamificacao" element={<DashboardRHGamificacao />} />
           <Route path="/dashboard/rh/lms" element={<DashboardRHLMS />} />
           <Route path="/dashboard/rh/caas" element={<DashboardRHCaaS />} />
+          <Route path="/dashboard/rh/jornadas" element={<DashboardRHJornadas />} />
           <Route path="/dashboard/perfil" element={<DashboardPerfil />} />
           <Route path="/dashboard/treinamento" element={<DashboardTreinamento />} />
           <Route path="/dashboard/performance" element={<DashboardPerformance />} />

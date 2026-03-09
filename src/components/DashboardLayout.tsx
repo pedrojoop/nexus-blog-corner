@@ -34,6 +34,7 @@ const menuItems = [
     path: "/dashboard/rh",
     submenu: [
       { label: "IA de Cultura e Engajamento", path: "/dashboard/rh/ia-cultura" },
+      { label: "Jornadas (Onboarding)", path: "/dashboard/rh/jornadas" },
       { label: "Treinamentos (LMS)", path: "/dashboard/rh/lms" },
       { label: "Culture-as-a-Service", path: "/dashboard/rh/caas" },
       { label: "Gamificação", path: "/dashboard/rh/gamificacao" },
