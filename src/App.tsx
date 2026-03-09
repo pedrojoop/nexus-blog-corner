@@ -33,6 +33,7 @@ import DashboardRHCaaS from "./pages/DashboardRHCaaS";
 import DashboardTreinamento from "./pages/DashboardTreinamento";
 import DashboardPerfil from "./pages/DashboardPerfil";
 import DashboardAnalytics from "./pages/DashboardAnalytics";
+import DashboardPerformance from "./pages/DashboardPerformance";
 
 const queryClient = new QueryClient();
 
