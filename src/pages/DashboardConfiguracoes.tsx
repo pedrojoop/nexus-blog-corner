@@ -17,7 +17,7 @@ const DashboardConfiguracoes = () => {
         <p className="text-muted-foreground">Gerencie as configurações da plataforma</p>
       </div>
 
-      <Tabs defaultValue="departments" className="space-y-6">
+      <Tabs defaultValue="permissions" className="space-y-6">
         <TabsList className="grid w-full grid-cols-4 bg-secondary/30 p-1 rounded-xl">
           <TabsTrigger value="departments" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg transition-all">
             <Building2 className="w-4 h-4" />
