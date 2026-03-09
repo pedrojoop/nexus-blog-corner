@@ -275,6 +275,7 @@ const DashboardChat = () => {
       title: "Chamada de vídeo",
       description: `Iniciando chamada com ${selectedName}...`,
     });
+    navigate("/dashboard/video-call");
   };
 
   const isGroup = selectedId?.startsWith("proj") || selectedId === "general";
