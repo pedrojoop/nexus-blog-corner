@@ -98,29 +98,19 @@ const DashboardPessoas = () => {
   const orgChartData = {
     name: "Pedro Lima",
     role: "CEO & Founder",
-    department: "TI",
+    department: "Diretoria",
     initials: "PL",
     status: 'online' as const,
     children: [
       {
         name: "Lucas Mendes",
         role: "CTO",
-        department: "TI",
+        department: "Tecnologia",
         initials: "LM",
         status: 'meeting' as const,
         children: [
-          {
-            name: "Carlos Oliveira",
-            role: "Tech Lead",
-            department: "TI",
-            initials: "CO",
-            status: 'online' as const,
-            children: [
-              { name: "Rafael Santos", role: "Desenvolvedor Sr", department: "TI", initials: "RS", status: 'online' as const },
-              { name: "Juliana Ferreira", role: "UX Designer", department: "TI", initials: "JF", status: 'meeting' as const },
-            ]
-          },
-          { name: "Marina Costa", role: "Product Manager", department: "TI", initials: "MC", status: 'offline' as const },
+          { name: "Carlos Dev", role: "Senior Developer", department: "Tecnologia", initials: "CD", status: 'online' as const },
+          { name: "Maria QA", role: "QA Engineer", department: "Tecnologia", initials: "MQ", status: 'offline' as const },
         ]
       },
       {
@@ -129,7 +119,6 @@ const DashboardPessoas = () => {
         department: "RH",
         initials: "AS",
         status: 'online' as const,
-        children: []
       },
       {
         name: "Bruno Almeida",
@@ -137,7 +126,6 @@ const DashboardPessoas = () => {
         department: "Vendas",
         initials: "BA",
         status: 'online' as const,
-        children: []
       },
     ]
   };
