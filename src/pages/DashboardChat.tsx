@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MessageCircle } from "lucide-react";
@@ -27,6 +28,7 @@ interface Message {
 
 const DashboardChat = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedName, setSelectedName] = useState("");
   const [selectedOnline, setSelectedOnline] = useState<boolean | undefined>(false);
@@ -273,6 +275,7 @@ const DashboardChat = () => {
       title: "Chamada de vídeo",
       description: `Iniciando chamada com ${selectedName}...`,
     });
+    navigate("/dashboard/video-call");
   };
 
   const isGroup = selectedId?.startsWith("proj") || selectedId === "general";
