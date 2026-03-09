@@ -25,6 +25,7 @@ const menuItems = [
   { icon: Calendar, label: "Eventos", path: "/dashboard/eventos" },
   { icon: FileText, label: "Documentos", path: "/dashboard/documentos" },
   { icon: Users, label: "Pessoas", path: "/dashboard/pessoas" },
+  { icon: Target, label: "Performance", path: "/dashboard/performance" },
   { icon: BookOpen, label: "Treinamento", path: "/dashboard/treinamento" },
   { icon: BarChart3, label: "Analytics", path: "/dashboard/analytics" },
   { 
