@@ -9,8 +9,9 @@ import { Badge } from "@/components/ui/badge";
 import {
   Rocket, Users, Clock, AlertTriangle, CheckCircle2, Circle,
   Sparkles, BookOpen, ShieldCheck, CalendarDays, MessageSquare,
-  Lock, ExternalLink, Award,
+  Lock, ExternalLink, Award, Layers,
 } from "lucide-react";
+import TemplateManagerModal from "@/components/jornadas/TemplateManagerModal";
 
 const newHires = [
   { id: 1, name: "Mariana Silva", role: "UX Designer", progress: 45, avatar: "Mariana", initials: "MS" },
@@ -95,6 +96,7 @@ const StepIcon = ({ status }: { status: TaskStatus }) => {
 const DashboardRHJornadas = () => {
   const [selectedHire, setSelectedHire] = useState(1);
   const [steps, setSteps] = useState(journeySteps);
+  const [templateModalOpen, setTemplateModalOpen] = useState(false);
 
   const toggleTask = (stepIdx: number, taskId: string) => {
     setSteps(prev =>
@@ -119,9 +121,15 @@ const DashboardRHJornadas = () => {
             Automatize o ramp-up de novos colaboradores com trilhas gamificadas.
           </p>
         </div>
-        <Button className="gap-2">
-          + Iniciar Nova Jornada
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" className="gap-2" onClick={() => setTemplateModalOpen(true)}>
+            <Layers className="h-4 w-4" />
+            Templates
+          </Button>
+          <Button className="gap-2">
+            + Iniciar Nova Jornada
+          </Button>
+        </div>
       </div>
 
       {/* Metrics */}
@@ -274,6 +282,8 @@ const DashboardRHJornadas = () => {
           </Card>
         </div>
       </div>
+
+      <TemplateManagerModal open={templateModalOpen} onOpenChange={setTemplateModalOpen} />
     </DashboardLayout>
   );
 };
