@@ -282,6 +282,8 @@ const DashboardRHJornadas = () => {
           </Card>
         </div>
       </div>
+
+      <TemplateManagerModal open={templateModalOpen} onOpenChange={setTemplateModalOpen} />
     </DashboardLayout>
   );
 };
