@@ -96,6 +96,7 @@ const StepIcon = ({ status }: { status: TaskStatus }) => {
 const DashboardRHJornadas = () => {
   const [selectedHire, setSelectedHire] = useState(1);
   const [steps, setSteps] = useState(journeySteps);
+  const [templateModalOpen, setTemplateModalOpen] = useState(false);
 
   const toggleTask = (stepIdx: number, taskId: string) => {
     setSteps(prev =>
