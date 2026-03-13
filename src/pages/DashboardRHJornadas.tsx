@@ -9,8 +9,9 @@ import { Badge } from "@/components/ui/badge";
 import {
   Rocket, Users, Clock, AlertTriangle, CheckCircle2, Circle,
   Sparkles, BookOpen, ShieldCheck, CalendarDays, MessageSquare,
-  Lock, ExternalLink, Award,
+  Lock, ExternalLink, Award, Layers,
 } from "lucide-react";
+import TemplateManagerModal from "@/components/jornadas/TemplateManagerModal";
 
 const newHires = [
   { id: 1, name: "Mariana Silva", role: "UX Designer", progress: 45, avatar: "Mariana", initials: "MS" },
