@@ -121,9 +121,15 @@ const DashboardRHJornadas = () => {
             Automatize o ramp-up de novos colaboradores com trilhas gamificadas.
           </p>
         </div>
-        <Button className="gap-2">
-          + Iniciar Nova Jornada
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" className="gap-2" onClick={() => setTemplateModalOpen(true)}>
+            <Layers className="h-4 w-4" />
+            Templates
+          </Button>
+          <Button className="gap-2">
+            + Iniciar Nova Jornada
+          </Button>
+        </div>
       </div>
 
       {/* Metrics */}
