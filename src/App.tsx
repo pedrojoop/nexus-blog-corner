@@ -81,6 +81,16 @@ const App = () => (
           <Route path="/dashboard/rh/lms" element={<DashboardRHLMS />} />
           <Route path="/dashboard/rh/caas" element={<DashboardRHCaaS />} />
           <Route path="/dashboard/rh/jornadas" element={<DashboardRHJornadas />} />
+          <Route path="/dashboard/rh/ats" element={<DashboardRHATS />} />
+          <Route path="/dashboard/rh/admissao" element={<DashboardRHAdmissao />} />
+          <Route path="/dashboard/rh/cargos-salarios" element={<DashboardRHCargosSalarios />} />
+          <Route path="/dashboard/rh/ponto" element={<DashboardRHPonto />} />
+          <Route path="/dashboard/rh/ferias" element={<DashboardRHFerias />} />
+          <Route path="/dashboard/rh/folha" element={<DashboardRHFolha />} />
+          <Route path="/dashboard/rh/offboarding" element={<DashboardRHOffboarding />} />
+          <Route path="/dashboard/rh/pesquisas" element={<DashboardRHPesquisas />} />
+          <Route path="/dashboard/rh/denuncias" element={<DashboardRHDenuncias />} />
+          <Route path="/dashboard/rh/sst" element={<DashboardRHSST />} />
           <Route path="/dashboard/perfil" element={<DashboardPerfil />} />
           <Route path="/dashboard/treinamento" element={<DashboardTreinamento />} />
           <Route path="/dashboard/performance" element={<DashboardPerformance />} />
