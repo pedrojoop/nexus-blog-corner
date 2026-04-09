@@ -35,6 +35,16 @@ import DashboardRHJornadas from "./pages/DashboardRHJornadas";
 import DashboardPerfil from "./pages/DashboardPerfil";
 import DashboardAnalytics from "./pages/DashboardAnalytics";
 import DashboardPerformance from "./pages/DashboardPerformance";
+import DashboardRHATS from "./pages/DashboardRHATS";
+import DashboardRHAdmissao from "./pages/DashboardRHAdmissao";
+import DashboardRHCargosSalarios from "./pages/DashboardRHCargosSalarios";
+import DashboardRHPonto from "./pages/DashboardRHPonto";
+import DashboardRHFerias from "./pages/DashboardRHFerias";
+import DashboardRHFolha from "./pages/DashboardRHFolha";
+import DashboardRHOffboarding from "./pages/DashboardRHOffboarding";
+import DashboardRHPesquisas from "./pages/DashboardRHPesquisas";
+import DashboardRHDenuncias from "./pages/DashboardRHDenuncias";
+import DashboardRHSST from "./pages/DashboardRHSST";
 
 const queryClient = new QueryClient();
 
