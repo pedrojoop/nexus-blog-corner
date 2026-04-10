@@ -97,6 +97,7 @@ const App = () => (
           <Route path="/dashboard/perfil" element={<DashboardPerfil />} />
           <Route path="/dashboard/treinamento" element={<DashboardTreinamento />} />
           <Route path="/dashboard/performance" element={<DashboardPerformance />} />
+          <Route path="/dashboard/rh/9box" element={<DashboardRH9Box />} />
           <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
           <Route path="/dashboard/configuracoes" element={<DashboardConfiguracoes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
