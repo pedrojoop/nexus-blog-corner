@@ -46,6 +46,7 @@ import DashboardRHOffboarding from "./pages/DashboardRHOffboarding";
 import DashboardRHPesquisas from "./pages/DashboardRHPesquisas";
 import DashboardRHDenuncias from "./pages/DashboardRHDenuncias";
 import DashboardRHSST from "./pages/DashboardRHSST";
+import DashboardRH9Box from "./pages/DashboardRH9Box";
 
 const queryClient = new QueryClient();
 
