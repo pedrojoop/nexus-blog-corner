@@ -45,7 +45,7 @@ const menuSections = [
   {
     label: "GESTÃO DE TALENTOS",
     items: [
-      { icon: Grid3X3, label: "Performance (9-Box)", path: "/dashboard/performance" },
+      { icon: Grid3X3, label: "Performance (9-Box)", path: "/dashboard/rh/9box" },
       { icon: Target, label: "Metas & 1:1s", path: "/dashboard/performance" },
       { icon: GraduationCap, label: "Treinamentos (LMS)", path: "/dashboard/rh/lms" },
       { icon: DollarSign, label: "Cargos e Salários", path: "/dashboard/rh/cargos-salarios" },

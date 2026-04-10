@@ -46,6 +46,7 @@ import DashboardRHOffboarding from "./pages/DashboardRHOffboarding";
 import DashboardRHPesquisas from "./pages/DashboardRHPesquisas";
 import DashboardRHDenuncias from "./pages/DashboardRHDenuncias";
 import DashboardRHSST from "./pages/DashboardRHSST";
+import DashboardRH9Box from "./pages/DashboardRH9Box";
 
 const queryClient = new QueryClient();
 
@@ -96,6 +97,7 @@ const App = () => (
           <Route path="/dashboard/perfil" element={<DashboardPerfil />} />
           <Route path="/dashboard/treinamento" element={<DashboardTreinamento />} />
           <Route path="/dashboard/performance" element={<DashboardPerformance />} />
+          <Route path="/dashboard/rh/9box" element={<DashboardRH9Box />} />
           <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
           <Route path="/dashboard/configuracoes" element={<DashboardConfiguracoes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
