@@ -36,6 +36,7 @@ import DashboardPerfil from "./pages/DashboardPerfil";
 import DashboardAnalytics from "./pages/DashboardAnalytics";
 import DashboardPerformance from "./pages/DashboardPerformance";
 import DashboardRHATS from "./pages/DashboardRHATS";
+import DashboardRHPipeline from "./pages/DashboardRHPipeline";
 import DashboardRHAdmissao from "./pages/DashboardRHAdmissao";
 import DashboardRHCargosSalarios from "./pages/DashboardRHCargosSalarios";
 import DashboardRHPonto from "./pages/DashboardRHPonto";
@@ -82,6 +83,7 @@ const App = () => (
           <Route path="/dashboard/rh/caas" element={<DashboardRHCaaS />} />
           <Route path="/dashboard/rh/jornadas" element={<DashboardRHJornadas />} />
           <Route path="/dashboard/rh/ats" element={<DashboardRHATS />} />
+          <Route path="/dashboard/rh/pipeline" element={<DashboardRHPipeline />} />
           <Route path="/dashboard/rh/admissao" element={<DashboardRHAdmissao />} />
           <Route path="/dashboard/rh/cargos-salarios" element={<DashboardRHCargosSalarios />} />
           <Route path="/dashboard/rh/ponto" element={<DashboardRHPonto />} />

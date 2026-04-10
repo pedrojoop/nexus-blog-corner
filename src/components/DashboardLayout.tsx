@@ -37,6 +37,7 @@ const menuSections = [
   {
     label: "AQUISIÇÃO DE TALENTOS",
     items: [
+      { icon: Layers, label: "Pipeline de Talentos", path: "/dashboard/rh/pipeline" },
       { icon: Briefcase, label: "ATS & Vagas", path: "/dashboard/rh/ats" },
       { icon: FileCheck, label: "Admissão Digital", path: "/dashboard/rh/admissao" },
     ],
