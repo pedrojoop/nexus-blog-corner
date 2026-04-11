@@ -40,6 +40,7 @@ const menuSections = [
       { icon: Layers, label: "Pipeline de Talentos", path: "/dashboard/rh/pipeline" },
       { icon: Briefcase, label: "ATS & Vagas", path: "/dashboard/rh/ats" },
       { icon: FileCheck, label: "Admissão Digital", path: "/dashboard/rh/admissao" },
+      { icon: Megaphone, label: "Portal & Publicação", path: "/dashboard/rh/portal" },
     ],
   },
   {
